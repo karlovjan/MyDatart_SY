@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ws="http://ws.mydatart.axapta.datart.cz">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ws:ReceiveDetailComplaintResponse>
+         <!--Optional:-->
+         <ws:ReceiveDetailComplaintResult></ws:ReceiveDetailComplaintResult>
+      </ws:ReceiveDetailComplaintResponse>
+   </soapenv:Body>
+</soapenv:Envelope>

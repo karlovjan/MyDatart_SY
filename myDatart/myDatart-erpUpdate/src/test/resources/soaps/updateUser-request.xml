@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bam="http://etnetera.com/projects/datart/bambino" >
+    <soapenv:Header/>
+   <soapenv:Body>
+      <bam:updateUser>
+         <segment>CZ</segment>
+         <user deleted="false">
+            <id>ESH-478478</id>
+            <businessRelationship>B2C</businessRelationship>
+         </user>
+      </bam:updateUser>
+   </soapenv:Body>
+</soapenv:Envelope>

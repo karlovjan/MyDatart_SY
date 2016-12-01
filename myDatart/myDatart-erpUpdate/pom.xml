@@ -1,0 +1,174 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cz.datart.jboss.myDatart</groupId>
+    <artifactId>myDatart</artifactId>
+    <version>1.0</version>
+  </parent>
+  <groupId>cz.datart.jboss.myDatart.erpUpdate</groupId>
+  <artifactId>myDatart-erpUpdate</artifactId>
+  <name>Erp update</name>
+  <description>Aktualizace entit na Axaptě initicializované eshopem.</description>
+  
+  <dependencies>
+      
+      <dependency>
+        <groupId>cz.datart.jboss.myDatart.utils</groupId>
+   		<artifactId>myDatart-utilities</artifactId>
+    </dependency>
+    
+    <dependency>
+    	<groupId>cz.datart.jboss.myDatart</groupId>
+    	<artifactId>myDatart-configuration</artifactId>
+    </dependency>
+    
+  	<dependency>
+	            <groupId>cz.datart.jboss.myDatart</groupId>
+			    <artifactId>myDatart-artifacts</artifactId>
+	        </dependency>
+	        
+  	<dependency>
+			<groupId>org.switchyard</groupId>
+			<artifactId>switchyard-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.switchyard</groupId>
+			<artifactId>switchyard-transform</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.switchyard</groupId>
+			<artifactId>switchyard-validate</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.switchyard</groupId>
+			<artifactId>switchyard-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.switchyard.components</groupId>
+			<artifactId>switchyard-component-test-mixin-cdi</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.switchyard.components</groupId>
+			<artifactId>switchyard-component-test-mixin-http</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.switchyard.components</groupId>
+			<artifactId>switchyard-component-soap</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.switchyard.components</groupId>
+			<artifactId>switchyard-component-camel</artifactId>
+		</dependency>
+<!-- 	    <dependency> -->
+<!-- 			<groupId>net.sf.saxon</groupId> -->
+<!-- 			<artifactId>Saxon-HE</artifactId> -->
+<!-- 		</dependency> -->
+		<dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-saxon</artifactId>
+        </dependency>
+  
+  </dependencies>
+  
+  <build>
+  
+  <plugins>
+<!-- 		odstranil jsem compiler plugin a pridal jar plugin pro nastaveni saxon zavislosti, proto abych nemusel definova modul v ee subsystemu wildfly -->
+           <plugin>
+	          <groupId>org.apache.maven.plugins</groupId>
+	          <artifactId>maven-jar-plugin</artifactId>
+	          <version>3.0.0</version>
+	          <configuration>
+		         <archive>
+		            <manifestEntries>
+		               <Dependencies>net.sf.saxon</Dependencies>
+		            </manifestEntries>
+		         </archive>
+		     </configuration>
+	        </plugin>
+		     
+		     
+			<plugin>
+				<groupId>org.switchyard</groupId>
+				<artifactId>switchyard-plugin</artifactId>
+				<version>${switchyard.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>configure</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<scannerClassNames>
+						<param>org.switchyard.transform.config.model.TransformSwitchYardScanner</param>
+					</scannerClassNames>
+				</configuration>
+			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${version.enforcer.maven}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>clean</phase>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>${maven.compiler.target}</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+			<plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven}</version>
+<!--                 <executions> -->
+<!--                     <execution> -->
+<!--                         <id>deploy</id> -->
+<!--                         <phase>install</phase> -->
+<!--                         <goals> -->
+<!--                             <goal>deploy-only</goal> -->
+<!--                         </goals> -->
+<!--                         <configuration> -->
+<!--                             <filename>${project.build.finalName}.jar</filename> -->
+<!--                             <skip>${deploy.skip}</skip> -->
+<!--                             <execute-commands> -->
+<!-- 		                        <scripts> -->
+<!-- 		                            <script>${deploy.script}</script> -->
+<!-- 		                        </scripts> -->
+<!-- 		                    </execute-commands> -->
+<!--                         </configuration> -->
+<!--                     </execution> -->
+<!--                     <execution> -->
+<!--                         <id>undeploy</id> -->
+<!--                         <phase>clean</phase> -->
+<!--                         <goals> -->
+<!--                             <goal>undeploy</goal> -->
+<!--                         </goals> -->
+<!--                         <configuration> -->
+<!--                             <filename>${project.build.finalName}.jar</filename> -->
+<!--                             <skip>${deploy.skip}</skip> -->
+<!--                             <execute-commands> -->
+<!-- 		                        <scripts> -->
+<!-- 		                            <script>${undeploy.script}</script> -->
+<!-- 		                        </scripts> -->
+<!-- 		                    </execute-commands> -->
+<!--                         </configuration> -->
+<!--                     </execution> -->
+<!--                 </executions> -->
+            </plugin>
+
+		</plugins>
+	</build>
+</project>

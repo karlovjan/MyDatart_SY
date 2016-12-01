@@ -1,0 +1,6 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bam="http://etnetera.com/projects/datart/bambino">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <bam:updateNeededResponse/>
+   </soapenv:Body>
+</soapenv:Envelope>

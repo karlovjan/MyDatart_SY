@@ -1,0 +1,1344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="BambinoUpdate"
+	targetNamespace="http://etnetera.com/projects/datart/bambino"
+	xmlns:impl="http://etnetera.com/projects/datart/bambino"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+
+<!-- *************** definice typu *************** -->
+
+<wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://etnetera.com/projects/datart/bambino" targetNamespace="http://etnetera.com/projects/datart/bambino">
+
+    <!-- request error type -->
+    <complexType name="RequestErrorType">
+        <sequence>
+            <element name="errorCode" type="xsd:QName" minOccurs="1" maxOccurs="unbounded"/>
+            <element name="errorText" minOccurs="0" maxOccurs="unbounded">
+                <complexType>
+                    <simpleContent>
+                        <extension base="xsd:string">
+                            <attribute name="lang" type="NMTOKEN"/>
+                        </extension>
+                    </simpleContent>
+                </complexType>
+            </element>
+        </sequence>
+    </complexType>
+
+    <!-- element of request type -->
+	<element name="requestError" type="impl:RequestErrorType" />
+
+	<!-- signalizace poruseni referencni integrity -->
+	<complexType name="EntityReference">
+		<sequence>
+			<element name="entityType" type="xsd:string"/>
+			<element name="entityId" type="impl:ErpId"/>
+		</sequence>
+	</complexType>
+	<element name="referentialIntegrityError">
+		<complexType>
+			<sequence>
+				<element name="missingEntities" type="impl:EntityReference" minOccurs="1" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+
+	<!-- zakladni identifikator pro ruzne pouziti -->
+	<simpleType name="Identifier">
+		<restriction base="xsd:string">
+			<maxLength value="20"/>
+			<pattern value="[A-Za-z0-9-][A-Za-z0-9_-]*"/>
+		</restriction>
+	</simpleType>
+
+	<!-- jednoznacna identifikace entity v ERP systemu -->
+	<simpleType name="ErpId">
+		<restriction base="impl:Identifier"/>
+	</simpleType>
+
+
+    <!--
+        update producers - messages
+    -->
+    <complexType name="UpdateProducersRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateProducersRequest" type="impl:UpdateProducersRequestType" />
+
+    <simpleType name="UpdateProducersResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateProducersResponse" type="impl:UpdateProducersResponseType" />
+
+
+    <!--
+        update attributes - messages
+    -->
+    <complexType name="UpdateAttributesRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateAttributesRequest" type="impl:UpdateAttributesRequestType" />
+
+    <simpleType name="UpdateAttributesResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateAttributesResponse" type="impl:UpdateAttributesResponseType" />
+
+    <!--
+        update attribute groups - messages
+    -->
+    <complexType name="UpdateAttributeGroupsRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateAttributeGroupsRequest" type="impl:UpdateAttributeGroupsRequestType" />
+
+    <simpleType name="UpdateAttributeGroupsResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateAttributeGroupsResponse" type="impl:UpdateAttributeGroupsResponseType" />
+
+    <!--
+        update availabilities - messages
+    -->
+    <complexType name="UpdateAvailabilityRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateAvailabilityRequest" type="impl:UpdateAvailabilityRequestType" />
+
+    <simpleType name="UpdateAvailabilityResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateAvailabilityResponse" type="impl:UpdateAvailabilityResponseType" />
+
+
+    <!--
+        update catalogue - messages
+    -->
+    <complexType name="UpdateCatalogueRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateCatalogueRequest" type="impl:UpdateCatalogueRequestType" />
+
+    <simpleType name="UpdateCatalogueResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateCatalogueResponse" type="impl:UpdateCatalogueResponseType" />
+
+
+    <!--
+        update categories - messages
+    -->
+    <complexType name="UpdateCategoriesRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateCategoriesRequest" type="impl:UpdateCategoriesRequestType" />
+
+    <simpleType name="UpdateCategoriesResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateCategoriesResponse" type="impl:UpdateCategoriesResponseType" />
+
+
+    <!--
+        update complaints - messages
+    -->
+    <complexType name="UpdateComplaintsRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateComplaintsRequest" type="impl:UpdateComplaintsRequestType" />
+
+    <simpleType name="UpdateComplaintsResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateComplaintsResponse" type="impl:UpdateComplaintsResponseType" />
+
+
+    <!--
+        update delivery region - messages
+    -->
+    <complexType name="UpdateDeliveryRegionRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateDeliveryRegionRequest" type="impl:UpdateDeliveryRegionRequestType" />
+
+    <simpleType name="UpdateDeliveryRegionResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateDeliveryRegionResponse" type="impl:UpdateDeliveryRegionResponseType" />
+
+
+    <!--
+        update EAN voucher - messages
+    -->
+    <complexType name="UpdateEANVoucherRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateEANVoucherRequest" type="impl:UpdateEANVoucherRequestType" />
+
+    <simpleType name="UpdateEANVoucherResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateEANVoucherResponse" type="impl:UpdateEANVoucherResponseType" />
+
+
+    <!--
+        update micro region - messages
+    -->
+    <complexType name="UpdateMicroRegionRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateMicroRegionRequest" type="impl:UpdateMicroRegionRequestType" />
+
+    <simpleType name="UpdateMicroRegionResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateMicroRegionResponse" type="impl:UpdateMicroRegionResponseType" />
+
+
+    <!--
+        update parameters - messages
+    -->
+    <complexType name="UpdateParametersRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateParametersRequest" type="impl:UpdateParametersRequestType" />
+
+    <simpleType name="UpdateParametersResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateParametersResponse" type="impl:UpdateParametersResponseType" />
+
+
+    <!--
+        update prices - messages
+    -->
+    <complexType name="UpdatePricesRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdatePricesRequest" type="impl:UpdatePricesRequestType" />
+
+    <simpleType name="UpdatePricesResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdatePricesResponse" type="impl:UpdatePricesResponseType" />
+
+
+    <!--
+        update relations - messages
+    -->
+    <complexType name="UpdateRelationsRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateRelationsRequest" type="impl:UpdateRelationsRequestType" />
+
+    <simpleType name="UpdateRelationsResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateRelationsResponse" type="impl:UpdateRelationsResponseType" />
+
+
+    <!--
+        update sell group - messages
+    -->
+    <complexType name="UpdateSellGroupsRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateSellGroupsRequest" type="impl:UpdateSellGroupsRequestType" />
+
+    <simpleType name="UpdateSellGroupsResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateSellGroupsResponse" type="impl:UpdateSellGroupsResponseType" />
+
+
+    <!--
+        update slot for region - messages
+    -->
+    <complexType name="UpdateSlotForRegionRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateSlotForRegionRequest" type="impl:UpdateSlotForRegionRequestType" />
+
+    <simpleType name="UpdateSlotForRegionResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateSlotForRegionResponse" type="impl:UpdateSlotForRegionResponseType" />
+
+
+    <!--
+        update time slot date - messages
+    -->
+    <complexType name="UpdateTimeSlotDateRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateTimeSlotDateRequest" type="impl:UpdateTimeSlotDateRequestType" />
+
+    <simpleType name="UpdateTimeSlotDateResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateTimeSlotDateResponse" type="impl:UpdateTimeSlotDateResponseType" />
+
+
+    <!--
+        update voucher - messages
+    -->
+    <complexType name="UpdateVoucherRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateVoucherRequest" type="impl:UpdateVoucherRequestType" />
+
+    <simpleType name="UpdateVoucherResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateVoucherResponse" type="impl:UpdateVoucherResponseType" />
+
+
+    <!--
+        update zip codes - messages
+    -->
+    <complexType name="UpdateZipCodesRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateZipCodesRequest" type="impl:UpdateZipCodesRequestType" />
+
+    <simpleType name="UpdateZipCodesResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateZipCodesResponse" type="impl:UpdateZipCodesResponseType" />
+
+    <!--
+        update daily sales - messages
+    -->
+    <complexType name="UpdateDailySalesRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateDailySalesRequest" type="impl:UpdateDailySalesRequestType" />
+
+    <simpleType name="UpdateDailySalesResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateDailySalesResponse" type="impl:UpdateDailySalesResponseType" />
+
+    <!--
+        update delivery delay - messages
+    -->
+    <complexType name="UpdateDeliveryDelayRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateDeliveryDelayRequest" type="impl:UpdateDeliveryDelayRequestType" />
+
+    <simpleType name="UpdateDeliveryDelayResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateDeliveryDelayResponse" type="impl:UpdateDeliveryDelayResponseType" />
+
+    <!--
+        update product lines - messages
+    -->
+    <complexType name="UpdateProductLinesRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateProductLinesRequest" type="impl:UpdateProductLinesRequestType" />
+
+    <simpleType name="UpdateProductLinesResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateProductLinesResponse" type="impl:UpdateProductLinesResponseType" />
+
+    <!--
+        commodity families - messages
+    -->
+    <complexType name="UpdateCommodityFamiliesRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateCommodityFamiliesRequest" type="impl:UpdateCommodityFamiliesRequestType" />
+
+    <simpleType name="UpdateCommodityFamiliesResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateCommodityFamiliesResponse" type="impl:UpdateCommodityFamiliesResponseType" />
+
+    <!--
+        commodity segments - messages
+    -->
+    <complexType name="UpdateCommoditySegmentsRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateCommoditySegmentsRequest" type="impl:UpdateCommoditySegmentsRequestType" />
+
+    <simpleType name="UpdateCommoditySegmentsResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateCommoditySegmentsResponse" type="impl:UpdateCommoditySegmentsResponseType" />
+
+    <!--
+        time slot pricing detail - messages
+    -->
+    <complexType name="UpdateTimeSlotPricingDetailsRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateTimeSlotPricingDetailsRequest" type="impl:UpdateTimeSlotPricingDetailsRequestType" />
+
+    <simpleType name="UpdateTimeSlotPricingDetailsResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateTimeSlotPricingDetailsResponse" type="impl:UpdateTimeSlotPricingDetailsResponseType" />
+    
+    <!--
+        update Branch
+    -->
+    <complexType name="UpdateBranchesRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateBranchesRequest" type="impl:UpdateBranchesRequestType" />
+
+    <simpleType name="UpdateBranchesResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateBranchesResponse" type="impl:UpdateBranchesResponseType" />
+    
+    <!--
+        update Employee Working Hours
+    -->
+    <complexType name="UpdateEmployeeWorkingHoursRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateEmployeeWorkingHoursRequest" type="impl:UpdateEmployeeWorkingHoursRequestType" />
+
+    <simpleType name="UpdateEmployeeWorkingHoursResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateEmployeeWorkingHoursResponse" type="impl:UpdateEmployeeWorkingHoursResponseType" />
+    
+    <!--
+        Update Commodity Attr Value
+    -->
+    <complexType name="UpdateCommodityAttrValueRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateCommodityAttrValueRequest" type="impl:UpdateCommodityAttrValueRequestType" />
+
+    <simpleType name="UpdateCommodityAttrValueResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateCommodityAttrValueResponse" type="impl:UpdateCommodityAttrValueResponseType" />
+    
+    <!--
+        Update Commodity Category
+    -->
+    <complexType name="UpdateCommodityCategoryRequestType">
+        <sequence>
+            <element name="xml" nillable="false" type="xsd:string" />
+        </sequence>
+    </complexType>
+
+    <element name="UpdateCommodityCategoryRequest" type="impl:UpdateCommodityCategoryRequestType" />
+
+    <simpleType name="UpdateCommodityCategoryResponseType" >
+        <restriction base="xsd:string" />
+    </simpleType>
+
+    <element name="UpdateCommodityCategoryResponse" type="impl:UpdateCommodityCategoryResponseType" />
+    
+    
+</schema>
+</wsdl:types>
+
+
+<!-- *************** pouzite zpravy *************** -->
+
+    <!-- indikace obecne chyby pro vsechny operace -->
+    <wsdl:message name="requestError">
+        <wsdl:part name="error" element="impl:requestError"/>
+    </wsdl:message>
+
+    <!-- indikace poruseni referencni integrity -->
+    <wsdl:message name="referentialIntegrityError">
+        <wsdl:part name="error" element="impl:referentialIntegrityError"/>
+    </wsdl:message>
+
+    <wsdl:message name="updateProducersRequest">
+        <wsdl:part name="updateProducersRequest" element="impl:UpdateProducersRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateProducersResponse">
+        <wsdl:part name="updateProducersResponse" element="impl:UpdateProducersResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateParametersRequest">
+        <wsdl:part name="updateParametersRequest" element="impl:UpdateParametersRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateParametersResponse">
+        <wsdl:part name="updateParametersResponse" element="impl:UpdateParametersResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateCategoriesRequest">
+        <wsdl:part name="updateCategoriesRequest" element="impl:UpdateCategoriesRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateCategoriesResponse">
+        <wsdl:part name="updateCategoriesResponse" element="impl:UpdateCategoriesResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateAvailabilityRequest">
+        <wsdl:part name="updateAvailabilityRequest" element="impl:UpdateAvailabilityRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateAvailabilityResponse">
+        <wsdl:part name="updateAvailabilityResponse" element="impl:UpdateAvailabilityResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updatePricesRequest">
+        <wsdl:part name="updatePricesRequest" element="impl:UpdatePricesRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updatePricesResponse">
+        <wsdl:part name="updatePricesResponse" element="impl:UpdatePricesResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateAttributesRequest">
+        <wsdl:part name="updateAttributesRequest" element="impl:UpdateAttributesRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateAttributesResponse">
+        <wsdl:part name="updateAttributesResponse" element="impl:UpdateAttributesResponse" />
+    </wsdl:message>
+    
+    <wsdl:message name="updateAttributeGroupsRequest">
+        <wsdl:part name="updateAttributeGroupsRequest" element="impl:UpdateAttributeGroupsRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateAttributeGroupsResponse">
+        <wsdl:part name="updateAttributeGroupsResponse" element="impl:UpdateAttributeGroupsResponse" />
+    </wsdl:message>
+    
+    <wsdl:message name="updateCatalogueRequest">
+        <wsdl:part name="updateCatalogueRequest" element="impl:UpdateCatalogueRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateCatalogueResponse">
+        <wsdl:part name="updateCatalogueResponse" element="impl:UpdateCatalogueResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateRelationsRequest">
+        <wsdl:part name="updateRelationsRequest" element="impl:UpdateRelationsRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateRelationsResponse">
+        <wsdl:part name="updateRelationsResponse" element="impl:UpdateRelationsResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateComplaintsRequest">
+        <wsdl:part name="updateComplaintsRequest" element="impl:UpdateComplaintsRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateComplaintsResponse">
+        <wsdl:part name="updateComplaintsResponse" element="impl:UpdateComplaintsResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSellGroupsRequest">
+        <wsdl:part name="updateSellGroupsRequest" element="impl:UpdateSellGroupsRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSellGroupsResponse">
+        <wsdl:part name="updateSellGroupsResponse" element="impl:UpdateSellGroupsResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateDeliveryRegionRequest">
+        <wsdl:part name="updateDeliveryRegionRequest" element="impl:UpdateDeliveryRegionRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateDeliveryRegionResponse">
+        <wsdl:part name="updateDeliveryRegionResponse" element="impl:UpdateDeliveryRegionResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSlotForRegionRequest">
+        <wsdl:part name="updateSlotForRegionRequest" element="impl:UpdateSlotForRegionRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateSlotForRegionResponse">
+        <wsdl:part name="updateSlotForRegionResponse" element="impl:UpdateSlotForRegionResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateMicroRegionRequest">
+        <wsdl:part name="updateMicroRegionRequest" element="impl:UpdateMicroRegionRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateMicroRegionResponse">
+        <wsdl:part name="updateMicroRegionResponse" element="impl:UpdateMicroRegionResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateTimeSlotDateRequest">
+        <wsdl:part name="updateTimeSlotDateRequest" element="impl:UpdateTimeSlotDateRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateTimeSlotDateResponse">
+        <wsdl:part name="updateTimeSlotDateResponse" element="impl:UpdateTimeSlotDateResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateZipCodesRequest">
+        <wsdl:part name="updateZipCodesRequest" element="impl:UpdateZipCodesRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateZipCodesResponse">
+        <wsdl:part name="updateZipCodesResponse" element="impl:UpdateZipCodesResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateEANVoucherRequest">
+        <wsdl:part name="updateEANVoucherRequest" element="impl:UpdateEANVoucherRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateEANVoucherResponse">
+        <wsdl:part name="updateEANVoucherResponse" element="impl:UpdateEANVoucherResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateVoucherRequest">
+        <wsdl:part name="updateVoucherRequest" element="impl:UpdateVoucherRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateVoucherResponse">
+        <wsdl:part name="updateVoucherResponse" element="impl:UpdateVoucherResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateDailySalesRequest">
+        <wsdl:part name="updateDailySalesRequest" element="impl:UpdateDailySalesRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateDailySalesResponse">
+        <wsdl:part name="updateDailySalesResponse" element="impl:UpdateDailySalesResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateDeliveryDelayRequest">
+        <wsdl:part name="updateDeliveryDelayRequest" element="impl:UpdateDeliveryDelayRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateDeliveryDelayResponse">
+        <wsdl:part name="updateDeliveryDelayResponse" element="impl:UpdateDeliveryDelayResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateProductLinesRequest">
+        <wsdl:part name="updateProductLinesRequest" element="impl:UpdateProductLinesRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateProductLinesResponse">
+        <wsdl:part name="updateProductLinesResponse" element="impl:UpdateProductLinesResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateCommodityFamiliesRequest">
+        <wsdl:part name="updateCommodityFamiliesRequest" element="impl:UpdateCommodityFamiliesRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateCommodityFamiliesResponse">
+        <wsdl:part name="updateCommodityFamiliesResponse" element="impl:UpdateCommodityFamiliesResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateCommoditySegmentsRequest">
+        <wsdl:part name="updateCommoditySegmentsRequest" element="impl:UpdateCommoditySegmentsRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateCommoditySegmentsResponse">
+        <wsdl:part name="updateCommoditySegmentsResponse" element="impl:UpdateCommoditySegmentsResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="updateTimeSlotPricingDetailsRequest">
+        <wsdl:part name="updateTimeSlotPricingDetailsRequest" element="impl:UpdateTimeSlotPricingDetailsRequest" />
+    </wsdl:message>
+
+    <wsdl:message name="updateTimeSlotPricingDetailsResponse">
+        <wsdl:part name="updateTimeSlotPricingDetailsResponse" element="impl:UpdateTimeSlotPricingDetailsResponse" />
+    </wsdl:message>
+    
+    <wsdl:message name="updateBranchesRequest">
+		<wsdl:part name="updateBranchesRequest" element="impl:UpdateBranchesRequest" />
+	</wsdl:message>
+	
+	<wsdl:message name="updateBranchesResponse">
+		<wsdl:part name="updateBranchesResponse" element="impl:UpdateBranchesResponse" />
+	</wsdl:message>
+	
+	<wsdl:message name="updateEmployeeWorkingHoursRequest">
+		<wsdl:part name="updateEmployeeWorkingHoursRequest" element="impl:UpdateEmployeeWorkingHoursRequest"/>
+	</wsdl:message>
+	
+	<wsdl:message name="updateEmployeeWorkingHoursResponse">
+		<wsdl:part name="updateEmployeeWorkingHoursResponse" element="impl:UpdateEmployeeWorkingHoursResponse" />
+	</wsdl:message>
+	
+	<wsdl:message name="updateCommodityAttrValueRequest">
+		<wsdl:part name="updateCommodityAttrValueRequest" element="impl:UpdateCommodityAttrValueRequest"/>
+	</wsdl:message>
+	
+	<wsdl:message name="updateCommodityAttrValueResponse">
+		<wsdl:part name="updateCommodityAttrValueResponse" element="impl:UpdateCommodityAttrValueResponse"/>
+	</wsdl:message>
+	
+	<wsdl:message name="updateCommodityCategoryRequest">
+		<wsdl:part name="updateCommodityCategoryRequest" element="impl:UpdateCommodityCategoryRequest"/>
+	</wsdl:message>
+	
+	<wsdl:message name="updateCommodityCategoryResponse">
+		<wsdl:part name="updateCommodityCategoryResponse" element="impl:UpdateCommodityCategoryResponse"/>
+	</wsdl:message>
+
+<!-- *************** poskytovane operace *************** -->
+
+    <wsdl:portType name="EsbChunkUpdate">
+
+        <wsdl:operation name="updateProducers" parameterOrder="updateParametersRequest" >
+            <wsdl:input name="updateProducersRequest" message="impl:updateProducersRequest" />
+            <wsdl:output name="updateProducersResponse" message="impl:updateProducersResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateCategories" parameterOrder="updateCategoriesRequest">
+            <wsdl:input name="updateCategoriesRequest" message="impl:updateCategoriesRequest"/>
+            <wsdl:output name="updateCategoriesResponse" message="impl:updateCategoriesResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateAvailability" parameterOrder="updateAvailabilityRequest">
+            <wsdl:input name="updateAvailabilityRequest" message="impl:updateAvailabilityRequest"/>
+            <wsdl:output name="updateAvailabilityResponse" message="impl:updateAvailabilityResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updatePrices" parameterOrder="updatePricesRequest">
+            <wsdl:input name="updatePricesRequest" message="impl:updatePricesRequest"/>
+            <wsdl:output name="updatePricesResponse" message="impl:updatePricesResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateAttributes" parameterOrder="updateAttributesRequest">
+            <wsdl:input name="updateAttributesRequest" message="impl:updateAttributesRequest"/>
+            <wsdl:output name="updateAttributesResponse" message="impl:updateAttributesResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+        
+		<wsdl:operation name="updateAttributeGroups" parameterOrder="updateAttributeGroupsRequest">
+			<wsdl:input name="updateAttributeGroupsRequest" message="impl:updateAttributeGroupsRequest"/>
+			<wsdl:output name="updateAttributeGroupsResponse" message="impl:updateAttributeGroupsResponse"/>
+			<wsdl:fault name="requestError" message="impl:requestError"/>
+		</wsdl:operation>
+
+        <wsdl:operation name="updateCatalogue" parameterOrder="updateCatalogueRequest">
+            <wsdl:input name="updateCatalogueRequest" message="impl:updateCatalogueRequest"/>
+            <wsdl:output name="updateCatalogueResponse" message="impl:updateCatalogueResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateRelations" parameterOrder="updateRelationsRequest">
+            <wsdl:input name="updateRelationsRequest" message="impl:updateRelationsRequest"/>
+            <wsdl:output name="updateRelationsResponse" message="impl:updateRelationsResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateComplaints" parameterOrder="updateComplaintsRequest">
+            <wsdl:input name="updateComplaintsRequest" message="impl:updateComplaintsRequest"/>
+            <wsdl:output name="updateComplaintsResponse" message="impl:updateComplaintsResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateSellGroups" parameterOrder="updateSellGroupsRequest">
+            <wsdl:input name="updateSellGroupsRequest" message="impl:updateSellGroupsRequest"/>
+            <wsdl:output name="updateSellGroupsResponse" message="impl:updateSellGroupsResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateDeliveryRegion" parameterOrder="updateDeliveryRegionRequest">
+            <wsdl:input message="impl:updateDeliveryRegionRequest" name="updateDeliveryRegionRequest"/>
+            <wsdl:output message="impl:updateDeliveryRegionResponse" name="updateDeliveryRegionResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateSlotForRegion" parameterOrder="updateSlotForRegion">
+            <wsdl:input message="impl:updateSlotForRegionRequest" name="updateSlotForRegionRequest"/>
+            <wsdl:output message="impl:updateSlotForRegionResponse" name="updateSlotForRegionResponse"/>
+            <wsdl:fault name="requestError"	message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateMicroRegion" parameterOrder="updateMicroRegionRequest">
+            <wsdl:input message="impl:updateMicroRegionRequest" name="updateMicroRegionRequest"/>
+            <wsdl:output message="impl:updateMicroRegionResponse" name="updateMicroRegionResponse"/>
+            <wsdl:fault name="requestError"	message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateTimeSlotDate" parameterOrder="updateTimeSlotDateRequest">
+            <wsdl:input message="impl:updateTimeSlotDateRequest" name="updateTimeSlotDateRequest"/>
+            <wsdl:output message="impl:updateTimeSlotDateResponse" name="updateTimeSlotDateResponse"/>
+            <wsdl:fault name="requestError"	message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateZipCodes" parameterOrder="updateZipCodesRequest">
+            <wsdl:input message="impl:updateZipCodesRequest" name="updateZipCodesRequest"/>
+            <wsdl:output message="impl:updateZipCodesResponse" name="updateZipCodesResponse"/>
+            <wsdl:fault name="requestError"	message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateEANVoucher" parameterOrder="updateEANVoucherRequest">
+            <wsdl:input message="impl:updateEANVoucherRequest" name="updateEANVoucherRequest"/>
+            <wsdl:output message="impl:updateEANVoucherResponse" name="updateEANVoucherResponse"/>
+            <wsdl:fault name="requestError"	message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateVoucher" parameterOrder="updateVoucherRequest">
+            <wsdl:input message="impl:updateVoucherRequest" name="updateVoucherRequest"/>
+            <wsdl:output message="impl:updateVoucherResponse" name="updateVoucherResponse"/>
+            <wsdl:fault name="requestError"	message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateDailySales" parameterOrder="updateDailySalesRequest">
+            <wsdl:input message="impl:updateDailySalesRequest" name="updateDailySalesRequest"/>
+            <wsdl:output message="impl:updateDailySalesResponse" name="updateDailySalesResponse"/>
+            <wsdl:fault name="requestError"	message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateDeliveryDelay" parameterOrder="updateDeliveryDelayRequest">
+            <wsdl:input message="impl:updateDeliveryDelayRequest" name="updateDeliveryDelayRequest"/>
+            <wsdl:output message="impl:updateDeliveryDelayResponse" name="updateDeliveryDelayResponse"/>
+            <wsdl:fault name="requestError"	message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateProductLines" parameterOrder="updateProductLinesRequest">
+            <wsdl:input name="updateProductLinesRequest" message="impl:updateProductLinesRequest"/>
+            <wsdl:output name="updateProductLinesResponse" message="impl:updateProductLinesResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateCommodityFamilies" parameterOrder="updateCommodityFamiliesRequest">
+            <wsdl:input name="updateCommodityFamiliesRequest" message="impl:updateCommodityFamiliesRequest"/>
+            <wsdl:output name="updateCommodityFamiliesResponse" message="impl:updateCommodityFamiliesResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateCommoditySegments" parameterOrder="updateCommoditySegmentsRequest">
+            <wsdl:input name="updateCommoditySegmentsRequest" message="impl:updateCommoditySegmentsRequest"/>
+            <wsdl:output name="updateCommoditySegmentsResponse" message="impl:updateCommoditySegmentsResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateTimeSlotPricingDetails" parameterOrder="updateTimeSlotPricingDetailsRequest">
+            <wsdl:input name="updateTimeSlotPricingDetailsRequest" message="impl:updateTimeSlotPricingDetailsRequest"/>
+            <wsdl:output name="updateTimeSlotPricingDetailsResponse" message="impl:updateTimeSlotPricingDetailsResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+        </wsdl:operation>
+        
+        <wsdl:operation name="updateBranches" parameterOrder="scope list">
+			<wsdl:input name="updateBranchesRequest" message="impl:updateBranchesRequest"/>
+			<wsdl:output name="updateBranchesResponse" message="impl:updateBranchesResponse"/>
+			<wsdl:fault name="requestError" message="impl:requestError"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="updateEmployeeWorkingHours" parameterOrder="scope list">
+			<wsdl:input name="updateEmployeeWorkingHoursRequest" message="impl:updateEmployeeWorkingHoursRequest"/>
+			<wsdl:output name="updateEmployeeWorkingHoursResponse" message="impl:updateEmployeeWorkingHoursResponse"/>
+			<wsdl:fault name="requestError" message="impl:requestError"/>
+		</wsdl:operation>
+		
+		<wsdl:operation name="updateCommodityAttrValue" parameterOrder="scope list">
+			<wsdl:input name="updateCommodityAttrValueRequest" message="impl:updateCommodityAttrValueRequest"/>
+			<wsdl:output name="updateCommodityAttrValueResponse" message="impl:updateCommodityAttrValueResponse"/>
+			<wsdl:fault name="requestError" message="impl:requestError"/>
+		</wsdl:operation>
+	
+		<wsdl:operation name="updateCommodityCategory" parameterOrder="scope list">
+			<wsdl:input name="updateCommodityCategoryRequest" message="impl:updateCommodityCategoryRequest"/>
+			<wsdl:output name="updateCommodityCategoryResponse" message="impl:updateCommodityCategoryResponse"/>
+			<wsdl:fault name="requestError" message="impl:requestError"/>
+		</wsdl:operation>
+	
+    </wsdl:portType>
+
+    <!-- *************** mapovani pro SOAP *************** -->
+
+    <wsdl:binding name="esbChunkUpdateSoapBinding" type="impl:EsbChunkUpdate">
+        <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+
+        <wsdl:operation name="updateProducers">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateProducersRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateProducersResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateCategories">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateCategoriesRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateCategoriesResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateAvailability">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateAvailabilityRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateAvailabilityResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updatePrices">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updatePricesRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updatePricesResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateAttributes">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateAttributesRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateAttributesResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+  
+	  	<wsdl:operation name="updateAttributeGroups">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="updateAttributeGroupsRequest">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+			</wsdl:input>
+			<wsdl:output name="updateAttributeGroupsResponse">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+			</wsdl:output>
+			<wsdl:fault name="requestError">
+				<wsdlsoap:fault name="requestError" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+
+        <wsdl:operation name="updateCatalogue">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateCatalogueRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateCatalogueResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateRelations">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateRelationsRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateRelationsResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateComplaints">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateComplaintsRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateComplaintsResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateSellGroups">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateSellGroupsRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateSellGroupsResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateDeliveryRegion">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateDeliveryRegionRequest">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateDeliveryRegionResponse">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateSlotForRegion">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateSlotForRegionRequest">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateSlotForRegionResponse">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateMicroRegion">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateMicroRegionRequest">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateMicroRegionResponse">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateTimeSlotDate">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateTimeSlotDateRequest">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateTimeSlotDateResponse">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateZipCodes">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateZipCodesRequest">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateZipCodesResponse">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateEANVoucher">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateEANVoucherRequest">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateEANVoucherResponse">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateVoucher">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateVoucherRequest">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateVoucherResponse">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateDailySales">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateDailySalesRequest">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateDailySalesResponse">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+
+        <wsdl:operation name="updateDeliveryDelay">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateDeliveryDelayRequest">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateDeliveryDelayResponse">
+                <wsdlsoap:body namespace="http://etnetera.com/projects/datart/bambino" use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateProductLines">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateProductLinesRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateProductLinesResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateCommodityFamilies">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateCommodityFamiliesRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateCommodityFamiliesResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateCommoditySegments">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateCommoditySegmentsRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateCommoditySegmentsResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="updateTimeSlotPricingDetails">
+            <wsdlsoap:operation soapAction=""/>
+            <wsdl:input name="updateTimeSlotPricingDetailsRequest">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:input>
+            <wsdl:output name="updateTimeSlotPricingDetailsResponse">
+                <wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+            </wsdl:output>
+            <wsdl:fault name="requestError">
+                <wsdlsoap:fault name="requestError" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="updateBranches">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="updateBranchesRequest">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+			</wsdl:input>
+			<wsdl:output name="updateBranchesResponse">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+			</wsdl:output>
+			<wsdl:fault name="requestError">
+				<wsdlsoap:fault name="requestError" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="referentialIntegrityError">
+				<wsdlsoap:fault name="referentialIntegrityError" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="updateEmployeeWorkingHours">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="updateEmployeeWorkingHoursRequest">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+			</wsdl:input>
+			<wsdl:output name="updateEmployeeWorkingHoursResponse">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+			</wsdl:output>
+			<wsdl:fault name="requestError">
+				<wsdlsoap:fault name="requestError" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="referentialIntegrityError">
+				<wsdlsoap:fault name="referentialIntegrityError" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	
+		
+		<wsdl:operation name="updateCommodityAttrValue">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="updateCommodityAttrValueRequest">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+			</wsdl:input>
+			<wsdl:output name="updateCommodityAttrValueResponse">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+			</wsdl:output>
+			<wsdl:fault name="requestError">
+				<wsdlsoap:fault name="requestError" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="referentialIntegrityError">
+				<wsdlsoap:fault name="referentialIntegrityError" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		
+		<wsdl:operation name="updateCommodityCategory">
+			<wsdlsoap:operation soapAction=""/>
+			<wsdl:input name="updateCommodityCategoryRequest">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+			</wsdl:input>
+			<wsdl:output name="updateCommodityCategoryResponse">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+			</wsdl:output>
+			<wsdl:fault name="requestError">
+				<wsdlsoap:fault name="requestError" use="literal"/>
+			</wsdl:fault>
+			<wsdl:fault name="referentialIntegrityError">
+				<wsdlsoap:fault name="referentialIntegrityError" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+				
+    </wsdl:binding>
+
+
+    <!-- *************** popis sluzeb *************** -->
+
+    <wsdl:service name="EshopChunkUpdateService">
+        <wsdl:port name="update" binding="impl:esbChunkUpdateSoapBinding">
+            <wsdlsoap:address location="http://ws.etnetera.cz/datart/eshopUpdate"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

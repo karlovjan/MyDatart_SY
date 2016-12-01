@@ -1,0 +1,1084 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="MyDatartAxaptaWS"
+	targetNamespace="http://ws.mydatart.axapta.datart.cz" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+	xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://ws.mydatart.axapta.datart.cz"
+	xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+	xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xs:schema elementFormDefault="qualified"
+			targetNamespace="http://ws.mydatart.axapta.datart.cz" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+			<xs:import
+				namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+			<xs:element name="AnswDetailOrder">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="salesId" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="version" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="result" type="xs:boolean" />
+						<xs:element minOccurs="0" name="resultText" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailOrderResponse">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CheckItemsTransferred">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="items" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CheckItemsTransferredResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="CheckItemsTransferredResult"
+							type="xs:boolean" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailOrder">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="orderId" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailOrderResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SendDetailOrderResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailCust">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="customerId" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="version" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="result" type="xs:boolean" />
+						<xs:element minOccurs="0" name="resultText" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailCustResponse">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailCust">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="customerId" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailCustResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SendDetailCustResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailManual">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="manualId" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="version" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="result" type="xs:boolean" />
+						<xs:element minOccurs="0" name="resultText" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailManualResponse">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailManual">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="manualId" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailManualResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SendDetailManualResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="offerId" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="version" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="result" type="xs:boolean" />
+						<xs:element minOccurs="0" name="resultText" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailOfferResponse">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailOffer">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="offerId" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailOfferResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SendDetailOfferResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AddUserOrder">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="id" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AddUserOrderResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="AddUserOrderResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ConfirmTrans">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xmlInput" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ConfirmTransResponse">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetParameter">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xmlInput" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetParameterResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="GetParameterResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PingAxapta">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PingAxaptaResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="PingAxaptaResult" type="xs:boolean" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceiveDetailCust">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xmlInput" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceiveDetailCustResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ReceiveDetailCustResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceiveDetailOrder">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xmlInput" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceiveDetailOrderResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ReceiveDetailOrderResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceiveDetailOrderVideoCollect">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xmlInput" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceiveDetailOrderVideoCollectResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0"
+							name="ReceiveDetailOrderVideoCollectResult" nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailComplaint">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="repNr" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="version" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="result" type="xs:boolean" />
+						<xs:element minOccurs="0" name="resultText" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailComplaintResponse">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailComplaint">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="repNr" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailComplaintResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SendDetailComplaintResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailDocument">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="salesId" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="SendDetailDocumentResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="SendDetailDocumentResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailDocument">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="salesId" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="version" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="result" type="xs:boolean" />
+						<xs:element minOccurs="0" name="resultText" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswDetailDocumentResponse">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceiveDetailComplaint">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xmlInput" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceiveDetailComplaintResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ReceiveDetailComplaintResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ChangeComplaintState">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="xmlInput" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ChangeComplaintStateResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ChangeComplaintStateResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswPreparePrintedContract">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="salesId" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="fileNames" nillable="true"
+							type="q1:ArrayOfstring" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+						<xs:element minOccurs="0" name="requestError" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="AnswPreparePrintedContractResponse">
+				<xs:complexType>
+					<xs:sequence />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceivePrepareDocument">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="invoiceId" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceivePrepareDocumentResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="ReceivePrepareDocumentResult"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+		<xs:schema attributeFormDefault="qualified"
+			elementFormDefault="qualified"
+			targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+			<xs:element name="anyType" nillable="true" type="xs:anyType" />
+			<xs:element name="anyURI" nillable="true" type="xs:anyURI" />
+			<xs:element name="base64Binary" nillable="true" type="xs:base64Binary" />
+			<xs:element name="boolean" nillable="true" type="xs:boolean" />
+			<xs:element name="byte" nillable="true" type="xs:byte" />
+			<xs:element name="dateTime" nillable="true" type="xs:dateTime" />
+			<xs:element name="decimal" nillable="true" type="xs:decimal" />
+			<xs:element name="double" nillable="true" type="xs:double" />
+			<xs:element name="float" nillable="true" type="xs:float" />
+			<xs:element name="int" nillable="true" type="xs:int" />
+			<xs:element name="long" nillable="true" type="xs:long" />
+			<xs:element name="QName" nillable="true" type="xs:QName" />
+			<xs:element name="short" nillable="true" type="xs:short" />
+			<xs:element name="string" nillable="true" type="xs:string" />
+			<xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte" />
+			<xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt" />
+			<xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong" />
+			<xs:element name="unsignedShort" nillable="true"
+				type="xs:unsignedShort" />
+			<xs:element name="char" nillable="true" type="tns:char" />
+			<xs:simpleType name="char">
+				<xs:restriction base="xs:int" />
+			</xs:simpleType>
+			<xs:element name="duration" nillable="true" type="tns:duration" />
+			<xs:simpleType name="duration">
+				<xs:restriction base="xs:duration">
+					<xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?" />
+					<xs:minInclusive value="-P10675199DT2H48M5.4775808S" />
+					<xs:maxInclusive value="P10675199DT2H48M5.4775807S" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:element name="guid" nillable="true" type="tns:guid" />
+			<xs:simpleType name="guid">
+				<xs:restriction base="xs:string">
+					<xs:pattern
+						value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}" />
+				</xs:restriction>
+			</xs:simpleType>
+			<xs:attribute name="FactoryType" type="xs:QName" />
+			<xs:attribute name="Id" type="xs:ID" />
+			<xs:attribute name="Ref" type="xs:IDREF" />
+		</xs:schema>
+		<xs:schema elementFormDefault="qualified"
+			targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+			xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+			<xs:complexType name="ArrayOfstring">
+				<xs:sequence>
+					<xs:element minOccurs="0" maxOccurs="unbounded" name="string"
+						nillable="true" type="xs:string" />
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="ArrayOfstring" nillable="true"
+				type="tns:ArrayOfstring" />
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailOrder_InputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailOrder" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailOrder_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailOrderResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_CheckItemsTransferred_InputMessage">
+		<wsdl:part name="parameters" element="tns:CheckItemsTransferred" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_CheckItemsTransferred_OutputMessage">
+		<wsdl:part name="parameters" element="tns:CheckItemsTransferredResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailOrder_InputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailOrder" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailOrder_OutputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailOrderResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailCust_InputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailCust" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailCust_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailCustResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailCust_InputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailCust" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailCust_OutputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailCustResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailManual_InputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailManual" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailManual_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailManualResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailManual_InputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailManual" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailManual_OutputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailManualResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailOffer_InputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailOffer" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailOffer_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailOfferResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailOffer_InputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailOffer" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailOffer_OutputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailOfferResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AddUserOrder_InputMessage">
+		<wsdl:part name="parameters" element="tns:AddUserOrder" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AddUserOrder_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AddUserOrderResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ConfirmTrans_InputMessage">
+		<wsdl:part name="parameters" element="tns:ConfirmTrans" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ConfirmTrans_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ConfirmTransResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_GetParameter_InputMessage">
+		<wsdl:part name="parameters" element="tns:GetParameter" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_GetParameter_OutputMessage">
+		<wsdl:part name="parameters" element="tns:GetParameterResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_PingAxapta_InputMessage">
+		<wsdl:part name="parameters" element="tns:PingAxapta" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_PingAxapta_OutputMessage">
+		<wsdl:part name="parameters" element="tns:PingAxaptaResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ReceiveDetailCust_InputMessage">
+		<wsdl:part name="parameters" element="tns:ReceiveDetailCust" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ReceiveDetailCust_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ReceiveDetailCustResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ReceiveDetailOrder_InputMessage">
+		<wsdl:part name="parameters" element="tns:ReceiveDetailOrder" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ReceiveDetailOrder_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ReceiveDetailOrderResponse" />
+	</wsdl:message>
+	<wsdl:message
+		name="IMyDatartAxaptaWS_ReceiveDetailOrderVideoCollect_InputMessage">
+		<wsdl:part name="parameters" element="tns:ReceiveDetailOrderVideoCollect" />
+	</wsdl:message>
+	<wsdl:message
+		name="IMyDatartAxaptaWS_ReceiveDetailOrderVideoCollect_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ReceiveDetailOrderVideoCollectResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailComplaint_InputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailComplaint" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailComplaint_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailComplaintResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailComplaint_InputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailComplaint" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailComplaint_OutputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailComplaintResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailDocument_InputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailDocument" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_SendDetailDocument_OutputMessage">
+		<wsdl:part name="parameters" element="tns:SendDetailDocumentResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailDocument_InputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailDocument" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_AnswDetailDocument_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AnswDetailDocumentResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ReceiveDetailComplaint_InputMessage">
+		<wsdl:part name="parameters" element="tns:ReceiveDetailComplaint" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ReceiveDetailComplaint_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ReceiveDetailComplaintResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ChangeComplaintState_InputMessage">
+		<wsdl:part name="parameters" element="tns:ChangeComplaintState" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ChangeComplaintState_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ChangeComplaintStateResponse" />
+	</wsdl:message>
+	<wsdl:message
+		name="IMyDatartAxaptaWS_AnswPreparePrintedContract_InputMessage">
+		<wsdl:part name="parameters" element="tns:AnswPreparePrintedContract" />
+	</wsdl:message>
+	<wsdl:message
+		name="IMyDatartAxaptaWS_AnswPreparePrintedContract_OutputMessage">
+		<wsdl:part name="parameters" element="tns:AnswPreparePrintedContractResponse" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ReceivePrepareDocument_InputMessage">
+		<wsdl:part name="parameters" element="tns:ReceivePrepareDocument" />
+	</wsdl:message>
+	<wsdl:message name="IMyDatartAxaptaWS_ReceivePrepareDocument_OutputMessage">
+		<wsdl:part name="parameters" element="tns:ReceivePrepareDocumentResponse" />
+	</wsdl:message>
+	<wsdl:portType name="IMyDatartAxaptaWS">
+		<wsdl:operation name="AnswDetailOrder">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailOrder"
+				message="tns:IMyDatartAxaptaWS_AnswDetailOrder_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailOrderResponse"
+				message="tns:IMyDatartAxaptaWS_AnswDetailOrder_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="CheckItemsTransferred">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/CheckItemsTransferred"
+				message="tns:IMyDatartAxaptaWS_CheckItemsTransferred_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/CheckItemsTransferredResponse"
+				message="tns:IMyDatartAxaptaWS_CheckItemsTransferred_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailOrder">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailOrder"
+				message="tns:IMyDatartAxaptaWS_SendDetailOrder_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailOrderResponse"
+				message="tns:IMyDatartAxaptaWS_SendDetailOrder_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="AnswDetailCust">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailCust"
+				message="tns:IMyDatartAxaptaWS_AnswDetailCust_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailCustResponse"
+				message="tns:IMyDatartAxaptaWS_AnswDetailCust_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailCust">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailCust"
+				message="tns:IMyDatartAxaptaWS_SendDetailCust_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailCustResponse"
+				message="tns:IMyDatartAxaptaWS_SendDetailCust_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="AnswDetailManual">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailManual"
+				message="tns:IMyDatartAxaptaWS_AnswDetailManual_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailManualResponse"
+				message="tns:IMyDatartAxaptaWS_AnswDetailManual_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailManual">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailManual"
+				message="tns:IMyDatartAxaptaWS_SendDetailManual_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailManualResponse"
+				message="tns:IMyDatartAxaptaWS_SendDetailManual_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="AnswDetailOffer">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailOffer"
+				message="tns:IMyDatartAxaptaWS_AnswDetailOffer_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailOfferResponse"
+				message="tns:IMyDatartAxaptaWS_AnswDetailOffer_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailOffer">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailOffer"
+				message="tns:IMyDatartAxaptaWS_SendDetailOffer_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailOfferResponse"
+				message="tns:IMyDatartAxaptaWS_SendDetailOffer_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="AddUserOrder">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AddUserOrder"
+				message="tns:IMyDatartAxaptaWS_AddUserOrder_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AddUserOrderResponse"
+				message="tns:IMyDatartAxaptaWS_AddUserOrder_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="ConfirmTrans">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ConfirmTrans"
+				message="tns:IMyDatartAxaptaWS_ConfirmTrans_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ConfirmTransResponse"
+				message="tns:IMyDatartAxaptaWS_ConfirmTrans_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="GetParameter">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/GetParameter"
+				message="tns:IMyDatartAxaptaWS_GetParameter_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/GetParameterResponse"
+				message="tns:IMyDatartAxaptaWS_GetParameter_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="PingAxapta">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/PingAxapta"
+				message="tns:IMyDatartAxaptaWS_PingAxapta_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/PingAxaptaResponse"
+				message="tns:IMyDatartAxaptaWS_PingAxapta_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="ReceiveDetailCust">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailCust"
+				message="tns:IMyDatartAxaptaWS_ReceiveDetailCust_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailCustResponse"
+				message="tns:IMyDatartAxaptaWS_ReceiveDetailCust_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="ReceiveDetailOrder">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailOrder"
+				message="tns:IMyDatartAxaptaWS_ReceiveDetailOrder_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailOrderResponse"
+				message="tns:IMyDatartAxaptaWS_ReceiveDetailOrder_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="ReceiveDetailOrderVideoCollect">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailOrderVideoCollect"
+				message="tns:IMyDatartAxaptaWS_ReceiveDetailOrderVideoCollect_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailOrderVideoCollectResponse"
+				message="tns:IMyDatartAxaptaWS_ReceiveDetailOrderVideoCollect_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="AnswDetailComplaint">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailComplaint"
+				message="tns:IMyDatartAxaptaWS_AnswDetailComplaint_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailComplaintResponse"
+				message="tns:IMyDatartAxaptaWS_AnswDetailComplaint_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailComplaint">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailComplaint"
+				message="tns:IMyDatartAxaptaWS_SendDetailComplaint_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailComplaintResponse"
+				message="tns:IMyDatartAxaptaWS_SendDetailComplaint_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailDocument">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailDocument"
+				message="tns:IMyDatartAxaptaWS_SendDetailDocument_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailDocumentResponse"
+				message="tns:IMyDatartAxaptaWS_SendDetailDocument_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="AnswDetailDocument">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailDocument"
+				message="tns:IMyDatartAxaptaWS_AnswDetailDocument_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailDocumentResponse"
+				message="tns:IMyDatartAxaptaWS_AnswDetailDocument_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="ReceiveDetailComplaint">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailComplaint"
+				message="tns:IMyDatartAxaptaWS_ReceiveDetailComplaint_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailComplaintResponse"
+				message="tns:IMyDatartAxaptaWS_ReceiveDetailComplaint_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="ChangeComplaintState">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ChangeComplaintState"
+				message="tns:IMyDatartAxaptaWS_ChangeComplaintState_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ChangeComplaintStateResponse"
+				message="tns:IMyDatartAxaptaWS_ChangeComplaintState_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="AnswPreparePrintedContract">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswPreparePrintedContract"
+				message="tns:IMyDatartAxaptaWS_AnswPreparePrintedContract_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswPreparePrintedContractResponse"
+				message="tns:IMyDatartAxaptaWS_AnswPreparePrintedContract_OutputMessage" />
+		</wsdl:operation>
+		<wsdl:operation name="ReceivePrepareDocument">
+			<wsdl:input
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceivePrepareDocument"
+				message="tns:IMyDatartAxaptaWS_ReceivePrepareDocument_InputMessage" />
+			<wsdl:output
+				wsaw:Action="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceivePrepareDocumentResponse"
+				message="tns:IMyDatartAxaptaWS_ReceivePrepareDocument_OutputMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="BasicHttpBinding_IMyDatartAxaptaWS"
+		type="tns:IMyDatartAxaptaWS">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="AnswDetailOrder">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailOrder"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="CheckItemsTransferred">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/CheckItemsTransferred"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailOrder">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailOrder"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AnswDetailCust">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailCust"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailCust">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailCust"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AnswDetailManual">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailManual"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailManual">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailManual"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AnswDetailOffer">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailOffer"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailOffer">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailOffer"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AddUserOrder">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AddUserOrder"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ConfirmTrans">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ConfirmTrans"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="GetParameter">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/GetParameter"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PingAxapta">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/PingAxapta"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ReceiveDetailCust">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailCust"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ReceiveDetailOrder">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailOrder"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ReceiveDetailOrderVideoCollect">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailOrderVideoCollect"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AnswDetailComplaint">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailComplaint"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailComplaint">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailComplaint"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SendDetailDocument">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/SendDetailDocument"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AnswDetailDocument">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswDetailDocument"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ReceiveDetailComplaint">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailComplaint"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ChangeComplaintState">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ChangeComplaintState"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AnswPreparePrintedContract">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/AnswPreparePrintedContract"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ReceivePrepareDocument">
+			<soap:operation
+				soapAction="http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceivePrepareDocument"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="MyDatartAxaptaWS">
+		<wsdl:port name="BasicHttpBinding_IMyDatartAxaptaWS"
+			binding="tns:BasicHttpBinding_IMyDatartAxaptaWS">
+			<soap:address location="http://localhost:8082/axaptaws" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

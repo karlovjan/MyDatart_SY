@@ -1,0 +1,20 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:myd="http://myDatart.doxologic.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <myd:updateComplaint>
+         
+         <scope>
+
+            <segment>cz</segment>
+
+            <oldVersion>1</oldVersion>
+
+            <newVersion>2</newVersion>
+
+         </scope>
+
+         <id>Complaint123</id>
+         
+      </myd:updateComplaint>
+   </soapenv:Body>
+</soapenv:Envelope>

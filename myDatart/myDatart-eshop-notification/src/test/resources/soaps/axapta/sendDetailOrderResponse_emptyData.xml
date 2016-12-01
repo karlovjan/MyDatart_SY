@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+    <s:Body>
+        <SendDetailOrderResponse xmlns="http://ws.mydatart.axapta.datart.cz">
+            <SendDetailOrderResult></SendDetailOrderResult>
+        </SendDetailOrderResponse>
+    </s:Body>
+</s:Envelope>

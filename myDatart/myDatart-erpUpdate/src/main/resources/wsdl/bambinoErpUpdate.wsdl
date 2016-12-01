@@ -1,0 +1,2536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* E-SHOP BAMBINO
+*
+* WSDL specifikace pro komunikaci e-shopu s ERP systemem.
+*
+* Tento soubor obsahuje popis dvou portu webovych sluzeb:
+*
+* BambinoEshopUpdate: sluzby poskytovane e-shopem a volane z ERP,
+* tedy zejmena aktualizaci katalogu.
+*
+* BambinoErpUpdate: sluzby poskytovane ERP a volane z e-shopu,
+* v soucasnosti pouze aktualizace objednavek a zakazniku.
+*
+* Autor (retired): Martin Kacer, martin.kacer@etnetera.cz
+* Autor (retired): Martin Varecha, martin.varecha@etnetera.cz
+* Autor (retired): Pavel Sintak, pavel.sintak@etnetera.cz
+* Autor: Pavel Vodrazka, pavel.vodrazka@etnetera.cz
+* Autor (retired): Michal Kreuzman, michal.kreuzman@etnetera.cz
+* Autor(retired):Adam Zivner, adam.zivner@etnetera.cz
+* Autor(retired): Bohumir Zamecnik, bohumir.zamecnik@etnetera.cz
+* Autor: Lukas Blail, lukas.blail@etnetera.cz
+* Verze: 1.60.1 (validace DIC, pinStatus)
+-->
+
+<wsdl:definitions name="BambinoUpdate"
+	targetNamespace="http://etnetera.com/projects/datart/bambino"
+	xmlns:impl="http://etnetera.com/projects/datart/bambino"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+
+
+<!-- *************** definice typu *************** -->
+
+<wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://etnetera.com/projects/datart/bambino">
+
+	<!-- pole stringu, pouzito pro hodnoty vyctoveho typu a keywords -->
+	<complexType name="StringArray">
+		<sequence>
+			<element name="eString" type="string" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- obecna chyba zpracovani requestu -->
+	<element name="requestError">
+		<complexType>
+			<sequence>
+				<element name="errorCode" type="xsd:QName" minOccurs="1" maxOccurs="unbounded"/>
+				<element name="errorText" minOccurs="0" maxOccurs="unbounded">
+					<complexType>
+						<simpleContent>
+							<extension base="xsd:string">
+								<attribute name="lang" type="NMTOKEN"/>
+							</extension>
+						</simpleContent>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+
+	<!-- signalizace poruseni referencni integrity -->
+	<complexType name="EntityReference">
+		<sequence>
+			<element name="entityType" type="xsd:string"/>
+			<element name="entityId" type="impl:ErpId"/>
+		</sequence>
+	</complexType>
+	<element name="referentialIntegrityError">
+		<complexType>
+			<sequence>
+				<element name="missingEntities" type="impl:EntityReference" minOccurs="1" maxOccurs="unbounded"/>
+			</sequence>
+		</complexType>
+	</element>
+
+	<!-- seznam cisel verzi udrzovanych pro vsechny typy entit -->
+	<complexType name="VersionList">
+		<sequence>
+			<element name="verAttributes" minOccurs="0" type="xsd:long"/>
+			<element name="verAvailability" minOccurs="0" type="xsd:long"/>
+			<element name="verCatalogue" minOccurs="0" type="xsd:long"/>
+			<element name="verCategories" minOccurs="0" type="xsd:long"/>
+			<element name="verComplaints" minOccurs="0" type="xsd:long"/>
+			<element name="verOrders" minOccurs="0" type="xsd:long"/>
+			<element name="verPrices" minOccurs="0" type="xsd:long"/>
+			<element name="verProducers" minOccurs="0" type="xsd:long"/>
+			<element name="verRelations" minOccurs="0" type="xsd:long"/>
+			<element name="verCommodityFamilies" minOccurs="0" type="xsd:long"/>
+			<element name="verCommoditySegments" minOccurs="0" type="xsd:long"/>
+			<element name="verProductLines" minOccurs="0" type="xsd:long"/>
+			<element name="verSellGroups" minOccurs="0" type="xsd:long"/>
+			<element name="verSlotForRegion" minOccurs="0" type="xsd:long"/>
+			<element name="verDeliveryRegion" minOccurs="0" type="xsd:long"/>
+			<element name="verMicroRegion" minOccurs="0" type="xsd:long"/>
+			<element name="verZipCode" minOccurs="0" type="xsd:long"/>
+			<element name="verTimeSlotDate" minOccurs="0" type="xsd:long"/>
+			<element name="verTimeSlotPricingDetail" minOccurs="0" type="xsd:long"/>
+			<element name="verEANVoucher" minOccurs="0" type="xsd:long"/>
+			<element name="verVoucher" minOccurs="0" type="xsd:long"/>
+			<element name="verDailySales" minOccurs="0" type="xsd:long"/>
+			<element name="verDeliveryDelay" minOccurs="0" type="xsd:long"/>
+			<element name="verAttributeGroups" minOccurs="0" type="xsd:long"/>
+			<element name="verBranches" minOccurs="0" type="xsd:long"/>
+			<element name="verEmployeeWorkingHours" minOccurs="0" type="xsd:long"/>
+			<element name="verCommodityAttrValue" minOccurs="0" type="xsd:long"/>
+			<element name="verCommodityCategory" minOccurs="0" type="xsd:long"/>
+		</sequence>
+	</complexType>
+
+	<!-- Stav sluzby -->
+	<simpleType name="ServiceState">
+		<restriction base="xsd:string">
+			<enumeration value="NONE" />
+			<enumeration value="ORDERED" />
+			<enumeration value="CONTRACTED" />
+			<enumeration value="DATE_BOOKED" />
+			<enumeration value="AVAILABLE" />
+			<enumeration value="COMPLETED" />
+			<enumeration value="CANCELLED" />
+		</restriction>
+	</simpleType>
+
+	<!-- Prubeh sluzby -->
+	<simpleType name="ServiceWorkflowValue">
+		<restriction base="xsd:string">
+			<maxLength value="1"/>
+			<pattern value="[A-C]"/>
+		</restriction>
+	</simpleType>
+
+	<!-- zakladni identifikator pro ruzne pouziti -->
+	<simpleType name="Identifier">
+		<restriction base="xsd:string">
+			<maxLength value="20"/>
+			<pattern value="[A-Za-z0-9-][A-Za-z0-9_-]*"/>
+		</restriction>
+	</simpleType>
+	<complexType name="IdentifierArray">
+		<sequence>
+			<element name="eIdentifier" type="impl:Identifier" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- jednoznacna identifikace entity v ERP systemu -->
+	<simpleType name="ErpId">
+		<restriction base="impl:Identifier"/>
+	</simpleType>
+	<complexType name="ErpIdArray">
+		<sequence>
+			<element name="eErpId" type="impl:ErpId" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- crypto id -->
+	<simpleType name="CryptoId">
+		<restriction base="xsd:string">
+			<maxLength value="32"/>
+			<pattern value="[A-Za-z0-9][A-Za-z0-9_-]*"/>
+		</restriction>
+	</simpleType>
+
+	<!-- string reprezentace binarniho cisla -->
+	<simpleType name="BinaryString">
+		<restriction base="xsd:string">
+			<pattern value="[01]+"/>
+		</restriction>
+	</simpleType>
+
+	<!-- retezec umoznujici jazykove verze -->
+	<complexType name="LangString">
+		<sequence>
+			<element name="cs" nillable="true" minOccurs="0" type="xsd:string"/>
+			<element name="sk" nillable="true" minOccurs="0" type="xsd:string"/>
+		</sequence>
+	</complexType>
+	<complexType name="LangStringArray">
+		<sequence>
+			<element name="cs" nillable="true" minOccurs="0" type="impl:StringArray"/>
+			<element name="sk" nillable="true" minOccurs="0" type="impl:StringArray"/>
+		</sequence>
+	</complexType>
+
+	<!-- identifikace segmentu -->
+	<simpleType name="SegmentCode">
+		<restriction base="xsd:string">
+			<enumeration value="CZ"/>
+			<enumeration value="SK"/>
+		</restriction>
+	</simpleType>
+
+	<!-- priznaky -->
+	<simpleType name="Flag">
+		<restriction base="xsd:string">
+			<pattern value="[+-][A-Za-z][A-Za-z0-9_-]*"/>
+			<maxLength value="21"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ListOfFlag">
+		<!--  <list itemType="impl:Flag"/> -->
+		<restriction base="xsd:string">
+			<pattern value="[+-][A-Za-z][a-zA-Z0-9_-]*( [+-][A-Za-z][a-zA-Z0-9_-]*)*"/>
+		</restriction>
+	</simpleType>
+
+	<!-- typ dostupnosti -->
+	<simpleType name="AvailabilityMode">
+		<restriction base="impl:Identifier"/>
+	</simpleType>
+
+	<!-- typ hodnoty pro dynamicke atributy -->
+	<simpleType name="ValueType">
+		<restriction base="xsd:string">
+			<enumeration value="VT_INTEGER"/>
+			<enumeration value="VT_DECIMAL"/>
+			<enumeration value="VT_BOOLEAN"/>
+			<enumeration value="VT_STRING"/>
+			<enumeration value="VT_ENUM"/>
+			<enumeration value="VT_MULTI"/>
+		</restriction>
+	</simpleType>
+
+	<!-- zpusob urceni ceny -->
+	<simpleType name="PriceType">
+		<restriction base="xsd:string">
+			<enumeration value="PRICE_NORMAL"/>
+			<enumeration value="PRICE_GIFT"/>
+			<enumeration value="PRICE_DISCOUNT"/>
+		</restriction>
+	</simpleType>
+
+	<!-- omezeni poctu kusu u prislusenstvi -->
+	<simpleType name="AccessoryLimit">
+		<restriction base="xsd:string">
+			<enumeration value="AL_LIMIT"/>
+			<enumeration value="AL_EXACT"/>
+			<enumeration value="AL_ANY"/>
+		</restriction>
+	</simpleType>
+
+	<!-- zpusob mazani vazeb -->
+	<simpleType name="RelDeleteMode">
+		<restriction base="xsd:string">
+			<enumeration value="DEL_NONE"/>
+			<enumeration value="DEL_EXACT"/>
+			<enumeration value="DEL_FIRST"/>
+			<enumeration value="DEL_SECOND"/>
+			<enumeration value="DEL_ID"/>
+		</restriction>
+	</simpleType>
+
+	<!-- role zbozi -->
+	<simpleType name="CommodityRole">
+		<restriction base="xsd:string">
+			<enumeration value="MAIN"/>
+			<enumeration value="ACCESSORY"/>
+		</restriction>
+	</simpleType>
+
+	<!-- platnost a rozsah aktualizace -->
+	<complexType name="UpdateScope">
+		<sequence>
+			<element name="segment" type="impl:SegmentCode"/>
+			<element name="oldVersion" type="xsd:long"/>
+			<element name="newVersion" type="xsd:long"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- ========== entity bez samostatne identifikace ========== -->
+
+	<!-- dostupnost zbozi -->
+	<complexType name="Availability">
+		<sequence>
+			<element name="commodityRef" type="impl:ErpId"/>
+			<element name="available" type="impl:AvailabilityMode"/>
+			<element name="hidden" minOccurs="0" type="xsd:boolean"/>
+			<element name="comment" nillable="true" minOccurs="0" type="xsd:string"/>
+			<element name="amount" nillable="true" minOccurs="0" type="xsd:decimal"/>
+			<element name="cncAmount" nillable="true" minOccurs="0" type="xsd:decimal"/>
+			<element name="shop" nillable="true" minOccurs="0" type="impl:Identifier"/>
+			<element name="delay" minOccurs="0" type="xsd:integer"/> <!-- Zpozdeni zavozu pres CS cizi zeme -->
+		</sequence>
+	</complexType>
+	<complexType name="AvailabilityArray">
+		<sequence>
+			<element name="eAvailability" type="impl:Availability" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- cena zbozi -->
+	<complexType name="PriceData">
+		<sequence>
+			<element name="amount" nillable="true" minOccurs="0" type="xsd:decimal"/>
+			<element name="vat" nillable="true" minOccurs="0" type="xsd:int"/>
+			<element name="disposalFee" nillable="true" minOccurs="0" type="xsd:decimal"/>
+			<element name="disposalVat" nillable="true" minOccurs="0" type="xsd:int"/>
+		</sequence>
+	</complexType>
+	<complexType name="Price">
+		<complexContent>
+			<extension base="impl:PriceData">
+				<sequence>
+					<element name="validFrom" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+					<element name="validTo" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+					<element name="commodityRef" nillable="true" minOccurs="0" type="impl:ErpId"/>
+					<element name="shop" nillable="true" minOccurs="0" type="impl:Identifier"/>
+					<element name="id" nillable="true" minOccurs="0" type="impl:ErpId"/>
+					<element name="specialPrice" nillable="true" minOccurs="0" type="xsd:string"/>
+					<!-- Minimalni mnozstvi kusu zbozi pro ktere je cena aplikovatelna. Musi byt vzdy >= 1.
+						 Pokud komodita nema cenu s minCommodityAmount = 1, neni komodita prodejna. -->
+					<element name="minCommodityAmount" nillable="false" minOccurs="1" maxOccurs="1" type="xsd:int"/>
+					<!-- cena pro dealery-->
+					<element name="dealerAmount" nillable="true" minOccurs="0" type="xsd:decimal"/>
+					<!-- skrtana cena-->
+					<element name="originalAmount" nillable="true" minOccurs="0" type="xsd:decimal"/>
+				</sequence>
+				<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PriceArray">
+		<sequence>
+			<element name="ePrice" type="impl:Price" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- atribut typicky pro kategorii -->
+	<complexType name="CategoryAttr">
+		<sequence>
+			<element name="categoryRef" type="impl:ErpId"/>
+			<element name="listPos" nillable="true" minOccurs="0" type="xsd:int"/>
+			<element name="filterPos" nillable="true" minOccurs="0" type="xsd:int"/>
+			<element name="globalPos" nillable="true" minOccurs="0" type="xsd:int"/>
+			<element name="groupPos" nillable="true" minOccurs="0" type="xsd:int"/>
+			<element name="attributeGroupRef" nillable="true" type="impl:ErpId"/>
+		</sequence>
+	</complexType>
+	<complexType name="CategoryAttrArray">
+		<sequence>
+			<element name="eCategory" type="impl:CategoryAttr" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- hodnota dynamickeho atributu -->
+	<complexType name="AttrValue">
+		<sequence>
+			<element name="attributeRef" type="impl:ErpId"/>
+			<element name="valueNum" nillable="true" minOccurs="0" type="xsd:decimal"/>
+			<element name="valueTxt" nillable="true" minOccurs="0" type="impl:LangString"/>
+			<element name="valueMulti" nillable="true" minOccurs="0" type="impl:LangStringArray"/>
+			<element name="comment" nillable="true" minOccurs="0" type="impl:LangString"/>
+		</sequence>
+	</complexType>
+	<complexType name="AttrValueArray">
+		<sequence>
+			<element name="eAttrValue" type="impl:AttrValue" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<!-- hodnota atributu v samostatnem datovem toku -->
+	<complexType name="CommodityAttrValue">
+		<complexContent>
+			<extension base="impl:AttrValue">
+				<sequence>
+					<element name="commodityRef" nillable="true" type="impl:ErpId"/>
+				</sequence>
+			<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+			</extension>
+		</complexContent>
+	</complexType>
+	
+	<complexType name="CommodityAttrValueArray">
+		<sequence>
+			<element name="eCommodityAttrValue" type="impl:CommodityAttrValue" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<!-- produkt v kategorii -->
+	<complexType name="CommodityCategory">
+		<sequence>
+			<element name="commodityRef" type="impl:ErpId"/>
+			<element name="categoryRef"  type="impl:ErpId"/>
+		</sequence>
+		<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+	</complexType>
+	
+	<complexType name="CommodityCategoryArray">
+		<sequence>
+			<element name="eCommodityCategory" type="impl:CommodityCategory" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- jednoznacna identifikace entity v ERP systemu + definice platnosti OD - DO -->
+	<complexType name="ErpIdValid">
+		<sequence>
+			<element name="id" type="impl:ErpId"/>
+			<element name="validFrom" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+			<element name="validTo" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+		</sequence>
+	</complexType>
+	<complexType name="ErpIdValidArray">
+		<sequence>
+			<element name="eErpIdValid" type="impl:ErpIdValid" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- prodejni skupiny -->
+	<complexType name="SellGroup">
+		<sequence>
+			<element name="key" type="impl:Identifier"/>
+			<element name="title" nillable="true" type="xsd:string"/>
+			<!--element name="validFrom" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+			<element name="validTo" nillable="true" minOccurs="0" type="xsd:dateTime"/ -->
+			<element name="commodityRefs" nillable="true" type="impl:ErpIdValidArray"/>
+		</sequence>
+	</complexType>
+	<complexType name="SellGroupArray">
+		<sequence>
+			<element name="eSellGroup" type="impl:SellGroup" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<complexType name="DeliveryDelay">
+		<sequence>
+			<element name="deliveryRef" type="impl:ErpId"/>
+			<element name="deliveryMode" type="impl:DeliveryMode"/>
+			<element name="delayCorrection" type="xsd:integer"/>
+		</sequence>
+	</complexType>
+	<complexType name="DeliveryDelayArray">
+		<sequence>
+			<element name="eDeliveryDelay" type="impl:DeliveryDelay" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- ========== definice ERP entit ========== -->
+
+	<!-- spolecny predek -->
+	<complexType name="ErpObject">
+		<sequence>
+			<element name="id" type="impl:ErpId"/>
+			<element name="created" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+		</sequence>
+		<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+	</complexType>
+
+	<!-- vyrobce -->
+	<complexType name="Producer">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="title" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="description" nillable="true" minOccurs="0" type="impl:LangString"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProducerArray">
+		<sequence>
+			<element name="eProducer" type="impl:Producer" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- kategorie -->
+	<complexType name="Category">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="parentRef" nillable="true" minOccurs="0" type="impl:ErpId"/>
+					<element name="title" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="titleSeo" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="titleHead" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="descriptions" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="keywords" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="urlId" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="aggregated" nillable="true" minOccurs="0" type="xsd:boolean"/>
+					<element name="position" nillable="true" minOccurs="0" type="xsd:int"/>
+					<element name="heureka" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="categoryRelation" nillable="true" minOccurs="0" type="xsd:string"/>
+					<element name="alias" nillable="true" minOccurs="0" type="xsd:string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CategoryArray">
+		<sequence>
+			<element name="eCategory" type="impl:Category" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- dynamicky atribut - definice -->
+	<complexType name="Attribute">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="title" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="description" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="valType" nillable="true" minOccurs="0" type="impl:ValueType"/>
+					<element name="valUnit" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="enumList" nillable="true" minOccurs="0" type="impl:LangStringArray"/>
+					<element name="inCategories" nillable="true" minOccurs="0" type="impl:CategoryAttrArray"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AttributeArray">
+		<sequence>
+			<element name="eAttribute" type="impl:Attribute" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<!-- skupina dynamickych  atributu - definice -->
+	<complexType name="AttributeGroup">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="title" nillable="true" minOccurs="0" type="impl:LangString"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AttributeGroupArray">
+		<sequence>
+			<element name="eAttributeGroup" type="impl:AttributeGroup" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+<!-- reklamace -->
+
+<simpleType name="ComplaintResolution">
+    	<restriction base="xsd:string">
+			<enumeration value="REPAIRED">
+				<annotation>
+					<documentation>Oprava veci. Tento typ vyrizeni se nabizi i zakaznikovi pri zadani reklamace.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="REPLACED">
+				<annotation>
+					<documentation>Vymena veci. Tento typ vyrizeni se nabizi i zakaznikovi pri zadani reklamace.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="WITHDRAWN">
+				<annotation>
+					<documentation>Odstoupeni od smlovy. Tento typ  se nabizi i  pri zadani reklamace.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="FAILRUE_UNDETECTED">
+				<annotation>
+					<documentation>Zavada se neprojevila - k oprave nedoslo.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="REJECTED">
+				<annotation>
+					<documentation>Reklamace byla zamitnuta (napr. poruseni zarucnich podminek)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="COMPONENT_REPLACED">
+				<annotation>
+					<documentation>Opraveno vymenou soucasti zarizeni.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="DISCOUNTED">
+				<annotation>
+					<documentation>Sleva z ceny zarizeni</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="RETURNED">
+				<annotation>
+					<documentation>Vraceno zakaznikovi bez opravy.</documentation>
+				</annotation>
+			</enumeration>
+    	</restriction>
+    </simpleType>
+	
+	<simpleType name="ComplaintState">
+		<restriction base="xsd:string">
+			<enumeration value="NEW" >
+				<annotation>
+					<documentation>Nova reklamace (s timto stavem ESH reklamaci posila do AX pri zalozeni)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="RECEIVED" >
+				<annotation>
+					<documentation>Reklamace je v AX prijata a dale se zpracovava.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ACCEPTED" >
+				<annotation>
+					<documentation>Reklamace byla akceptovana k dalsimu zpracovani. Zacina zakonna lhuta pro vyrizeni.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="SENT_OFF" >
+				<annotation>
+					<documentation>Odeslano do servisu</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="NOT_REPAIRED" >
+				<annotation>
+					<documentation>Neopraveno - servis zarizeni neprijme kvuli nesrovnalosti pri prevzeti - napr. neni shoda serioveho cisla.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PRICE_OFFERED" >
+				<annotation>
+					<documentation>U placene opravy - servis stanovil odhad ceny opravy, je treba ji nabidnout zakaznikovi.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PRICE_ACCEPTED" >
+				<annotation>
+					<documentation>Cena opravy byla zakaznikem prijata - servis zbozi opravi</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PRICE_REJECTED" >
+				<annotation>
+					<documentation>Cena opravy byla zakaznikem zamitnuta - servis zbozi vrati</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PRICE_FINALIZED" >
+				<annotation>
+					<documentation>Zbozi bylo opraveno a cena opravy byla stanovena na konecnou hodnotu.</documentation>
+				</annotation>
+			</enumeration>	
+			<enumeration value="SENT_BACK" >
+				<annotation>
+					<documentation>Vraceno ze servisu.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="WAIT_FOR_WITHDRAW" >
+				<annotation>
+					<documentation>Reklamovane zbozi ceka na vyzvednuti na prodejne.</documentation>
+				</annotation></enumeration>
+			<enumeration value="REPAIRED" >
+				<annotation>
+					<documentation>Reklamace vyrizena opravou.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CANCELED" >
+				<annotation>
+					<documentation>Reklamace vyrizena zamitnutim.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CREDITED" >
+				<annotation>
+					<documentation>Reklamace vyrizena dobropisem.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="RETURNED" >
+				<annotation>
+					<documentation>Reklamace vyrizena vracenim zbozi.</documentation>
+				</annotation></enumeration>
+		</restriction>
+	</simpleType>	
+	
+	<simpleType name="ComplaintType">
+		<restriction base="xsd:string">
+			<enumeration value="3D" >
+				<annotation>
+					<documentation>Vraceni zbozi do 3 dnu bez udani duvodu. Zbozi musi byt nepouzite (zabalene, ...)</documentation>
+				</annotation></enumeration>
+			<enumeration value="7D" >
+				<annotation>
+					<documentation>Vraceni zbozi do 7/14 dni (dle zakona o eshopech)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="WARRANTY" >
+				<annotation>
+					<documentation>Zarucni reklamace zbozi zakoupeneho na ESH.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="EXTENDED_WARRANTY" >
+				<annotation>
+					<documentation>Zarucni reklamace zbozi zakoupeneho na ESH.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="FLASH_EXCHANGE_WARRANTY" >
+				<annotation>
+					<documentation>Zaruka bleskove vymeny</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="INSURENCE" >
+				<annotation>
+					<documentation>Pojistna udalost</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ORDINAL" >
+				<annotation>
+					<documentation>Pozarucni reklamace (placena oprava) zbozi zakoupeneho na ESH.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="EXTERNAL" >
+				<annotation>
+					<documentation>Reklamace nebo oprava zbozi koupeneho mimo ESH (pred jeho spustenim)</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+
+	<complexType name="Complaint">
+        <annotation>
+        	<documentation>Data pro prenos informaci o reklamacich. Tato struktura se prenasi z eshopu i na eshop, pro kazdy smer jsou relevantni jine sub-elementy. 
+        	Reklamace nekdy vaze k jedne nebo vice objednavek - objednavky vznikaji na zaklade aktivit v zivotnim cyklu reklamace.</documentation>
+        </annotation>
+		<complexContent>
+			<extension base="impl:ErpObject">
+        <sequence>
+			<element name="userRef" type="impl:Identifier" minOccurs="0"/>
+        	<element name="orderItemRef" type="impl:ErpId" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Odkaz na radek objednavky, ktere se reklamace tyka.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="defectType" type="xsd:string" maxOccurs="1" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				ciselnikova hodnota klasifikujici zavadu.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="defectDesc" type="xsd:string" minOccurs="0">
+        		<annotation>
+        			<documentation>Popis zavady.</documentation>
+        		</annotation>
+        	</element>
+        	<element name="comment" type="xsd:string" minOccurs="0" maxOccurs="1" nillable="true">
+        		<annotation>
+        			<documentation>
+        				Komentar pro zakaznika.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="resolutionComment" type="xsd:string" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Komentar k vyreseni reklamace.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="type" type="impl:ComplaintType" minOccurs="0" />
+        	<element name="state" type="impl:ComplaintState"/>
+        	<element name="dateCreated" type="xsd:dateTime" maxOccurs="1" minOccurs="0">
+        		<annotation>
+					<documentation>
+						Datum vytvoreni reklamace na portale.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="dateAccepted" type="xsd:dateTime" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Datum akceptace reklamace na strane AX. Od totho
+        				data se pocita zakonna lhuta na opravu vyrobku.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="dateFinished" type="xsd:dateTime" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Datum vyrizeni reklamace. Toto datum spolu s
+        				datem akceptace udava dobu, jak dlouho se
+        				reklamace provadela a o jakou se prodluzuje
+        				zaruka na vyrobek.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="serialNumber" type="xsd:string" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Seriove cislo reklamovaneho zbozi. Toto pole
+        				vyplnuje zakaznik, v AX muze dojit k jeho
+        				oprave, nikoliv vymazani.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="shop" type="xsd:string" maxOccurs="1" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Identifikace provozovny spojene s reklamaci
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="contactEmail" type="xsd:string" maxOccurs="1" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Email na provozovnu, ktere reklamaci zastituje.
+        				Email vyplni AX.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="repairShopAddress" type="impl:AddressCommon" maxOccurs="1" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Nazev a pripadne adresa servisu, ktery zarizeni opravuje.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="repairShopContacts" type="impl:Contacts" minOccurs="0" />
+        	<element name="complainerAddress" type="impl:AddressCommon" maxOccurs="1" minOccurs="0" >
+        		<annotation>
+        			<documentation>
+        				Informace o osobe, ktera reklamaci zadala 
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="complainerContacts" type="impl:Contacts" maxOccurs="1" minOccurs="0" />
+        	<element name="replacementDevice" type="xsd:boolean" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Na zacatku prijem z ESH - AX na zaklade priznaku
+        				vytvari SZ Zapujcka pri aktualizaci zp�t na
+        				portal se odesila Ano, pokud zap�jcka dosud
+        				nebyla uzavrena (neni na ni finalni transakce)
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="replacementDeviceId" type="impl:ErpId" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				ERP ID pozadovaneho telefonu
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="replacementReturned" type="xsd:boolean" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Priznak, zda byl nahradni telefon vracen.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="maximalPrice" type="xsd:decimal" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Pro placene opravy stanovuje zakaznik maximalni
+        				cenu opravy. Pokud predpokladane naklady na
+        				opravu presahnou tuto castku, servis rovnou
+        				vyrobek vraci.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="estimatedPrice" type="xsd:decimal" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Odhad ceny za opravu - nabizi servis zakaznikovi
+        				ke schvaleni. Servis nesmi tuto cenu zmenit o
+        				vice nez 10%.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="repairPrice" type="xsd:decimal" minOccurs="0" />
+        	<element name="diagnosisPrice" type="xsd:decimal" minOccurs="0"/>
+        	<element name="requiredResolution" type="impl:ComplaintResolution" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Pozadovany zpusob opravy. Vyplnuje zakaznik jako svou preferenci.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	<element name="resolution" type="impl:ComplaintResolution" minOccurs="0">
+        		<annotation>
+        			<documentation>
+        				Skutecny zpusob vyrizeni reklamace.
+        			</documentation>
+        		</annotation>
+        	</element>
+        	</sequence>
+        	</extension>
+		</complexContent>	
+	</complexType>
+	<element name="ComplaintArray" type="impl:ComplaintArray" />
+	<complexType name="ComplaintArray">
+		<sequence>
+			<element name="eComplaint" type="impl:Complaint" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<!-- zbozi v katalogu -->
+	<complexType name="Commodity">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="parentRef" nillable="true" minOccurs="0" type="impl:ErpId"/> <!-- V aukcnim zbozi odkazuje na "originalni" produkt -->
+					<element name="producerRef" nillable="true" minOccurs="0" type="impl:ErpId"/>
+					<element name="segmentRef" nillable="true" minOccurs="0" type="impl:ErpId"/>
+					<element name="title" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="description" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="keywords" nillable="true" minOccurs="0" type="impl:LangStringArray"/>
+					<element name="ean" nillable="true" minOccurs="0" type="xsd:string"/>
+					<element name="width" nillable="true" minOccurs="0" type="xsd:decimal"/>
+					<element name="height" nillable="true" minOccurs="0" type="xsd:decimal"/>
+					<element name="depth" nillable="true" minOccurs="0" type="xsd:decimal"/>
+					<element name="weight" nillable="true" minOccurs="0" type="xsd:decimal"/>
+					<element name="warranty" nillable="true" minOccurs="0" type="xsd:int"/>
+					<element name="flagSet" nillable="true" minOccurs="0" type="impl:ListOfFlag"/>
+
+					<!-- Primarni kategorie (primaryCategoryRef) musi byt zaroven v seznamu kategorii (categoryRefs) -->
+					<element name="primaryCategoryRef" nillable="true" minOccurs="0" type="impl:ErpId"/>
+					<element name="categoryRefs" nillable="true" minOccurs="0" type="impl:ErpIdArray"/>
+
+					<element name="attributeList" nillable="true" minOccurs="0" type="impl:AttrValueArray"/>
+					<element name="role" nillable="true" minOccurs="0" type="impl:CommodityRole"/>
+
+					<element name="buyInEshop" nillable="false" minOccurs="1" maxOccurs="1" type="xsd:boolean"/> <!-- Zobrazeni tlacitka "Koupit" -->
+					<element name="buyInAffiliates" nillable="false" minOccurs="1" maxOccurs="1" type="xsd:boolean"/> <!-- Zobrazeni tlacitka "Koupit v prodejne" -->
+					<element name="checkAvailability" nillable="false" minOccurs="1" maxOccurs="1" type="xsd:boolean"/> <!-- Podminit zobrazeni tlacitek kontrolou dostupnosti? -->
+
+					<element name="visible" nillable="false" minOccurs="1" maxOccurs="1" type="xsd:boolean"/> <!-- Je produkt na eshopu zobrazitelny? -->
+					<element name="visibleInCategories" nillable="false" minOccurs="1" maxOccurs="1" type="xsd:boolean"/> <!-- Ma se produkt zobrazovat ve vypisu kategorii? -->
+					<element name="fullDetail" nillable="false" minOccurs="1" maxOccurs="1" type="xsd:boolean"/> <!-- Zobrazovat detail produktu se vsemi informacemi nebo jen zakladnimi? -->
+					<element name="snRequired" type="xsd:boolean" minOccurs="0" maxOccurs="1"/> <!-- Je vyzadovano seriove cislo Tj. je nutne komoditu v objednavce mit rozepsanou po kusech-->
+					<element name="pddDate" type="xsd:dateTime" minOccurs="0" maxOccurs="1"/> <!-- datum naskladneni - pro SDA rezim-->
+					<element name="pddMode" type="xsd:boolean" minOccurs="0" maxOccurs="1"/> <!-- pokud je true, je zbozi zobrazovano v rezimu SDA-->
+					<element name="rchid" nillable="true" minOccurs="0" maxOccurs="1" type="xsd:string"/> <!-- reverse charge id-->
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CommodityArray">
+		<sequence>
+			<element name="eCommodity" type="impl:Commodity" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- specialni druhy "zbozi": sluzby, bundly atp. -->
+	<complexType name="CommBundle">
+		<complexContent>
+			<extension base="impl:Commodity"/>
+		</complexContent>
+	</complexType>
+	<complexType name="CommAccessory">
+		<complexContent>
+			<extension base="impl:Commodity"/>
+		</complexContent>
+	</complexType>
+
+	<!-- vazby mezi zbozim -->
+	<complexType name="Relation" abstract="true">
+		<sequence>
+			<!-- Mozne hodnoty: ACC_NORMAL, ACC_GIFT, ACC_DISCOUNT, BUNDLE, COM_ITEM, SRV_NORMAL, ALTERNATIVE, SUCCESSOR, COMPETING -->
+			<element name="relationType" nillable="true" minOccurs="0" type="impl:Identifier"/>
+			<element name="relationId" nillable="true" minOccurs="0" type="impl:ErpId"/>
+			<element name="commodity1" nillable="true" minOccurs="0" type="impl:ErpId"/>
+			<element name="commodity2" nillable="true" minOccurs="0" type="impl:ErpId"/>
+			<element name="position" nillable="true" minOccurs="0" type="xsd:int"/> <!-- Pozice zobrazeni skupiny prislusenstvi -->
+			<element name="itemPosition" nillable="true" minOccurs="0" type="xsd:int"/> <!-- Pozice vyrobku ve skupine -->
+			<element name="validFrom" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+			<element name="validTo" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+		</sequence>
+		<attribute name="deleted" type="impl:RelDeleteMode" use="optional" default="DEL_NONE"/>
+	</complexType>
+	<complexType name="RelAccessory">
+		<complexContent>
+			<extension base="impl:Relation">
+				<sequence>
+					<element name="newPrice" nillable="true" minOccurs="0" type="impl:PriceData"/>
+					<element name="priceType" nillable="true" minOccurs="0" type="impl:PriceType"/>
+					<element name="unitQty" nillable="true" minOccurs="0" type="xsd:int"/>
+					<element name="qtyLimit" nillable="true" minOccurs="0" type="impl:AccessoryLimit"/>
+					<element name="supplemOrderLimit" nillable="true" minOccurs="0" type="xsd:int"/>
+					<element name="groupId" nillable="true" minOccurs="0" type="impl:ErpId"/>
+					<element name="groupLimit" nillable="true" minOccurs="0" type="xsd:int"/>
+					<element name="hiddenInDetail" nillable="true" minOccurs="0" type="xsd:boolean"/>
+					<element name="hiddenInFilter" nillable="true" minOccurs="0" type="xsd:boolean"/>
+					<element name="mandatory" nillable="true" minOccurs="0" type="xsd:boolean"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="RelationArray">
+		<sequence>
+			<element name="eRelation" type="impl:Relation" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- axapta segmentace zbozi - rodina -->
+	<complexType name="CommodityFamily">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="description" nillable="true" minOccurs="0" type="xsd:string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CommodityFamilyArray">
+		<sequence>
+			<element name="eCommodityFamily" type="impl:CommodityFamily" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- axapta segmentace zbozi - segment -->
+	<complexType name="CommoditySegment">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="commodityFamilyRef" nillable="true" minOccurs="0" type="impl:ErpId"/>
+					<element name="description" nillable="true" minOccurs="0" type="xsd:string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CommoditySegmentArray">
+		<sequence>
+			<element name="eCommoditySegment" type="impl:CommoditySegment" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<!-- modelove urovne produktove rady -->
+	<complexType name="ProductLineLevel">
+		<sequence>
+			<element name="title" type="impl:LangString"/>
+			<element name="description" nillable="true" minOccurs="0" type="impl:LangString"/>
+			<element name="commodityRef" nillable="true" type="impl:ErpId"/>
+		</sequence>
+	</complexType>
+	<complexType name="ProductLineLevelArray">
+		<sequence>
+			<element name="eProductLineLevel" type="impl:ProductLineLevel" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<!-- srovnavaci atributy produktove rady -->
+	<complexType name="ProductLineAttribute">
+		<sequence>
+			<element name="title" type="impl:LangString"/>
+			<element name="position" type="xsd:int"/>
+			<element name="values" type="impl:ProductLineAttributeValueArray"/>
+		</sequence>
+	</complexType>
+	<complexType name="ProductLineAttributeArray">
+		<sequence>
+			<element name="eProductLineAttribute" type="impl:ProductLineAttribute" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<!-- hodnoty srovnavacich atributu produktove rady -->
+	<complexType name="ProductLineAttributeValue">
+		<sequence>
+			<element name="title" type="impl:LangString"/>
+			<element name="levelIndexBitMask" type="impl:BinaryString"/>
+		</sequence>
+	</complexType>
+	<complexType name="ProductLineAttributeValueArray">
+		<sequence>
+			<element name="eProductLineAttributeValue" type="impl:ProductLineAttributeValue" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<!-- produktove rady -->
+	<complexType name="ProductLine">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="title" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="description" nillable="true" minOccurs="0" type="impl:LangString"/>
+					<element name="validFrom" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+					<element name="validTo" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+					<element name="levels" nillable="true" minOccurs="0" type="impl:ProductLineLevelArray"/>
+					<element name="attributes" nillable="true" minOccurs="0" type="impl:ProductLineAttributeArray"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProductLineArray">
+		<sequence>
+			<element name="eProductLine" type="impl:ProductLine" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<!-- ========== objednavky ========== -->
+
+	<!-- druh objednavky -->
+	<simpleType name="OrderType">
+		<restriction base="xsd:string">
+			<enumeration value="ESHOP"/>
+			<enumeration value="AFFILIATE"/>
+		</restriction>
+	</simpleType>
+
+	<!-- druh platby -->
+	<simpleType name="PaymentType">
+		<restriction base="xsd:string">
+			<enumeration value="PAY_CREDIT"/>
+			<enumeration value="PAY_EBANKA"/>
+			<enumeration value="PAY_WIRED"/>
+			<enumeration value="PAY_WIRED_KB"/>
+			<enumeration value="PAY_WIRED_RB"/>
+			<enumeration value="PAY_WIRED_CSOB"/>
+			<enumeration value="PAY_WIRED_UCB"/>
+			<enumeration value="PAY_WIRED_CS"/>
+			<enumeration value="PAY_WIRED_GEMB"/>
+			<enumeration value="PAY_LOAN"/>
+			<enumeration value="PAY_DELIVERY"/>
+			<enumeration value="PAY_TATRAPAY"/>
+			<enumeration value="PAY_DELIVCARD"/>
+			<enumeration value="PAY_SPOROPAY"/>
+			<enumeration value="PAY_VUBPAY"/>
+			<enumeration value="PAY_MBANK"/>
+			<enumeration value="PAY_SHOP"/>
+			<enumeration value="PAY_GEM"/>
+			<enumeration value="PAY_KB"/>
+			<enumeration value="PAY_CS_PLATBA_24"/>
+			<enumeration value="PAY_SHOP_DELIVERY"/>
+			<enumeration value="PAY_TELEPLATBA"/>
+			<enumeration value="PAY_MOBITO"/>
+			<enumeration value="PAY_QUATRO"/>
+			<enumeration value="PAY_PAYPAL"/>
+			<enumeration value="PAY_IBOD"/>
+			<enumeration value="PAY_INVOICE_B2B"/>
+			<enumeration value="PAY_TWISTO"/>
+			<enumeration value="PAY_HOME_CREDIT"/>
+		</restriction>
+	</simpleType>
+
+	<!-- stav objednavky -->
+	<simpleType name="OrderState">
+		<restriction base="xsd:string">
+			<enumeration value="OPEN"/>
+			<enumeration value="CUST_SUPPLIED"/>
+			<enumeration value="CREDITED"/>
+			<enumeration value="CANCELLED"/>
+
+		</restriction>
+	</simpleType>
+
+	<!-- stav polozky objednavky -->
+	<simpleType name="OrderItemState">
+		<restriction base="xsd:string">
+			<enumeration value="NONE"/>
+			<enumeration value="RECEIVED"/>
+			<enumeration value="RESERVED"/>
+			<enumeration value="WAITING_FOR_SUPPLY"/>
+			<enumeration value="WAITING_FOR_DISPATCH"/>
+			<enumeration value="IN_DESPATCH"/>
+			<enumeration value="DESPATCHED_FOR_STORE"/>
+			<enumeration value="DESPATCHED_FOR_CUSTOMER"/>
+			<enumeration value="WAITING_FOR_CUST_WITHDRAW"/>
+			<enumeration value="CUST_SUPPLIED"/>
+			<enumeration value="CANCELLED"/>
+			<enumeration value="CREDITED"/>
+			<enumeration value="WAITING_FOR_STOPPING"/>
+			<enumeration value="STOPPED"/>
+		</restriction>
+	</simpleType>
+
+	<!-- stav dopravy objednavky -->
+	<simpleType name="DeliveryState">
+		<restriction base="xsd:string">
+			<enumeration value="NONE"/>
+			<enumeration value="PREPARATION"/>
+			<enumeration value="PREPARED"/>
+			<enumeration value="INSTOCK"/>
+			<enumeration value="PARTIALLYPREPARED"/>
+			<enumeration value="DELIVEREDINTIME"/>
+			<enumeration value="DELIVERED"/>
+			<enumeration value="NOTDELIVERED"/>
+			<enumeration value="SENT"/>
+		</restriction>
+	</simpleType>
+
+	<!-- Rezim dopravy pro zavoz ze skladu z cizi zeme -->
+	<simpleType name="DeliveryMode">
+		<restriction base="xsd:string">
+			<enumeration value="CENTRAL_STORAGE"/> <!-- Doprava pres centralni sklad -->
+			<enumeration value="DIRECT_DELIVERY"/> <!-- Primy zavoz -->
+		</restriction>
+	</simpleType>
+
+	<!-- adresa -->
+	<complexType name="AddressCommon">
+		<sequence>
+			<element name="firstName" type="xsd:string"/>
+			<element name="lastName" type="xsd:string"/>
+			<element name="company" type="xsd:string" minOccurs="0"/>
+			<element name="street" type="xsd:string"/>
+			<element name="zip" type="xsd:string"/>
+			<element name="city" type="xsd:string"/>
+			<element name="country" type="xsd:string"/>
+		</sequence>
+	</complexType>
+	<complexType name="AddressBilling">
+		<complexContent>
+			<extension base="impl:AddressCommon">
+				<sequence>
+					<element name="ico" type="xsd:string" minOccurs="0"/>
+					<element name="dic" type="xsd:string" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AddressShipping">
+		<complexContent>
+			<extension base="impl:AddressCommon">
+				<sequence>
+					<element name="floor" type="xsd:int" minOccurs="0"/>
+					<element name="elevator" type="xsd:boolean" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<!-- kontaktni udaje -->
+	<complexType name="Contacts">
+		<sequence>
+			<element name="email" type="xsd:string"/>
+			<element name="phone" type="xsd:string"/>
+			<element name="cellularPhone" type="xsd:string"/>
+		</sequence>
+	</complexType>
+
+	<!-- platba -->
+	<complexType name="Payment">
+		<sequence>
+			<element name="transactionId" type="impl:Identifier"/>
+			<element name="paymentType" type="impl:PaymentType"/>
+			<element name="amount" nillable="true" type="xsd:decimal"/>
+			<element name="payDate" nillable="true" type="xsd:dateTime"/>
+		</sequence>
+	</complexType>
+	<complexType name="LoanPayment">
+		<complexContent>
+			<extension base="impl:Payment">
+				<sequence>
+					<element name="loanId" type="impl:Identifier"/>
+					<element name="loanGrantor" type="impl:Identifier"/>
+					<element name="loanProduct" type="impl:Identifier"/>
+					<element name="loanInsurance" type="impl:Identifier"/>
+					<element name="loanAdvance" type="xsd:decimal"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OfflinePayment">
+		<complexContent>
+			<extension base="impl:Payment">
+				<sequence>
+					<element name="variableSymbol" type="impl:Identifier"/>
+					<element name="specificSymbol" type="impl:Identifier"/>
+					<element name="bankAccount" type="impl:Identifier"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<!-- smlouvy -->
+	<complexType name="Contract">
+		<sequence>
+			<element name="contractId" type="impl:Identifier"/>
+			<element name="contractType" type="xsd:string" minOccurs="0"/>
+			<element name="dateIssued" type="xsd:dateTime" minOccurs="0"/>
+			<element name="dateActivation" type="xsd:dateTime" minOccurs="0"/>
+			<element name="dateExpiration" type="xsd:dateTime" minOccurs="0"/>
+			<element name="dateCancellation" type="xsd:dateTime" minOccurs="0"/>
+			<element name="commodityRef" type="impl:ErpId" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="Insurance">
+		<complexContent>
+			<extension base="impl:Contract">
+				<sequence>
+					<element name="serialNumber" type="xsd:string" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SoftwareLicence">
+		<complexContent>
+			<extension base="impl:Contract">
+				<sequence>
+					<element name="ean" type="xsd:string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<!-- polozka objednavky -->
+	<complexType name="OrderItemCommon">
+		<sequence>
+			<element name="id" type="impl:Identifier"/>
+			<element name="price" nillable="true" type="impl:PriceData"/>
+			<element name="priceType" type="impl:PriceType" minOccurs="0"/>
+			<element name="prevItemRef" type="impl:Identifier" minOccurs="0"/>
+			<element name="dateDelivery" type="xsd:dateTime" minOccurs="0"/>
+			<element name="specData" type="xsd:string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="OrderItem">
+		<complexContent>
+			<extension base="impl:OrderItemCommon">
+				<sequence>
+					<element name="commodityRef" type="impl:ErpId"/>
+					<element name="quantityOrdered" type="xsd:int"/>
+					<element name="quantityShipped" type="xsd:int" minOccurs="0"/>
+					<element name="quantityCancelled" type="xsd:int" minOccurs="0"/>
+					<element name="deliveryRef" type="impl:Identifier" minOccurs="0"/>
+					<element name="availability" type="impl:AvailabilityMode" minOccurs="0"/>
+					<element name="contract" type="impl:Contract" minOccurs="0"/>
+					<element name="state" type="impl:OrderItemState"/>
+					<element name="housed" type="xsd:boolean"/>
+					<element name="serviceState" type="impl:ServiceState"/>
+					<element name="serviceWorkflow" type="impl:ServiceWorkflowValue"/>
+					<element name="displayService" type="xsd:boolean"/>
+					<element name="serialNumber" type="xsd:string" minOccurs="0" maxOccurs="1" />
+					<element name="snRequired" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OrderItemArray">
+		<sequence>
+			<element name="eOrderItem" type="impl:OrderItem" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="Delivery">
+		<complexContent>
+			<extension base="impl:OrderItemCommon">
+				<sequence>
+					<element name="deliveryId" type="impl:Identifier" minOccurs="0"/>
+					<element name="serviceRef" type="impl:ErpId"/>
+					<element name="trackingUrl" type="xsd:string" minOccurs="0"/>
+					<element name="state" type="impl:DeliveryState"/>
+					<element name="stateDetail" type="xsd:string" minOccurs="0"/>
+					<element name="mode" type="impl:DeliveryMode" minOccurs="0"/> <!-- Rezim zavozu z cizi zeme -->
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DeliveryArray">
+		<sequence>
+			<element name="eDelivery" type="impl:Delivery" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- Vernostni program iBod -->
+	<simpleType name="IbodId">
+		<restriction base="xsd:string"/>
+	</simpleType>
+	<complexType name="IbodIdArray">
+		<sequence>
+			<element name="eIbodId" type="impl:IbodId" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- objednavka -->
+	<complexType name="Order">
+		<sequence>
+			<element name="id" type="impl:Identifier"/>
+			<element name="invoiceNote" type="xsd:string" minOccurs="0"/>
+			<element name="orderType" type="impl:OrderType"/>
+			<element name="cryptoId" type="impl:CryptoId" minOccurs="0"/>
+			<element name="userRef" type="impl:Identifier" minOccurs="0"/>
+			<element name="complaintId" type="impl:Identifier" minOccurs="0"/>
+			<element name="contacts" type="impl:Contacts"/>
+			<element name="totalPrice" type="xsd:decimal"/>
+			<element name="billingAddress" type="impl:AddressBilling"/>
+			<element name="shippingAddress" type="impl:AddressShipping"/>
+			<element name="items" type="impl:OrderItemArray"/>
+			<element name="deliveries" type="impl:DeliveryArray"/>
+			<element name="partialDelivery" type="xsd:boolean"/>
+			<element name="payment" type="impl:Payment" minOccurs="0"/>
+			<element name="state" type="impl:OrderState"/>
+			<element name="comment" type="xsd:string" minOccurs="0"/>
+			<element name="sellerCode" type="xsd:string" minOccurs="0"/>
+			<element name="insuranceIdentification" type="xsd:string" minOccurs="0"/>
+			<element name="privacyAgreement" type="xsd:boolean" minOccurs="0"/>
+			<element name="dateCreated" type="xsd:dateTime"/>
+			<element name="dateChanged" type="xsd:dateTime"/>
+			<element name="creditAdvicePrice" type="xsd:decimal" minOccurs="0"/>
+			<element name="specData" type="xsd:string" minOccurs="0"/>
+			<element name="hidden" type="xsd:boolean" minOccurs="0"/> <!-- Order shouldn't be visible to the owner -->
+			<element name="ibod" type="impl:IbodId" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="OrderArray">
+		<sequence>
+			<element name="eOrder" type="impl:Order" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- ========== zakaznici ========== -->
+
+	<!-- birth date -->
+	<simpleType name="BirthDate">
+		<restriction base="xsd:string">
+			<maxLength value="32"/>
+			<pattern value="[0-9]{4}(-[0-9]{2}-[0-9]{2})?"/>
+		</restriction>
+	</simpleType>
+
+	<!-- pohlavi -->
+	<simpleType name="Gender">
+		<restriction base="xsd:string">
+			<enumeration value="MALE"/>
+			<enumeration value="FEMALE"/>
+			<enumeration value="UNKNOWN"/>
+		</restriction>
+	</simpleType>
+
+	<!-- rodinny stav -->
+	<simpleType name="Marriage">
+		<restriction base="xsd:string">
+			<enumeration value="SINGLE"/>
+			<enumeration value="MARRIAGE"/>
+			<enumeration value="UNKNOWN"/>
+		</restriction>
+	</simpleType>
+
+	<!-- typ uzivatele -->
+	<simpleType name="UserType">
+		<restriction base="xsd:string">
+			<enumeration value="PRIVATE"/>
+			<enumeration value="COMPANY"/>
+		</restriction>
+	</simpleType>
+	
+	<!-- typ kontaktu -->
+	<simpleType name="ContactType">
+		<restriction base="xsd:string">
+			<enumeration value="PHONE"/>
+			<enumeration value="CELLULAR_PHONE"/>
+			<enumeration value="EMAIL"/>
+		</restriction>
+	</simpleType>
+
+	<!-- typ preference -->
+	<simpleType name="PreferenceType">
+		<restriction base="xsd:string">
+			<enumeration value="SHOP"/>
+			<enumeration value="NEWSLETTER_TOPIC"/>
+			<enumeration value="MY_DATART_PANEL"/>
+		</restriction>
+	</simpleType>
+
+	<!-- adresa -->
+	<complexType name="Address">
+		<sequence>
+			<element name="id" type="impl:Identifier"/>
+			<element name="primary" type="xsd:boolean"/>
+			<element name="title" type="xsd:string"/>
+			<element name="firstName" type="xsd:string"/>
+			<element name="lastName" type="xsd:string"/>
+			<element name="company" type="xsd:string" minOccurs="0"/>
+			<element name="street" type="xsd:string" minOccurs="0"/>
+			<element name="zip" type="xsd:string" minOccurs="0"/>
+			<element name="city" type="xsd:string" minOccurs="0"/>
+			<element name="country" type="xsd:string" minOccurs="0"/>
+			<element name="floor" type="xsd:int" minOccurs="0"/>
+			<element name="elevator" type="xsd:boolean" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="AddressArray">
+		<sequence>
+			<element name="eAddress" type="impl:Address" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- kontakt -->
+	<complexType name="Contact">
+		<sequence>
+			<element name="id" type="impl:Identifier"/>
+			<element name="primary" type="xsd:boolean"/>
+			<element name="type" type="impl:ContactType"/>
+			<element name="title" type="xsd:string"/>
+			<element name="contact" type="xsd:string"/>
+			<element name="purpose" type="xsd:string" minOccurs="0"/>
+		</sequence>
+	</complexType>
+	<complexType name="ContactArray">
+		<sequence>
+			<element name="eContact" type="impl:Contact" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- preference -->
+	<complexType name="Preference">
+		<sequence>
+			<element name="id" type="impl:Identifier"/>
+			<element name="type" type="impl:PreferenceType"/>
+			<element name="preference" type="xsd:string"/>
+		</sequence>
+	</complexType>
+	<complexType name="PreferenceArray">
+		<sequence>
+			<element name="ePreference" type="impl:Preference" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<!-- typ obchodniho vztahu -->
+	<simpleType name="BusinessRelationship">
+		<restriction base="xsd:string">
+			<enumeration value="B2C"/>
+			<enumeration value="B2B"/>
+		</restriction>
+	</simpleType>
+	
+	<!-- typ obchodniho vztahu -->
+	<simpleType name="PinStatus">
+		<restriction base="xsd:string">
+			<enumeration value="UNSET"/>
+			<enumeration value="ACTIVE"/>
+			<enumeration value="BLOCKED"/>
+		</restriction>
+	</simpleType>
+	
+	<!-- vernostni uroven -->
+	<simpleType name="LoyaltyLevel">
+		<restriction base="xsd:string">
+			<enumeration value="STANDARD"/>
+			<enumeration value="ELITE"/>
+			<enumeration value="VIP"/>
+		</restriction>
+	</simpleType>
+	
+	<!-- hlavni predmet podnikani -->
+	<complexType name="CoreBusiness">
+		<sequence>
+			<element name="key" type="impl:NotEmptyText"/>
+			<element name="name" type="impl:NotEmptyText"/>
+		</sequence>
+	</complexType>
+
+	<simpleType name="NotEmptyText">
+		<restriction base="xsd:string">
+			<minLength value="1" />
+			<maxLength value="255" />
+		</restriction>
+	</simpleType>
+	
+	<!-- uverovy limit -->
+	<complexType name="CreditLimit">
+		<sequence>
+			<element name="actual" type="xsd:decimal"/>
+			<element name="max" type="xsd:decimal"/>
+			<element name="blocked" type="xsd:boolean" />
+		</sequence>
+	</complexType>
+
+	<!-- uzivatel -->
+	<complexType name="User">
+		<sequence>
+			<element name="id" type="impl:Identifier"/>
+			<element name="userType" type="impl:UserType" minOccurs="0"/>
+			<element name="cryptoId" type="impl:CryptoId" minOccurs="0"/>
+			<element name="email" type="xsd:string" minOccurs="0"/>
+			<element name="firstName" type="xsd:string" minOccurs="0"/>
+			<element name="lastName" type="xsd:string" minOccurs="0"/>
+			<element name="company" type="xsd:string" minOccurs="0"/>
+			<element name="gender" type="impl:Gender" minOccurs="0"/>
+			<element name="marriage" type="impl:Marriage" minOccurs="0"/>
+			<element name="degree" type="xsd:string" minOccurs="0"/>
+			<element name="birthDate" type="impl:BirthDate" minOccurs="0"/>
+			<element name="ico" type="xsd:string" minOccurs="0"/>
+			<element name="dic" type="xsd:string" minOccurs="0"/>
+			<element name="activated" type="xsd:boolean" minOccurs="0"/>
+			<element name="blocked" type="xsd:boolean" minOccurs="0"/>
+			<element name="blockedReason" type="xsd:string" minOccurs="0"/>
+			<element name="dateRegister" type="xsd:dateTime" minOccurs="0"/>
+			<element name="dateChanged" type="xsd:dateTime" minOccurs="0"/>
+			<element name="dateActive" type="xsd:dateTime"  minOccurs="0"/>
+			<element name="auctionAgreement" type="xsd:boolean" minOccurs="0"/>
+			<element name="privacyAgreement" type="xsd:boolean" minOccurs="0"/>
+			<element name="addresses" type="impl:AddressArray" minOccurs="0"/>
+			<element name="contacts" type="impl:ContactArray" minOccurs="0"/>
+			<element name="preferences" type="impl:PreferenceArray"	minOccurs="0"/>
+			<element name="ibods" type="impl:IbodIdArray" minOccurs="0"/>
+			<element name="businessRelationship" type="impl:BusinessRelationship"/>
+			<element name="loyaltyLevel" type="impl:LoyaltyLevel" minOccurs="0"/>
+			<element name="coreBusiness" type="impl:CoreBusiness" minOccurs="0"/>
+			<element name="creditLimit" type="impl:CreditLimit" minOccurs="0"/>
+			<element name="invoiceDueDate" type="xsd:integer" minOccurs="0"/>
+			<element name="dicVerified" type="xsd:boolean" minOccurs="0"/>
+          	<element name="dateDicVerified" type="xsd:dateTime" minOccurs="0"/>
+          	<element name="pin" type="xsd:string" minOccurs="0"/>
+			<element name="pinStatus" type="impl:PinStatus" minOccurs="0"/>
+		</sequence>
+		<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+	</complexType>
+	<complexType name="UserArray">
+		<sequence>
+			<element name="eUser" type="impl:User" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- ========== soyka ========== -->
+	<!-- DEPRECATED -->
+
+	<!-- user profile projection -->
+	<complexType name="UserProfile">
+		<sequence>
+			<element name="identities" type="impl:StringArray"/>
+			<!-- JSON format for flexibility -->
+			<element name="profileJson" type="xsd:string"/>
+		</sequence>
+		<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+	</complexType>
+
+	<complexType name="UserProfileArray">
+		<sequence>
+			<element name="eUserProfile" type="impl:UserProfile" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- ========== sales reports ========== -->
+
+	<!-- daily sales -->
+	<complexType name="DailySales">
+		<sequence>
+			<element name="commodityRef" type="impl:ErpId"/>
+			<element name="date" type="xsd:date"/>
+			<element name="hourSales01" type="xsd:int"/>
+			<element name="hourSales02" type="xsd:int"/>
+			<element name="hourSales03" type="xsd:int"/>
+			<element name="hourSales04" type="xsd:int"/>
+			<element name="hourSales05" type="xsd:int"/>
+			<element name="hourSales06" type="xsd:int"/>
+			<element name="hourSales07" type="xsd:int"/>
+			<element name="hourSales08" type="xsd:int"/>
+			<element name="hourSales09" type="xsd:int"/>
+			<element name="hourSales10" type="xsd:int"/>
+			<element name="hourSales11" type="xsd:int"/>
+			<element name="hourSales12" type="xsd:int"/>
+			<element name="hourSales13" type="xsd:int"/>
+			<element name="hourSales14" type="xsd:int"/>
+			<element name="hourSales15" type="xsd:int"/>
+			<element name="hourSales16" type="xsd:int"/>
+			<element name="hourSales17" type="xsd:int"/>
+			<element name="hourSales18" type="xsd:int"/>
+			<element name="hourSales19" type="xsd:int"/>
+			<element name="hourSales20" type="xsd:int"/>
+			<element name="hourSales21" type="xsd:int"/>
+			<element name="hourSales22" type="xsd:int"/>
+			<element name="hourSales23" type="xsd:int"/>
+			<element name="hourSales24" type="xsd:int"/>
+		</sequence>
+	</complexType>
+	<complexType name="DailySalesArray">
+		<sequence>
+			<element name="eDailySales" type="impl:DailySales" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- ========== home delivery ========== -->
+
+	<!-- casovy slot -->
+	<complexType name="TimeSlotDate">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="dateTimeFrom" nillable="true" type="xsd:dateTime"/>
+					<element name="dateTimeTo" nillable="true" type="xsd:dateTime"/>
+					<element name="capacity" nillable="true" type="xsd:int"/>
+					<element name="microTimeSlotsFree" nillable="true" type="xsd:int"/>
+					<element name="comfortStatus" nillable="true" type="xsd:boolean"/>
+					<element name="slotOpeningDateTime" nillable="true" type="xsd:dateTime"/>
+					<element name="slotClosingDateTime" nillable="true" type="xsd:dateTime"/>
+					<element name="pricingModelRef" nillable="true" type="impl:ErpId"/>
+					<element name="deliveryWithoutServices" nillable="true" type="xsd:boolean"/>
+					<element name="combinedService" nillable="true" type="xsd:boolean"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TimeSlotDateArray">
+		<sequence>
+			<element name="eTimeSlotDate" type="impl:TimeSlotDate" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<!-- cenovy model -->
+	<complexType name="TimeSlotPricingDetail">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<!-- ID sluzby, ktera se nasledne posle s objednavkou -->
+					<element name="fullServicePaymentServiceRef" nillable="true" type="impl:ErpId"/>
+					<element name="withoutServicesPaymentServiceRef" nillable="true" type="impl:ErpId"/>
+					<!-- ID cenoveho modelu (samotny model nemame) -->
+					<element name="pricingModelRef" nillable="true" type="impl:ErpId"/>
+					<element name="daysAhead" nillable="true" type="xsd:int"/>
+					<element name="comfortStatus" nillable="true" type="xsd:boolean"/>
+					<element name="fullServicePrice" nillable="true" type="impl:PriceData"/>
+					<element name="withoutServicePrice" nillable="true" type="impl:PriceData"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TimeSlotPricingDetailArray">
+		<sequence>
+			<element name="eTimeSlotPricingDetail" type="impl:TimeSlotPricingDetail" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<!-- dorucovaci region -->
+	<complexType name="DeliveryRegion">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="deliveryRegionName" nillable="true" type="xsd:string"/>
+					<element name="pricing" nillable="true" type="xsd:string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DeliveryRegionArray">
+		<sequence>
+			<element name="eDeliveryRegion" minOccurs="0" maxOccurs="unbounded" type="impl:DeliveryRegion"/>
+		</sequence>
+	</complexType>
+
+	<!-- mikroregion -->
+	<complexType name="MicroRegion">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+					<element name="deliveryRegionRef" nillable="true" type="impl:ErpId"/>
+					<element name="description" nillable="true" type="xsd:string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MicroRegionArray">
+		<sequence>
+			<element name="eMicroRegion" type="impl:MicroRegion" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<!-- vazba slotu na dorucovaci region -->
+	<complexType name="SlotForRegion">
+		<sequence>
+			<element name="deliveryRegionRef" nillable="true" type="impl:ErpId"/>
+			<element name="timeSlotDateRef" nillable="true" type="impl:ErpId"/>
+		</sequence>
+		<attribute name="deleted" type="impl:RelDeleteMode" use="optional" default="DEL_NONE"/>
+	</complexType>
+	<complexType name="SlotForRegionArray">
+		<sequence>
+			<element name="eSlotForRegion" type="impl:SlotForRegion" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<!-- vazba PSC na mikroregiony -->
+	<complexType name="ZipCode">
+		<sequence>
+			<element name="zipCode" type="xsd:string"/>
+			<element name="city" type="xsd:string"/>
+			<element name="microRegionRef" nillable="true" type="impl:ErpId"/>
+		</sequence>
+		<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+	</complexType>
+	<complexType name="ZipCodeArray">
+		<sequence>
+			<element name="eZipCode" type="impl:ZipCode" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- ========== compcare ========== -->
+
+	<!-- stav EAN poukazky -->
+	<simpleType name="EANVoucherState">
+		<restriction base="xsd:string">
+			<enumeration value="UNASSIGNED" />
+			<enumeration value="PAID" />
+			<enumeration value="TERMINATED" />
+			<enumeration value="SUSPENDED" />
+			<enumeration value="ACTIVATED" />
+		</restriction>
+	</simpleType>
+
+	<!-- EAN poukazka -->
+	<complexType name="EANVoucher">
+		<sequence>
+			<element name="commodityRef" nillable="true" minOccurs="0" type="impl:ErpId"/>
+			<element name="eanCode" type="xsd:string"/>
+			<element name="pinCode" type="xsd:string"/>
+			<element name="state" type="impl:EANVoucherState"/>
+			<element name="email" nillable="true" type="xsd:string"/>
+		</sequence>
+		<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+	</complexType>
+	<complexType name="EANVoucherArray">
+		<sequence>
+			<element name="eEANVoucher" type="impl:EANVoucher" maxOccurs="unbounded" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- ========== slevove kupony ========== -->
+
+	<!-- stav slevoveho kuponu -->
+	<simpleType name="VoucherState">
+		<restriction base="xsd:string">
+			<enumeration value="ACTIVATED" />
+			<enumeration value="SUSPENDED" />
+		</restriction>
+	</simpleType>
+
+	<!-- slevove kupony -->
+	<complexType name="Voucher">
+		<sequence>
+			<element name="code" type="xsd:string"/>
+			<element name="validFrom" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+			<element name="validTo" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+			<element name="state" type="impl:VoucherState"/>
+		</sequence>
+		<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+	</complexType>
+
+	<complexType name="VoucherArray">
+		<sequence>
+			<element name="eVoucher" type="impl:Voucher" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<simpleType name="DiscountType">
+		<restriction base="xsd:string">
+			<enumeration value="ABSOLUTE" /> <!-- Sleva je absolutni - v korunach -->
+			<enumeration value="RATIO" /> <!-- Pomerna sleva -->
+		</restriction>
+	</simpleType>
+
+	<complexType name="DiscountVoucher">
+		<complexContent>
+			<extension base="impl:Voucher">
+				<sequence>
+					<element name="discountType" type="impl:DiscountType"/>
+					<element name="discount" type="xsd:decimal"/> <!-- Pro discountType = ABSOLUTE je sleva v korunach, pro RATIO je to pomer (v rozsahu 0.0 - 1.0) -->
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="GiftVoucher">
+		<complexContent>
+			<extension base="impl:Voucher">
+				<sequence>
+					<element name="pin" type="xsd:string"/>
+					<element name="amount" type="xsd:decimal"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="PromotionCode">
+		<complexContent>
+			<extension base="impl:Voucher">
+				<sequence>
+					<element name="commodityRef" type="impl:ErpId"/>
+					<element name="discountType" type="impl:DiscountType"/>
+					<element name="discount" type="xsd:decimal"/> <!-- Pro discountType = ABSOLUTE je sleva v korunach, pro RATIO je to pomer (v rozsahu 0.0 - 1.0) -->
+					<element name="singleUse" type="xsd:boolean"/> <!-- Jednorazovy promotion code, po pouziti se deaktivuje -->
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+
+	<!-- ========== navody a manualy ========== -->
+
+	<!-- navody k produktum -->
+	<complexType name="CommodityManual">
+		<sequence>
+			<element name="id" type="impl:Identifier"/>
+			<element name="path" type="xsd:string"/>
+			<element name="itemRef" type="impl:Identifier"/>
+			<element name="description" type="xsd:string"/>
+			<element name="fileSize" type="xsd:string"/>
+			<element name="language" type="xsd:string"/>
+			<!--
+				Hodnoty:
+					ES - energeticky stitek
+					IL - informacni list
+					MA - navod
+			 -->
+			<element name="type" type="xsd:string"/>
+		</sequence>
+		<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+	</complexType>
+	<complexType name="CommodityManualArray">
+		<sequence>
+			<element name="eManual" type="impl:CommodityManual" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- ========== zmena vlastnika objednavky ========== -->
+
+	<!-- request zmeny vlastnika -->
+	<complexType name="OrderOwnerChangeData">
+		<sequence>
+			<element name="orderId" type="impl:Identifier"/>
+			<element name="totalPrice" type="xsd:decimal"/>
+			<element name="userRef" type="impl:Identifier"/>
+		</sequence>
+	</complexType>
+
+	<!-- ========== marketingove pobidky ========== -->
+
+	<!-- stav marketingove pobidky -->
+	<simpleType name="MarketingOfferState">
+		<restriction base="xsd:string">
+			<enumeration value="ACTIVE"/>
+			<enumeration value="SUSPENDED"/>
+		</restriction>
+	</simpleType>
+
+	<!-- typ polozky marketingove pobidky -->
+	<simpleType name="MarketingOfferItemType">
+		<restriction base="xsd:string">
+			<enumeration value="COMMODITY"/>
+			<enumeration value="CATEGORY"/>
+			<enumeration value="ASSET"/>
+		</restriction>
+	</simpleType>
+
+	<!-- polozka marketingove pobidky -->
+	<complexType name="MarketingOfferItem">
+		<sequence>
+			<element name="itemType" type="impl:MarketingOfferItemType"/>
+			<element name="itemId" type="impl:Identifier"/>
+		</sequence>
+	</complexType>
+
+	<!-- definice marketingove pobidky -->
+	<complexType name="MarketingOffer">
+		<sequence>
+			<element name="id" type="impl:Identifier"/>
+			<element name="title" type="xsd:string"/>
+			<element name="text" type="xsd:string"/>
+			<element name="validFrom" type="xsd:dateTime"/>
+			<element name="validTo" type="xsd:dateTime"/>
+			<element name="item" type="impl:MarketingOfferItem"/>
+			<element name="state" type="impl:MarketingOfferState"/>
+		</sequence>
+		<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+	</complexType>
+	<complexType name="MarketingOfferArray">
+		<sequence>
+			<element name="eOffer" type="impl:MarketingOffer" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+	<!-- adresat marketingove pobidky -->
+	<complexType name="MarketingOfferRecipient">
+		<sequence>
+			<element name="offerRef" type="impl:Identifier"/>
+			<element name="userRef" type="impl:Identifier"/>
+		</sequence>
+		<attribute name="deleted" type="xsd:boolean" use="optional" default="false"/>
+	</complexType>
+	<complexType name="MarketingOfferRecipientArray">
+		<sequence>
+			<element name="eRecipient" type="impl:MarketingOfferRecipient" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+<!--  ============== externi pobocky PNS/PONTY/... ============ -->
+	<!-- pobocky -->
+	<complexType name="Branch">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+						<element name="branchType" type="xsd:string"/>	<!-- typ vydejniho mista PNS/PONTY -->
+						<element name="branch" type="xsd:string"/>     	<!-- pobocka PNS1,... -->
+						<element name="place" type="xsd:int"/>   		<!-- vydejni misto -->
+						<element name="title" type="xsd:string"/>
+						<element name="street"  nillable="true" minOccurs="0" type="xsd:string"/>
+						<element name="city" nillable="true" minOccurs="0" type="xsd:string"/>
+						<element name="zip" type="xsd:string"/>
+						<element name="country" nillable="true" type="xsd:string"/>
+						<element name="latitude" nillable="true" minOccurs="0" type="xsd:string"/>
+						<element name="longitude" nillable="true" minOccurs="0" type="xsd:string"/>
+						<element name="phone" nillable="true" minOccurs="0" type="xsd:string"/>
+						<element name="email" nillable="true" minOccurs="0" type="xsd:string"/>
+						<element name="canceled" type="xsd:boolean"/>
+						<element name="closedFrom" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+						<element name="closedTo" nillable="true" minOccurs="0" type="xsd:dateTime"/>
+						<element name="openingHours" nillable="true" minOccurs="0" type="xsd:string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BranchArray">
+		<sequence>
+			<element name="eBranch" type="impl:Branch" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	
+	<!--  ============== pracovni doba prodavacu ============ -->
+	<complexType name="EmployeeWorkingHours">
+		<complexContent>
+			<extension base="impl:ErpObject">
+				<sequence>
+						<element name="employeeId" type="impl:Identifier"/>
+						<element name="shopId" type="impl:Identifier"/>
+						<element name="date" type="xsd:date"/>
+						<element name="workingHours" type="xsd:string"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="EmployeeWorkingHoursArray">
+		<sequence>
+			<element name="eEmployeeWorkingHours" type="impl:EmployeeWorkingHours" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+
+</schema>
+</wsdl:types>
+
+
+<!-- *************** pouzite zpravy *************** -->
+
+<!-- indikace obecne chyby pro vsechny operace -->
+<wsdl:message name="requestError">
+	<wsdl:part name="error" element="impl:requestError"/>
+</wsdl:message>
+
+<!-- indikace poruseni referencni integrity -->
+<wsdl:message name="referentialIntegrityError">
+	<wsdl:part name="error" element="impl:referentialIntegrityError"/>
+</wsdl:message>
+
+
+<wsdl:message name="getVersionsRequest">
+	<wsdl:part name="segment" type="impl:SegmentCode"/>
+</wsdl:message>
+
+<wsdl:message name="getVersionsResponse">
+	<wsdl:part name="getVersionsReturn" type="impl:VersionList"/>
+</wsdl:message>
+
+
+<wsdl:message name="updateProducersRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:ProducerArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateProducersResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateCategoriesRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:CategoryArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateCategoriesResponse">
+</wsdl:message>
+
+<wsdl:message name="updateAvailabilityRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:AvailabilityArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateAvailabilityResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updatePricesRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:PriceArray"/>
+</wsdl:message>
+
+<wsdl:message name="updatePricesResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateAttributesRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:AttributeArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateAttributesResponse">
+</wsdl:message>
+
+<wsdl:message name="updateAttributeGroupsRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:AttributeGroupArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateAttributeGroupsResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateCatalogueRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:CommodityArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateCatalogueResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateRelationsRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:RelationArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateRelationsResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateCommodityFamiliesRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:CommodityFamilyArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateCommodityFamiliesResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateCommoditySegmentsRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:CommoditySegmentArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateCommoditySegmentsResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateProductLinesRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:ProductLineArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateProductLinesResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateOrdersRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:OrderArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateOrdersResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateUsersRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:UserArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateUsersResponse">
+</wsdl:message>
+
+<!-- DEPRECATED -->
+<wsdl:message name="updateUserProfilesRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:UserProfileArray"/>
+</wsdl:message>
+
+<!-- DEPRECATED -->
+<wsdl:message name="updateUserProfilesResponse">
+</wsdl:message>
+
+<wsdl:message name="updateDailySalesRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:DailySalesArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateDailySalesResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateComplaintsRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:ComplaintArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateComplaintsResponse">
+</wsdl:message>
+
+<wsdl:message name="updateSellGroupsRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:SellGroupArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateSellGroupsResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateDeliveryRegionRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:DeliveryRegionArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateDeliveryRegionResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateSlotForRegionRequest">
+    <wsdl:part name="scope" type="impl:UpdateScope"/>
+    <wsdl:part name="list" type="impl:SlotForRegionArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateSlotForRegionResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateMicroRegionRequest">
+    <wsdl:part name="scope" type="impl:UpdateScope"/>
+    <wsdl:part name="list" type="impl:MicroRegionArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateMicroRegionResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateTimeSlotDateRequest">
+    <wsdl:part name="scope" type="impl:UpdateScope"/>
+    <wsdl:part name="list" type="impl:TimeSlotDateArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateTimeSlotDateResponse">
+</wsdl:message>
+
+<wsdl:message name="updateTimeSlotPricingDetailRequest">
+    <wsdl:part name="scope" type="impl:UpdateScope"/>
+    <wsdl:part name="list" type="impl:TimeSlotPricingDetailArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateTimeSlotPricingDetailResponse">
+</wsdl:message>
+
+<wsdl:message name="updateZipCodeRequest">
+    <wsdl:part name="scope" type="impl:UpdateScope"/>
+    <wsdl:part name="list" type="impl:ZipCodeArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateZipCodeResponse">
+</wsdl:message>
+
+<wsdl:message name="updateEANVoucherRequest">
+    <wsdl:part name="scope" type="impl:UpdateScope"/>
+    <wsdl:part name="list" type="impl:EANVoucherArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateEANVoucherResponse">
+</wsdl:message>
+
+<wsdl:message name="updateVoucherRequest">
+    <wsdl:part name="scope" type="impl:UpdateScope"/>
+    <wsdl:part name="list" type="impl:VoucherArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateVoucherResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateCommodityManualsRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:CommodityManualArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateCommodityManualsResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateMarketingOffersRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:MarketingOfferArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateMarketingOffersResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateMarketingOfferRecipientsRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:MarketingOfferRecipientArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateMarketingOfferRecipientsResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateDeliveryDelayRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:DeliveryDelayArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateDeliveryDelayResponse">
+</wsdl:message>
+
+<wsdl:message name="updateBranchesRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:BranchArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateBranchesResponse">
+</wsdl:message>
+
+<wsdl:message name="updateEmployeeWorkingHoursRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:EmployeeWorkingHoursArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateEmployeeWorkingHoursResponse">
+</wsdl:message>
+
+<wsdl:message name="updateCommodityAttrValueRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:CommodityAttrValueArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateCommodityAttrValueResponse">
+</wsdl:message>
+
+<wsdl:message name="updateCommodityCategoryRequest">
+	<wsdl:part name="scope" type="impl:UpdateScope"/>
+	<wsdl:part name="list" type="impl:CommodityCategoryArray"/>
+</wsdl:message>
+
+<wsdl:message name="updateCommodityCategoryResponse">
+</wsdl:message>
+
+<!-- zpravy pro operace smerem z eshopu do ERP -->
+
+<wsdl:message name="updateOrderRequest">
+	<wsdl:part name="segment" type="impl:SegmentCode"/>
+	<wsdl:part name="order" type="impl:Order"/>
+</wsdl:message>
+
+<wsdl:message name="updateOrderResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateUserRequest">
+	<wsdl:part name="segment" type="impl:SegmentCode"/>
+	<wsdl:part name="user" type="impl:User" />
+</wsdl:message>
+
+<wsdl:message name="updateUserResponse">
+</wsdl:message>
+
+
+<wsdl:message name="orderOwnerChangeRequest">
+	<wsdl:part name="segment" type="impl:SegmentCode"/>
+	<wsdl:part name="request" type="impl:OrderOwnerChangeData"/>
+</wsdl:message>
+
+<wsdl:message name="orderOwnerChangeResponse">
+</wsdl:message>
+
+
+<wsdl:message name="updateNeededRequest">
+	<wsdl:part name="segment" type="impl:SegmentCode"/>
+	<wsdl:part name="versions" type="impl:VersionList"/>
+</wsdl:message>
+
+<wsdl:message name="updateNeededResponse">
+</wsdl:message>
+
+<wsdl:message name="updateComplaintRequest">
+		<wsdl:part name="segment" type="impl:SegmentCode" />
+		<wsdl:part name="complaint" type="impl:Complaint"/>
+</wsdl:message>
+
+<wsdl:message name="updateComplaintResponse">
+</wsdl:message>
+
+<wsdl:message name="changeComplaintStateRequest">
+        <wsdl:part name="segment" type="impl:SegmentCode"></wsdl:part>
+        <wsdl:part name="complaintId" type="impl:Identifier"></wsdl:part>
+        <wsdl:part name="state" type="impl:ComplaintState"></wsdl:part>
+	</wsdl:message>
+
+<wsdl:message name="changeComplaintStateResponse">
+</wsdl:message>
+
+<wsdl:message name="changeComplaintStateFault">
+		<wsdl:part name="error" element="impl:requestError"></wsdl:part>
+</wsdl:message>
+
+
+<!-- *************** poskytovane operace *************** -->
+
+<wsdl:portType name="BambinoErpUpdate">
+	<wsdl:operation name="updateOrder">
+		<wsdl:input name="updateOrderRequest" message="impl:updateOrderRequest"/>
+		<wsdl:output name="updateOrderResponse" message="impl:updateOrderResponse"/>
+		<wsdl:fault name="requestError" message="impl:requestError"/>
+	</wsdl:operation>
+
+	<wsdl:operation name="updateExpressOrder">
+		<wsdl:input name="updateExpressOrderRequest" message="impl:updateOrderRequest"/>
+		<wsdl:output name="updateExpressOrderResponse" message="impl:updateOrderResponse"/>
+		<wsdl:fault name="requestError" message="impl:requestError"/>
+	</wsdl:operation>
+
+	<wsdl:operation name="updateUser">
+		<wsdl:input name="updateUserRequest" message="impl:updateUserRequest"/>
+		<wsdl:output name="updateUserResponse" message="impl:updateUserResponse"/>
+		<wsdl:fault name="requestError" message="impl:requestError"/>
+	</wsdl:operation>
+
+	<wsdl:operation name="changeOrderOwner">
+		<wsdl:input name="orderOwnerChangeRequest" message="impl:orderOwnerChangeRequest"/>
+		<wsdl:output name="orderOwnerChangeResponse" message="impl:orderOwnerChangeResponse"/>
+		<wsdl:fault name="requestError" message="impl:requestError"/>
+	</wsdl:operation>
+
+	<wsdl:operation name="updateNeeded">
+		<wsdl:input name="updateNeededRequest" message="impl:updateNeededRequest"/>
+		<wsdl:output name="updateNeededResponse" message="impl:updateNeededResponse"/>
+		<wsdl:fault name="requestError" message="impl:requestError"/>
+	</wsdl:operation>
+	
+	<wsdl:operation name="updateComplaint">
+			<wsdl:input name="updateComplaintRequest" message="impl:updateComplaintRequest"/>
+			<wsdl:output name="updateComplaintResponse" message="impl:updateComplaintResponse"/>
+            <wsdl:fault name="requestError" message="impl:requestError"/>
+   </wsdl:operation>
+   
+   <wsdl:operation name="changeComplaintState">
+			<wsdl:input name="changeComplaintStateRequest" message="impl:changeComplaintStateRequest"></wsdl:input>
+			<wsdl:output name="changeComplaintStateResponse"  message="impl:changeComplaintStateResponse"></wsdl:output>
+            <wsdl:fault name="changeComplaintStateFault" message="impl:changeComplaintStateFault"></wsdl:fault>
+	</wsdl:operation>
+</wsdl:portType>
+
+
+<!-- *************** mapovani pro SOAP *************** -->
+
+<wsdl:binding name="erpUpdateSoapBinding" type="impl:BambinoErpUpdate">
+	<wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+	<wsdl:operation name="updateOrder">
+		<wsdlsoap:operation soapAction=""/>
+		<wsdl:input name="updateOrderRequest">
+			<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+		</wsdl:input>
+		<wsdl:output name="updateOrderResponse">
+			<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+		</wsdl:output>
+		<wsdl:fault name="requestError">
+			<wsdlsoap:fault name="requestError" use="literal"/>
+		</wsdl:fault>
+	</wsdl:operation>
+
+	<wsdl:operation name="updateExpressOrder">
+		<wsdlsoap:operation soapAction=""/>
+		<wsdl:input name="updateExpressOrderRequest">
+			<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+		</wsdl:input>
+		<wsdl:output name="updateExpressOrderResponse">
+			<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+		</wsdl:output>
+		<wsdl:fault name="requestError">
+			<wsdlsoap:fault name="requestError" use="literal"/>
+		</wsdl:fault>
+	</wsdl:operation>
+
+	<wsdl:operation name="updateUser">
+		<wsdlsoap:operation soapAction=""/>
+		<wsdl:input name="updateUserRequest">
+			<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+		</wsdl:input>
+		<wsdl:output name="updateUserResponse">
+			<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+		</wsdl:output>
+		<wsdl:fault name="requestError">
+			<wsdlsoap:fault name="requestError" use="literal"/>
+		</wsdl:fault>
+	</wsdl:operation>
+
+	<wsdl:operation name="changeOrderOwner">
+		<wsdlsoap:operation soapAction=""/>
+		<wsdl:input name="orderOwnerChangeRequest">
+			<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+		</wsdl:input>
+		<wsdl:output name="orderOwnerChangeResponse">
+			<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+		</wsdl:output>
+		<wsdl:fault name="requestError">
+			<wsdlsoap:fault name="requestError" use="literal"/>
+		</wsdl:fault>
+	</wsdl:operation>
+
+	<wsdl:operation name="updateNeeded">
+		<wsdlsoap:operation soapAction=""/>
+		<wsdl:input name="updateNeededRequest">
+			<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+		</wsdl:input>
+		<wsdl:output name="updateNeededResponse">
+			<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino"/>
+		</wsdl:output>
+		<wsdl:fault name="requestError">
+			<wsdlsoap:fault name="requestError" use="literal"/>
+		</wsdl:fault>
+	</wsdl:operation>
+	
+	<wsdl:operation name="updateComplaint">
+			<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="updateComplaintRequest">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino" />
+			</wsdl:input>
+			<wsdl:output name="updateComplaintResponse">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino" />
+			</wsdl:output>
+			<wsdl:fault name="requestError">
+				<wsdlsoap:fault use="literal" name="requestError" />
+			</wsdl:fault>
+		</wsdl:operation>
+		
+	<wsdl:operation name="changeComplaintState">
+		<wsdlsoap:operation soapAction="" />
+			<wsdl:input name="changeComplaintStateRequest">
+				<wsdlsoap:body use="literal" namespace="http://etnetera.com/projects/datart/bambino" />
+			</wsdl:input>
+			<wsdl:output name="changeComplaintStateResponse">
+				<wsdlsoap:body use="literal"
+					namespace="http://etnetera.com/projects/datart/bambino" />
+			</wsdl:output>
+			<wsdl:fault name="changeComplaintStateFault">
+				<wsdlsoap:fault use="literal" name="changeComplaintStateFault" />
+			</wsdl:fault>
+		</wsdl:operation>
+</wsdl:binding>
+
+
+<!-- *************** popis sluzeb *************** -->
+
+<wsdl:service name="BambinoErpUpdateService">
+	<wsdl:port name="update" binding="impl:erpUpdateSoapBinding">
+		<wsdlsoap:address location="http://ws.datart.cz/etn/erpUpdate"/>
+	</wsdl:port>
+</wsdl:service>
+
+</wsdl:definitions>

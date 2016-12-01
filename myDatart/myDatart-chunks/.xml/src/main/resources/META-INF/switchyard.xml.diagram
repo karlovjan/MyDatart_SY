@@ -1,0 +1,1684 @@
+<?xml version="1.0" encoding="ASCII"?>
+<pi:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:al="http://eclipse.org/graphiti/mm/algorithms" xmlns:pi="http://eclipse.org/graphiti/mm/pictograms" visible="true" gridUnit="10" diagramTypeId="org.switchyard.tools.ui.editor.diagram" name="switchyard.xml" snapToGrid="true" pictogramLinks="//@link //@children.0/@link //@children.0/@children.0/@link //@children.0/@children.0/@children.0/@link //@children.0/@children.0/@children.0/@anchors.0/@link //@children.0/@children.0/@children.0/@anchors.1/@link //@children.0/@children.1/@link //@children.0/@children.1/@anchors.0/@link //@children.0/@children.1/@anchors.1/@link //@children.0/@children.0/@children.1/@link //@children.0/@children.0/@children.1/@anchors.0/@link //@children.0/@children.0/@children.1/@anchors.1/@link //@children.0/@children.0/@children.2/@link //@children.0/@children.0/@children.2/@anchors.0/@link //@children.0/@children.0/@children.2/@anchors.1/@link //@children.0/@children.0/@children.3/@link //@children.0/@children.0/@children.3/@anchors.0/@link //@children.0/@children.0/@children.3/@anchors.1/@link //@children.0/@children.0/@children.4/@link //@children.0/@children.0/@children.4/@anchors.0/@link //@children.0/@children.0/@children.4/@anchors.1/@link //@children.0/@children.0/@children.5/@link //@children.0/@children.0/@children.5/@anchors.0/@link //@children.0/@children.0/@children.5/@anchors.1/@link //@children.0/@children.0/@children.6/@link //@children.0/@children.0/@children.6/@anchors.0/@link //@children.0/@children.0/@children.6/@anchors.1/@link //@children.0/@children.0/@children.7/@link //@children.0/@children.0/@children.7/@anchors.0/@link //@children.0/@children.0/@children.7/@anchors.1/@link //@children.0/@children.0/@children.8/@link //@children.0/@children.0/@children.8/@anchors.0/@link //@children.0/@children.0/@children.8/@anchors.1/@link //@children.0/@children.2/@link //@children.0/@children.2/@children.0/@link //@children.0/@children.2/@children.0/@anchors.0/@link //@children.0/@children.2/@children.0/@anchors.1/@link //@connections.1/@link //@children.0/@children.3/@link //@children.0/@children.3/@children.0/@link //@children.0/@children.3/@children.0/@anchors.0/@link //@children.0/@children.3/@children.0/@anchors.1/@link //@connections.2/@link //@children.0/@children.4/@link //@children.0/@children.4/@children.0/@link //@children.0/@children.4/@children.0/@anchors.0/@link //@children.0/@children.4/@children.0/@anchors.1/@link //@connections.3/@link //@children.0/@children.5/@link //@children.0/@children.5/@children.0/@link //@children.0/@children.5/@children.0/@anchors.0/@link //@children.0/@children.5/@children.0/@anchors.1/@link //@connections.4/@link //@children.0/@children.6/@link //@children.0/@children.6/@children.0/@link //@children.0/@children.6/@children.0/@anchors.0/@link //@children.0/@children.6/@children.0/@anchors.1/@link //@connections.5/@link //@children.0/@children.7/@link //@children.0/@children.7/@children.0/@link //@children.0/@children.7/@children.0/@anchors.0/@link //@children.0/@children.7/@children.0/@anchors.1/@link //@connections.6/@link //@children.0/@children.8/@link //@children.0/@children.8/@children.0/@link //@children.0/@children.8/@children.0/@anchors.0/@link //@children.0/@children.8/@children.0/@anchors.1/@link //@connections.7/@link //@children.0/@children.9/@link //@children.0/@children.9/@children.0/@link //@children.0/@children.9/@children.0/@anchors.0/@link //@children.0/@children.9/@children.0/@anchors.1/@link //@connections.8/@link //@children.0/@children.10/@link //@children.0/@children.10/@children.0/@link //@children.0/@children.10/@children.0/@anchors.0/@link //@children.0/@children.10/@children.0/@anchors.1/@link //@children.0/@children.11/@link //@children.0/@children.11/@anchors.0/@link //@children.0/@children.11/@anchors.1/@link //@children.0/@children.12/@link //@children.0/@children.12/@children.0/@link //@children.0/@children.12/@children.0/@anchors.0/@link //@children.0/@children.12/@children.0/@anchors.1/@link //@children.0/@children.10/@children.1/@link //@children.0/@children.10/@children.1/@anchors.0/@link //@children.0/@children.10/@children.1/@anchors.1/@link //@connections.10/@link //@children.0/@children.13/@link //@children.0/@children.13/@anchors.0/@link //@children.0/@children.13/@anchors.1/@link //@children.0/@children.14/@link //@children.0/@children.14/@children.0/@link //@children.0/@children.14/@children.0/@anchors.0/@link //@children.0/@children.14/@children.0/@anchors.1/@link //@children.0/@children.15/@link //@children.0/@children.15/@anchors.0/@link //@children.0/@children.15/@anchors.1/@link //@children.0/@children.16/@link //@children.0/@children.16/@children.0/@link //@children.0/@children.16/@children.0/@anchors.0/@link //@children.0/@children.16/@children.0/@anchors.1/@link //@children.0/@children.16/@children.1/@link //@children.0/@children.16/@children.1/@anchors.0/@link //@children.0/@children.16/@children.1/@anchors.1/@link //@children.0/@children.12/@children.1/@link //@children.0/@children.12/@children.1/@anchors.0/@link //@children.0/@children.12/@children.1/@anchors.1/@link //@connections.12/@link //@children.0/@children.16/@children.2/@link //@children.0/@children.16/@children.2/@anchors.0/@link //@children.0/@children.16/@children.2/@anchors.1/@link //@children.0/@children.17/@link //@children.0/@children.17/@children.0/@link //@children.0/@children.17/@children.0/@anchors.0/@link //@children.0/@children.17/@children.0/@anchors.1/@link //@connections.13/@link //@children.0/@children.17/@children.1/@link //@children.0/@children.17/@children.1/@anchors.0/@link //@children.0/@children.17/@children.1/@anchors.1/@link //@connections.14/@link //@children.0/@children.14/@children.1/@link //@children.0/@children.14/@children.1/@anchors.0/@link //@children.0/@children.14/@children.1/@anchors.1/@link //@connections.15/@link //@children.0/@children.18/@link //@children.0/@children.18/@children.0/@link //@children.0/@children.18/@children.0/@anchors.0/@link //@children.0/@children.18/@children.0/@anchors.1/@link //@children.0/@children.14/@children.2/@link //@children.0/@children.14/@children.2/@anchors.0/@link //@children.0/@children.14/@children.2/@anchors.1/@link //@connections.16/@link //@children.0/@children.19/@link //@children.0/@children.19/@anchors.0/@link //@children.0/@children.19/@anchors.1/@link //@children.0/@children.20/@link //@children.0/@children.20/@children.0/@link //@children.0/@children.20/@children.0/@anchors.0/@link //@children.0/@children.20/@children.0/@anchors.1/@link //@children.0/@children.20/@children.1/@link //@children.0/@children.20/@children.1/@anchors.0/@link //@children.0/@children.20/@children.1/@anchors.1/@link //@children.0/@children.18/@children.1/@link //@children.0/@children.18/@children.1/@anchors.0/@link //@children.0/@children.18/@children.1/@anchors.1/@link //@connections.17/@link //@children.0/@children.21/@link //@children.0/@children.21/@children.0/@link //@children.0/@children.21/@children.0/@anchors.0/@link //@children.0/@children.21/@children.0/@anchors.1/@link //@children.0/@children.22/@link //@children.0/@children.22/@children.0/@link //@children.0/@children.22/@children.0/@anchors.0/@link //@children.0/@children.22/@children.0/@anchors.1/@link //@children.0/@children.23/@link //@children.0/@children.23/@children.0/@link //@children.0/@children.23/@children.0/@anchors.0/@link //@children.0/@children.23/@children.0/@anchors.1/@link //@children.0/@children.23/@children.1/@link //@children.0/@children.23/@children.1/@anchors.0/@link //@children.0/@children.23/@children.1/@anchors.1/@link //@connections.18/@link //@children.0/@children.22/@children.1/@link //@children.0/@children.22/@children.1/@anchors.0/@link //@children.0/@children.22/@children.1/@anchors.1/@link //@connections.19/@link //@connections.20/@link //@children.0/@children.23/@children.2/@link //@children.0/@children.23/@children.2/@anchors.0/@link //@children.0/@children.23/@children.2/@anchors.1/@link //@connections.21/@link //@children.0/@children.24/@link //@children.0/@children.24/@children.0/@link //@children.0/@children.24/@children.0/@anchors.0/@link //@children.0/@children.24/@children.0/@anchors.1/@link //@connections.22/@link //@children.0/@children.24/@children.1/@link //@children.0/@children.24/@children.1/@anchors.0/@link //@children.0/@children.24/@children.1/@anchors.1/@link //@connections.23/@link //@children.0/@children.2/@children.1/@link //@children.0/@children.2/@children.1/@anchors.0/@link //@children.0/@children.2/@children.1/@anchors.1/@link //@children.0/@children.25/@link //@children.0/@children.25/@children.0/@link //@children.0/@children.25/@children.0/@anchors.0/@link //@children.0/@children.25/@children.0/@anchors.1/@link //@connections.24/@link //@children.0/@children.6/@children.1/@link //@children.0/@children.6/@children.1/@anchors.0/@link //@children.0/@children.6/@children.1/@anchors.1/@link //@connections.25/@link //@children.0/@children.9/@children.1/@link //@children.0/@children.9/@children.1/@anchors.0/@link //@children.0/@children.9/@children.1/@anchors.1/@link //@connections.26/@link //@children.0/@children.8/@children.1/@link //@children.0/@children.8/@children.1/@anchors.0/@link //@children.0/@children.8/@children.1/@anchors.1/@link //@connections.27/@link //@children.0/@children.7/@children.1/@link //@children.0/@children.7/@children.1/@anchors.0/@link //@children.0/@children.7/@children.1/@anchors.1/@link //@connections.28/@link //@children.0/@children.5/@children.1/@link //@children.0/@children.5/@children.1/@anchors.0/@link //@children.0/@children.5/@children.1/@anchors.1/@link //@connections.29/@link //@children.0/@children.4/@children.1/@link //@children.0/@children.4/@children.1/@anchors.0/@link //@children.0/@children.4/@children.1/@anchors.1/@link //@connections.30/@link //@children.0/@children.3/@children.1/@link //@children.0/@children.3/@children.1/@anchors.0/@link //@children.0/@children.3/@children.1/@anchors.1/@link //@connections.31/@link" version="0.13.0">
+  <graphicsAlgorithm xsi:type="al:Rectangle" background="//@colors.1" foreground="//@colors.0" lineWidth="1" transparency="0.0" width="1000" height="1000"/>
+  <link>
+    <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#/"/>
+  </link>
+  <children xsi:type="pi:ContainerShape" visible="true" active="true">
+    <properties key="sca-type" value="composite"/>
+    <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="2876" height="1420" x="20" y="20">
+      <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.6" width="2816" height="1360" x="30" y="30" style="//@styles.0" cornerHeight="12" cornerWidth="12">
+        <properties key="sca-type" value="composite"/>
+        <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.3" lineWidth="1" filled="false" transparency="0.0" width="470" height="16" x="15" y="15" font="//@fonts.1" value="myDatart-chunks"/>
+      </graphicsAlgorithmChildren>
+    </graphicsAlgorithm>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite"/>
+    </link>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="231" height="241" x="395" y="215">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="201" height="211" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="171" height="181" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="EshopChunkUpdateRoute"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.0"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:EshopChunkUpdateRoute:EshopChunkUpdateService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.0" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:EshopChunkUpdateRoute:EshopChunkUpdateService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:EshopChunkUpdateRoute:EshopChunkUpdateService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="206" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleCategoriesService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.2" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleCategoriesService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleCategoriesService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="206" y="45" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleAvailabilitiesService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.3" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleAvailabilitiesService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleAvailabilitiesService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="206" y="65" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassemblePricesService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.4" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassemblePricesService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassemblePricesService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="206" y="85" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleAttributesService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.5" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleAttributesService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleAttributesService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="206" y="105" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleAttributeGroupsService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.6" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleAttributeGroupsService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleAttributeGroupsService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="206" y="125" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleCataloguesService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.7" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleCataloguesService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleCataloguesService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="206" y="145" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleRelationsService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.8" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleRelationsService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleRelationsService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="206" y="165" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleProducersService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.1" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleProducersService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:EshopChunkUpdateRoute:DissassembleProducersService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="350" height="50" x="10" y="200">
+        <graphicsAlgorithmChildren xsi:type="al:Polygon" lineWidth="2" filled="true" transparency="0.0" width="100" height="50" style="//@styles.2">
+          <properties key="sca-type" value="service"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.7" lineWidth="1" filled="false" transparency="0.0" width="200" height="50" x="66" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="EshopChunkUpdateService"/>
+          <points before="3" after="3"/>
+          <points x="266" before="3" after="3"/>
+          <points x="350" y="25" before="3" after="3"/>
+          <points x="266" y="50" before="3" after="3"/>
+          <points y="50" before="3" after="3"/>
+          <points x="56" y="25" before="3" after="3"/>
+          <points before="3" after="3"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@service.0"/>
+      </link>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.0" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+        <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" lineVisible="false" transparency="0.9" width="12" height="12" x="-14" y="-6"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@service.0"/>
+        </link>
+      </anchors>
+      <anchors xsi:type="pi:ChopboxAnchor">
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@service.0"/>
+        </link>
+      </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="381" height="100" x="815" y="585">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="351" height="70" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="321" height="40" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="DissassembleProducersServiceBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.1"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleProducersServiceBean:DissassembleProducersService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.1" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleProducersServiceBean:DissassembleProducersService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleProducersServiceBean:DissassembleProducersService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="356" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleProducersServiceBean:StoreDisassembledItemsJMSService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.24" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleProducersServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleProducersServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="381" height="80" x="815" y="115">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="351" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="321" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="DissassembleCategoriesServiceBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.2"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleCategoriesServiceBean:DissassembleCategoriesService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.2" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleCategoriesServiceBean:DissassembleCategoriesService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleCategoriesServiceBean:DissassembleCategoriesService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="356" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleCategoriesServiceBean:StoreDisassembledItemsJMSService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.31" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleCategoriesServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleCategoriesServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="381" height="80" x="815" y="196">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="351" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="321" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="DissassembleAvailabilitiesServiceBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.3"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAvailabilitiesServiceBean:DissassembleAvailabilitiesService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.3" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAvailabilitiesServiceBean:DissassembleAvailabilitiesService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAvailabilitiesServiceBean:DissassembleAvailabilitiesService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="356" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleAvailabilitiesServiceBean:StoreDisassembledItemsJMSService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.30" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleAvailabilitiesServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleAvailabilitiesServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="381" height="80" x="815" y="265">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="351" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="321" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="DissassemblePricesServiceBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.4"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassemblePricesServiceBean:DissassemblePricesService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.4" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassemblePricesServiceBean:DissassemblePricesService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassemblePricesServiceBean:DissassemblePricesService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="356" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassemblePricesServiceBean:StoreDisassembledItemsJMSService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.29" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassemblePricesServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassemblePricesServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="381" height="80" x="815" y="325">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="351" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="321" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="DissassembleAttributesServiceBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.5"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAttributesServiceBean:DissassembleAttributesService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.5" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAttributesServiceBean:DissassembleAttributesService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAttributesServiceBean:DissassembleAttributesService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="356" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleAttributesServiceBean:StoreDisassembledItemsJMSService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.25" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleAttributesServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleAttributesServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="381" height="80" x="815" y="385">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="351" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="321" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="DissassembleAttributeGroupsServiceBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.6"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAttributeGroupsServiceBean:DissassembleAttributeGroupsService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.6" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAttributeGroupsServiceBean:DissassembleAttributeGroupsService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAttributeGroupsServiceBean:DissassembleAttributeGroupsService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="356" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleAttributeGroupsServiceBean:StoreDisassembledItemsJMSService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.28" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleAttributeGroupsServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleAttributeGroupsServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="381" height="80" x="815" y="445">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="351" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="321" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="DissassembleCataloguesServiceBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.7"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleCataloguesServiceBean:DissassembleCataloguesService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.7" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleCataloguesServiceBean:DissassembleCataloguesService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleCataloguesServiceBean:DissassembleCataloguesService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="356" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleCataloguesServiceBean:StoreDisassembledItemsJMSService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.27" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleCataloguesServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleCataloguesServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="381" height="80" x="815" y="515">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="351" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="321" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="DissassembleRelationsServiceBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.8"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleRelationsServiceBean:DissassembleRelationsService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.8" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleRelationsServiceBean:DissassembleRelationsService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleRelationsServiceBean:DissassembleRelationsService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="356" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleRelationsServiceBean:StoreDisassembledItemsJMSService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.26" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleRelationsServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:DissassembleRelationsServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="261" height="80" x="325" y="795">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="231" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="201" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="ChunkGroupMonitorServiceBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.9"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkGroupMonitorServiceBean:ChunkGroupMonitorService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.9" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkGroupMonitorServiceBean:ChunkGroupMonitorService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkGroupMonitorServiceBean:ChunkGroupMonitorService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="236" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkGroupMonitorServiceBean:ChunkProcessManager"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.10" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkGroupMonitorServiceBean:ChunkProcessManager"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkGroupMonitorServiceBean:ChunkProcessManager"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="300" height="50" x="10" y="690">
+        <graphicsAlgorithmChildren xsi:type="al:Polygon" lineWidth="2" filled="true" transparency="0.0" width="100" height="50" style="//@styles.2">
+          <properties key="sca-type" value="service"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.7" lineWidth="1" filled="false" transparency="0.0" width="170" height="50" x="55" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="ChunkGroupMonitorService"/>
+          <points before="3" after="3"/>
+          <points x="225" before="3" after="3"/>
+          <points x="300" y="25" before="3" after="3"/>
+          <points x="225" y="50" before="3" after="3"/>
+          <points y="50" before="3" after="3"/>
+          <points x="45" y="25" before="3" after="3"/>
+          <points before="3" after="3"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@service.1"/>
+      </link>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.9" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+        <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" lineVisible="false" transparency="0.9" width="12" height="12" x="-14" y="-6"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@service.1"/>
+        </link>
+      </anchors>
+      <anchors xsi:type="pi:ChopboxAnchor">
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@service.1"/>
+        </link>
+      </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="241" height="80" x="615" y="955">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="211" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="181" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="ChunkProcessManagerBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.10"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkProcessManagerBean:ChunkProcessManager"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.10 //@connections.11" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkProcessManagerBean:ChunkProcessManager"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkProcessManagerBean:ChunkProcessManager"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="216" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkProcessManagerBean:ChunkCreation"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.12" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkProcessManagerBean:ChunkCreation"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkProcessManagerBean:ChunkCreation"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="350" height="50" x="10" y="1050">
+        <graphicsAlgorithmChildren xsi:type="al:Polygon" lineWidth="2" filled="true" transparency="0.0" width="100" height="50" style="//@styles.2">
+          <properties key="sca-type" value="service"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.7" lineWidth="1" filled="false" transparency="0.0" width="200" height="50" x="63" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="ChunkProcessSchedulerService"/>
+          <points before="3" after="3"/>
+          <points x="263" before="3" after="3"/>
+          <points x="350" y="25" before="3" after="3"/>
+          <points x="263" y="50" before="3" after="3"/>
+          <points y="50" before="3" after="3"/>
+          <points x="53" y="25" before="3" after="3"/>
+          <points before="3" after="3"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@service.2"/>
+      </link>
+      <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.11" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+        <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" lineVisible="false" transparency="0.9" width="12" height="12" x="-14" y="-6"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@service.2"/>
+        </link>
+      </anchors>
+      <anchors xsi:type="pi:ChopboxAnchor">
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@service.2"/>
+        </link>
+      </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="221" height="110" x="1335" y="975">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="191" height="80" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="161" height="50" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="SendChunkToEshopRoute"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.11"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:SendChunkToEshopRoute:SendChunkToEshopService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.23" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:SendChunkToEshopRoute:SendChunkToEshopService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:SendChunkToEshopRoute:SendChunkToEshopService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="196" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendChunkToEshopRoute:EshopWS"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.15" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendChunkToEshopRoute:EshopWS"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendChunkToEshopRoute:EshopWS"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="196" y="45" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendChunkToEshopRoute:EshopResponseService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.16" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendChunkToEshopRoute:EshopResponseService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendChunkToEshopRoute:EshopResponseService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="281" height="50" x="2585" y="1210">
+        <graphicsAlgorithmChildren xsi:type="al:Polygon" lineWidth="2" filled="true" transparency="0.0" width="100" height="50" style="//@styles.3">
+          <properties key="sca-type" value="composite-reference"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.10" lineWidth="1" filled="false" transparency="0.0" width="157" height="50" x="53" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="EshopWS"/>
+          <points before="3" after="3"/>
+          <points x="210" before="3" after="3"/>
+          <points x="281" y="25" before="3" after="3"/>
+          <points x="210" y="50" before="3" after="3"/>
+          <points y="50" before="3" after="3"/>
+          <points x="43" y="25" before="3" after="3"/>
+          <points before="3" after="3"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@reference.0"/>
+      </link>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.14 //@connections.15" useAnchorLocationAsConnectionEndpoint="true">
+        <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" lineVisible="false" transparency="0.9" width="12" height="12" y="-6"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@reference.0"/>
+        </link>
+        <location x="39" y="25"/>
+      </anchors>
+      <anchors xsi:type="pi:ChopboxAnchor">
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@reference.0"/>
+        </link>
+      </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="221" height="100" x="895" y="955">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="191" height="70" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="161" height="40" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="ChunkCreationBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.12"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkCreationBean:ChunkCreation"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.12" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkCreationBean:ChunkCreation"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkCreationBean:ChunkCreation"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="196" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkCreationBean:PrepareChunkSendingService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.22" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkCreationBean:PrepareChunkSendingService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkCreationBean:PrepareChunkSendingService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="196" y="45" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkCreationBean:UpdateChunkVersionService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.13" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkCreationBean:UpdateChunkVersionService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ChunkCreationBean:UpdateChunkVersionService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="261" height="80" x="1405" y="1265">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="231" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="201" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="UpdateChunkVersionsRoute"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.13"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:UpdateChunkVersionsRoute:UpdateChunkVersionService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.13" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:UpdateChunkVersionsRoute:UpdateChunkVersionService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:UpdateChunkVersionsRoute:UpdateChunkVersionService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="236" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:UpdateChunkVersionsRoute:EshopWS"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.14" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:UpdateChunkVersionsRoute:EshopWS"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:UpdateChunkVersionsRoute:EshopWS"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="221" height="80" x="1575" y="940">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="191" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="161" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="ProcessEshopResponse"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.14"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ProcessEshopResponse:EshopResponseService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.16" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ProcessEshopResponse:EshopResponseService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ProcessEshopResponse:EshopResponseService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="196" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ProcessEshopResponse:NotifyAxaptaService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.17" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ProcessEshopResponse:NotifyAxaptaService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:ProcessEshopResponse:NotifyAxaptaService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="100" height="50" x="2766" y="870">
+        <graphicsAlgorithmChildren xsi:type="al:Polygon" lineWidth="2" filled="true" transparency="0.0" width="100" height="50" style="//@styles.3">
+          <properties key="sca-type" value="composite-reference"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.10" lineWidth="1" filled="false" transparency="0.0" width="75" height="50" x="20" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="AxaptaWS"/>
+          <points before="3" after="3"/>
+          <points x="75" before="3" after="3"/>
+          <points x="100" y="25" before="3" after="3"/>
+          <points x="75" y="50" before="3" after="3"/>
+          <points y="50" before="3" after="3"/>
+          <points x="15" y="25" before="3" after="3"/>
+          <points before="3" after="3"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@reference.1"/>
+      </link>
+      <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.18" useAnchorLocationAsConnectionEndpoint="true">
+        <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" lineVisible="false" transparency="0.9" width="12" height="12" y="-6"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@reference.1"/>
+        </link>
+        <location x="14" y="25"/>
+      </anchors>
+      <anchors xsi:type="pi:ChopboxAnchor">
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@reference.1"/>
+        </link>
+      </anchors>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="171" height="100" x="1815" y="940">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="141" height="70" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="111" height="40" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="NotifyAxaptaRoute"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.15"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:NotifyAxaptaRoute:NotifyAxaptaService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.17" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:NotifyAxaptaRoute:NotifyAxaptaService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:NotifyAxaptaRoute:NotifyAxaptaService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="146" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:NotifyAxaptaRoute:PrepareAxaptaNotificationService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.20" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:NotifyAxaptaRoute:PrepareAxaptaNotificationService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:NotifyAxaptaRoute:PrepareAxaptaNotificationService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="281" height="80" x="2535" y="955">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="251" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="221" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="ProcessAxaptaNotificationResponse"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.16"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ProcessAxaptaNotificationResponse:ProcessAxaptaNotificationResponseService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.21" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ProcessAxaptaNotificationResponse:ProcessAxaptaNotificationResponseService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ProcessAxaptaNotificationResponse:ProcessAxaptaNotificationResponseService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="231" height="80" x="2015" y="940">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="201" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="171" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="PrepareAxaptaNotification"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.17"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:PrepareAxaptaNotification:PrepareAxaptaNotificationService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.20" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:PrepareAxaptaNotification:PrepareAxaptaNotificationService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:PrepareAxaptaNotification:PrepareAxaptaNotificationService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="206" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:PrepareAxaptaNotification:SendAxaptaNotificationService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.19" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:PrepareAxaptaNotification:SendAxaptaNotificationService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:PrepareAxaptaNotification:SendAxaptaNotificationService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="201" height="100" x="2305" y="925">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="171" height="70" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="141" height="40" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="SendAxaptaNotification"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.18"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:SendAxaptaNotification:SendAxaptaNotificationService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.19" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:SendAxaptaNotification:SendAxaptaNotificationService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:SendAxaptaNotification:SendAxaptaNotificationService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="176" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendAxaptaNotification:AxaptaWS"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.18" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendAxaptaNotification:AxaptaWS"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendAxaptaNotification:AxaptaWS"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="176" y="45" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendAxaptaNotification:ProcessAxaptaNotificationResponseService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.21" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendAxaptaNotification:ProcessAxaptaNotificationResponseService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:SendAxaptaNotification:ProcessAxaptaNotificationResponseService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="191" height="100" x="1125" y="940">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="161" height="70" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="131" height="40" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="PrepareChunkSending"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.19"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:PrepareChunkSending:PrepareChunkSendingService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.22" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:PrepareChunkSending:PrepareChunkSendingService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:PrepareChunkSending:PrepareChunkSendingService"/>
+          </link>
+        </anchors>
+      </children>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="166" y="25" id="org.switchyard.tools.ui.editor.reference.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:PrepareChunkSending:SendChunkToEshopService"/>
+        </link>
+        <anchors xsi:type="pi:BoxRelativeAnchor" visible="true" active="true" outgoingConnections="//@connections.23" useAnchorLocationAsConnectionEndpoint="true" relativeWidth="1.0" relativeHeight="0.5">
+          <graphicsAlgorithm xsi:type="al:Ellipse" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="10" x="-10" y="-5"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:PrepareChunkSending:SendChunkToEshopService"/>
+          </link>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentReference:PrepareChunkSending:SendChunkToEshopService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+    <children xsi:type="pi:ContainerShape" visible="true" active="true">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="311" height="80" x="1495" y="325">
+        <graphicsAlgorithmChildren xsi:type="al:RoundedRectangle" lineWidth="2" transparency="0.0" width="281" height="50" x="15" y="15" style="//@styles.1" cornerHeight="12" cornerWidth="12">
+          <properties key="sca-type" value="component"/>
+          <graphicsAlgorithmChildren xsi:type="al:Text" foreground="//@colors.5" lineWidth="1" filled="false" transparency="0.0" width="251" height="20" x="15" y="15" font="//@fonts.1" horizontalAlignment="ALIGNMENT_CENTER" value="StoreDisassembledItemsJMSServiceBean"/>
+        </graphicsAlgorithmChildren>
+      </graphicsAlgorithm>
+      <link>
+        <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@component.20"/>
+      </link>
+      <children xsi:type="pi:ContainerShape" visible="true" active="true">
+        <graphicsAlgorithm xsi:type="al:Image" lineWidth="1" transparency="0.0" width="20" height="20" x="5" y="25" id="org.switchyard.tools.ui.editor.service.scale" stretchH="true" stretchV="true" proportional="true"/>
+        <link>
+          <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+        </link>
+        <anchors xsi:type="pi:FixPointAnchor" visible="true" active="true" incomingConnections="//@connections.24 //@connections.25 //@connections.26 //@connections.27 //@connections.28 //@connections.29 //@connections.30 //@connections.31" useAnchorLocationAsConnectionEndpoint="true">
+          <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="10" height="20" x="-1" y="-9"/>
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+          <location x="1" y="9"/>
+        </anchors>
+        <anchors xsi:type="pi:ChopboxAnchor">
+          <link>
+            <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+          </link>
+        </anchors>
+      </children>
+    </children>
+  </children>
+  <styles foreground="//@colors.2" lineWidth="2" id="Composite">
+    <renderingStyle>
+      <adaptedGradientColoredAreas definedStyleId="sca-composite" gradientType="0">
+        <adaptedGradientColoredAreas styleAdaption="0">
+          <gradientColor>
+            <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+              <color red="165" green="210" blue="255"/>
+            </start>
+            <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+              <color red="165" green="210" blue="255"/>
+            </end>
+          </gradientColor>
+        </adaptedGradientColoredAreas>
+      </adaptedGradientColoredAreas>
+    </renderingStyle>
+  </styles>
+  <styles foreground="//@colors.4" lineWidth="2" id="Component">
+    <renderingStyle>
+      <adaptedGradientColoredAreas definedStyleId="sca-component" gradientType="0">
+        <adaptedGradientColoredAreas styleAdaption="0">
+          <gradientColor>
+            <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+              <color red="170" green="179" blue="250"/>
+            </start>
+            <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+              <color red="155" green="160" blue="252"/>
+            </end>
+          </gradientColor>
+        </adaptedGradientColoredAreas>
+        <adaptedGradientColoredAreas styleAdaption="1">
+          <gradientColor>
+            <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+              <color red="170" green="208" blue="242"/>
+            </start>
+            <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+              <color red="129" green="185" blue="234"/>
+            </end>
+          </gradientColor>
+        </adaptedGradientColoredAreas>
+        <adaptedGradientColoredAreas styleAdaption="2">
+          <gradientColor>
+            <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+              <color red="197" green="224" blue="247"/>
+            </start>
+            <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+              <color red="187" green="218" blue="247"/>
+            </end>
+          </gradientColor>
+        </adaptedGradientColoredAreas>
+      </adaptedGradientColoredAreas>
+    </renderingStyle>
+  </styles>
+  <styles foreground="//@colors.6" lineWidth="2" id="Service">
+    <renderingStyle>
+      <adaptedGradientColoredAreas definedStyleId="sca-service" gradientType="0">
+        <adaptedGradientColoredAreas styleAdaption="0">
+          <gradientColor>
+            <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+              <color red="134" green="206" blue="134"/>
+            </start>
+            <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+              <color red="134" green="195" blue="134"/>
+            </end>
+          </gradientColor>
+        </adaptedGradientColoredAreas>
+        <adaptedGradientColoredAreas styleAdaption="1">
+          <gradientColor>
+            <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+              <color red="170" green="208" blue="242"/>
+            </start>
+            <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+              <color red="129" green="185" blue="234"/>
+            </end>
+          </gradientColor>
+        </adaptedGradientColoredAreas>
+        <adaptedGradientColoredAreas styleAdaption="2">
+          <gradientColor>
+            <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+              <color red="197" green="224" blue="247"/>
+            </start>
+            <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+              <color red="187" green="218" blue="247"/>
+            </end>
+          </gradientColor>
+        </adaptedGradientColoredAreas>
+      </adaptedGradientColoredAreas>
+    </renderingStyle>
+  </styles>
+  <styles foreground="//@colors.9" lineWidth="2" id="CompositeReference">
+    <renderingStyle>
+      <adaptedGradientColoredAreas definedStyleId="sca-reference" gradientType="0">
+        <adaptedGradientColoredAreas styleAdaption="0">
+          <gradientColor>
+            <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+              <color red="191" green="149" blue="234"/>
+            </start>
+            <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+              <color red="164" green="130" blue="198"/>
+            </end>
+          </gradientColor>
+        </adaptedGradientColoredAreas>
+        <adaptedGradientColoredAreas styleAdaption="1">
+          <gradientColor>
+            <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+              <color red="170" green="208" blue="242"/>
+            </start>
+            <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+              <color red="129" green="185" blue="234"/>
+            </end>
+          </gradientColor>
+        </adaptedGradientColoredAreas>
+        <adaptedGradientColoredAreas styleAdaption="2">
+          <gradientColor>
+            <start locationType="LOCATION_TYPE_ABSOLUTE_START" locationValue="0">
+              <color red="197" green="224" blue="247"/>
+            </start>
+            <end locationType="LOCATION_TYPE_ABSOLUTE_END" locationValue="0">
+              <color red="187" green="218" blue="247"/>
+            </end>
+          </gradientColor>
+        </adaptedGradientColoredAreas>
+      </adaptedGradientColoredAreas>
+    </renderingStyle>
+  </styles>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.1/@anchors.0" end="//@children.0/@children.0/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.0/@children.8/@anchors.0" end="//@children.0/@children.2/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleProducersServiceBean:DissassembleProducersService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.0/@children.1/@anchors.0" end="//@children.0/@children.3/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleCategoriesServiceBean:DissassembleCategoriesService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.0/@children.2/@anchors.0" end="//@children.0/@children.4/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAvailabilitiesServiceBean:DissassembleAvailabilitiesService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.0/@children.3/@anchors.0" end="//@children.0/@children.5/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassemblePricesServiceBean:DissassemblePricesService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.0/@children.4/@anchors.0" end="//@children.0/@children.6/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAttributesServiceBean:DissassembleAttributesService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.0/@children.5/@anchors.0" end="//@children.0/@children.7/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleAttributeGroupsServiceBean:DissassembleAttributeGroupsService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.0/@children.6/@anchors.0" end="//@children.0/@children.8/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleCataloguesServiceBean:DissassembleCataloguesService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.0/@children.7/@anchors.0" end="//@children.0/@children.9/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:DissassembleRelationsServiceBean:DissassembleRelationsService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.11/@anchors.0" end="//@children.0/@children.10/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.10/@children.1/@anchors.0" end="//@children.0/@children.12/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkProcessManagerBean:ChunkProcessManager"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.13/@anchors.0" end="//@children.0/@children.12/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.12/@children.1/@anchors.0" end="//@children.0/@children.16/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ChunkCreationBean:ChunkCreation"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.16/@children.2/@anchors.0" end="//@children.0/@children.17/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:UpdateChunkVersionsRoute:UpdateChunkVersionService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.17/@children.1/@anchors.0" end="//@children.0/@children.15/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@reference.0"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.14/@children.1/@anchors.0" end="//@children.0/@children.15/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@reference.0"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.14/@children.2/@anchors.0" end="//@children.0/@children.18/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ProcessEshopResponse:EshopResponseService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.18/@children.1/@anchors.0" end="//@children.0/@children.20/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:NotifyAxaptaRoute:NotifyAxaptaService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.23/@children.1/@anchors.0" end="//@children.0/@children.19/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#//@switchyard/@composite/@reference.1"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.22/@children.1/@anchors.0" end="//@children.0/@children.23/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:SendAxaptaNotification:SendAxaptaNotificationService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.20/@children.1/@anchors.0" end="//@children.0/@children.22/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:PrepareAxaptaNotification:PrepareAxaptaNotificationService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.23/@children.2/@anchors.0" end="//@children.0/@children.21/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:ProcessAxaptaNotificationResponse:ProcessAxaptaNotificationResponseService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.16/@children.1/@anchors.0" end="//@children.0/@children.24/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:PrepareChunkSending:PrepareChunkSendingService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.24/@children.1/@anchors.0" end="//@children.0/@children.14/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:SendChunkToEshopRoute:SendChunkToEshopService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.2/@children.1/@anchors.0" end="//@children.0/@children.25/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.6/@children.1/@anchors.0" end="//@children.0/@children.25/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.9/@children.1/@anchors.0" end="//@children.0/@children.25/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.8/@children.1/@anchors.0" end="//@children.0/@children.25/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.7/@children.1/@anchors.0" end="//@children.0/@children.25/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.5/@children.1/@anchors.0" end="//@children.0/@children.25/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.4/@children.1/@anchors.0" end="//@children.0/@children.25/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <connections xsi:type="pi:FreeFormConnection" visible="true" active="true" start="//@children.0/@children.3/@children.1/@anchors.0" end="//@children.0/@children.25/@children.0/@anchors.0">
+    <graphicsAlgorithm xsi:type="al:Polyline" foreground="//@colors.8" lineWidth="3" filled="false" transparency="0.0"/>
+    <link>
+      <businessObjects href="../../../../../src/main/resources/META-INF/switchyard.xml#ComponentService:StoreDisassembledItemsJMSServiceBean:StoreDisassembledItemsJMSService"/>
+    </link>
+    <connectionDecorators visible="true" active="true" locationRelative="true" location="0.5">
+      <graphicsAlgorithm xsi:type="al:Rectangle" lineWidth="1" filled="false" lineVisible="false" transparency="0.0" width="16" height="16"/>
+    </connectionDecorators>
+  </connections>
+  <colors red="227" green="238" blue="249"/>
+  <colors red="255" green="255" blue="255"/>
+  <colors red="165" green="210" blue="255"/>
+  <colors red="31" green="41" blue="51"/>
+  <colors red="170" green="179" blue="250"/>
+  <colors red="26" green="29" blue="51"/>
+  <colors red="134" green="206" blue="134"/>
+  <colors red="5" green="51" blue="5"/>
+  <colors red="117" green="134" blue="149"/>
+  <colors red="191" green="149" blue="234"/>
+  <colors red="41" green="31" blue="51"/>
+  <fonts name="Arial" size="8"/>
+  <fonts name="Arial" size="8" bold="true"/>
+</pi:Diagram>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:jpa="urn:switchyard-component-camel-jpa:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" xmlns:sql="urn:switchyard-component-camel-sql:config:2.0" xmlns:sy="urn:switchyard-config:switchyard:2.0" xmlns:transform="urn:switchyard-config:transform:2.0" name="chunk-configuration" targetNamespace="urn:cz.datart.jboss:chunk-configuration:1.0">
+  <sca:composite name="chunk-configuration" targetNamespace="urn:cz.datart.jboss:chunk-configuration:1.0">
+    <sca:component name="ChunkGroupConfiguratorServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.config.ChunkGroupConfiguratorServiceBean"/>
+      <sca:service name="ChunkGroupConfiguratorService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.config.ChunkGroupConfigurator"/>
+      </sca:service>
+    </sca:component>
+    <sca:service name="ChunkGroupConfiguratorService" promote="ChunkGroupConfiguratorServiceBean/ChunkGroupConfiguratorService">
+      <sca:interface.wsdl interface="wsdl/ChunkGroupConfigurator.wsdl#wsdl.porttype(ChunkGroupConfiguratorPortType)"/>
+      <soap:binding.soap name="chunkGroupConfigurationSoapBinding">
+        <soap:contextMapper soapHeadersType="VALUE"/>
+        <soap:wsdl>wsdl/ChunkGroupConfigurator.wsdl</soap:wsdl>
+        <soap:socketAddr>:${myDatart.soapPort}</soap:socketAddr>
+        <soap:contextPath>${myDatart.chunks.configuration.context.path}</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+  </sca:composite>
+  <sy:transforms/>
+  <sy:domain>
+    <sy:properties load="application.properties"/>
+  </sy:domain>
+</sy:switchyard>

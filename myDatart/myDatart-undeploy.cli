@@ -1,0 +1,48 @@
+#jboss-cli.sh --file=myDatart-undeploy.cli
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-undeploy.cli
+set NOPAUSE=true
+connect
+
+#unset properties
+
+if (outcome == success) of /system-property=segment:read-resource
+	#remove segmen
+	/system-property=segment:remove
+end-if
+if (outcome == success) of /system-property=axaptaWSEndpoint:read-resource
+	#remove Axapta endpoint
+	/system-property=axaptaWSEndpoint:remove
+end-if
+if (outcome == success) of /system-property=eshopWSEndpoint:read-resource
+	#remove Eshop endpoint
+	/system-property=eshopWSEndpoint:remove
+end-if
+if (outcome == success) of /system-property=myDatart.erp.update.soap.context.path:read-resource
+	#remove erpUpdate context path
+	/system-property=myDatart.erp.update.soap.context.path:remove
+end-if
+if (outcome == success) of /system-property=myDatart.chunks.configuration.context.path:read-resource
+	#remove configuration properties
+	/system-property=myDatart.chunks.configuration.context.path:remove
+end-if
+if (outcome == success) of /system-property=myDatart.notif.eshop.update.soap.context.path:read-resource
+	#remove notification eshop update
+	/system-property=myDatart.notif.eshop.update.soap.context.path:remove
+end-if
+if (outcome == success) of /system-property=myDatart.chunks.update.soap.context.path:read-resource
+	#remove chunks eshop update context path
+	/system-property=myDatart.chunks.update.soap.context.path:remove
+end-if
+
+
+# Mark the commands below to be run as a batch
+batch
+
+undeploy myDatart-erpUpdate.jar
+undeploy myDatart-eshop-notification.jar
+#undeploy myDatart-chunks-configuration.jar
+undeploy myDatart-chunks.jar
+
+
+# Execute the batch
+run-batch

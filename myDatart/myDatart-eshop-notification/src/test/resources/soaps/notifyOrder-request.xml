@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:myd="http://myDatart.doxologic.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <myd:notifyOrder>
+         <orderId>1317450</orderId>
+         <clientId>ESH-106379</clientId>
+      </myd:notifyOrder>
+   </soapenv:Body>
+</soapenv:Envelope>

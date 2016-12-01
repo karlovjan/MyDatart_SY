@@ -1,0 +1,35 @@
+# Mark the commands below to be run as a batch
+#batch -- if is not allowed while in batch mode.
+
+if (outcome != success) of /subsystem=ee/global-modules=default/module=net.sf.saxon:read-resource
+	module add --name=net.sf.saxon --resources=Saxon-HE-9.5.1-2.jar --dependencies=javax.api,org.jaxen
+	/subsystem=ee:write-attribute(name="global-modules",value=[{"name" => "net.sf.saxon","slot" => "main"}])
+end-if
+
+#ADD EshopOrderUpdateQueue
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopOrderUpdateQueue-TEST:read-resource
+    jms-queue add --queue-address=EshopOrderUpdateQueue-TEST --entries=jms/queue/EshopOrderUpdateQueue-TEST,java:jboss/exported/jms/queue/EshopOrderUpdateQueue-TEST
+end-if
+
+#ADD EshopUserUpdateQueue
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopUserUpdateQueue-TEST:read-resource
+    jms-queue add --queue-address=EshopUserUpdateQueue-TEST --entries=jms/queue/EshopUserUpdateQueue-TEST,java:jboss/exported/jms/queue/EshopUserUpdateQueue-TEST
+end-if
+
+#ADD EshopManualUpdateQueue
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopManualUpdateQueue-TEST:read-resource
+    jms-queue add --queue-address=EshopManualUpdateQueue-TEST --entries=jms/queue/EshopManualUpdateQueue-TEST,java:jboss/exported/jms/queue/EshopManualUpdateQueue-TEST
+end-if
+
+#ADD EshopOfferUpdateQueue
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopOfferUpdateQueue-TEST:read-resource
+    jms-queue add --queue-address=EshopOfferUpdateQueue-TEST --entries=jms/queue/EshopOfferUpdateQueue-TEST,java:jboss/exported/jms/queue/EshopOfferUpdateQueue-TEST
+end-if
+
+#ADD EshopComplaintUpdateQueue
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopComplaintUpdateQueue-TEST:read-resource
+    jms-queue add --queue-address=EshopComplaintUpdateQueue-TEST --entries=jms/queue/EshopComplaintUpdateQueue-TEST,java:jboss/exported/jms/queue/EshopComplaintUpdateQueue-TEST
+end-if
+
+# Execute the batch
+#run-batch

@@ -1,0 +1,78 @@
+#How to call this script
+#jboss-cli.sh --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-queues-undeploy.cli
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-queues-undeploy.cli
+ 
+# Connect to Wildfly instance
+connect
+
+#eshop notofication proeprties
+
+
+
+#Remove Queues
+#REMOVE EshopOrderUpdateQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=EshopOrderUpdateQueue:read-resource
+    jms-queue remove --queue-address=EshopOrderUpdateQueue
+end-if
+
+#REMOVE EshopUserUpdateQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=EshopUserUpdateQueue:read-resource
+    jms-queue remove --queue-address=EshopUserUpdateQueue
+end-if
+
+#REMOVE EshopManualUpdateQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=EshopManualUpdateQueue:read-resource
+    jms-queue remove --queue-address=EshopManualUpdateQueue
+end-if
+
+#REMOVE EshopOfferUpdateQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=EshopOfferUpdateQueue:read-resource
+    jms-queue remove --queue-address=EshopOfferUpdateQueue
+end-if
+
+#REMOVE EshopComplaintUpdateQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=EshopComplaintUpdateQueue:read-resource
+    jms-queue remove --queue-address=EshopComplaintUpdateQueue
+end-if
+
+
+#Chunk queue configuration
+#REMOVE ChunkUpdateCategoriesQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateCategoriesQueue:read-resource
+    jms-queue remove --queue-address=ChunkUpdateCategoriesQueue
+end-if
+
+#REMOVE ChunkUpdateAvailabilityQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateAvailabilityQueue:read-resource
+    jms-queue remove --queue-address=ChunkUpdateAvailabilityQueue
+end-if
+
+#REMOVE ChunkUpdatePricesQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdatePricesQueue:read-resource
+    jms-queue remove --queue-address=ChunkUpdatePricesQueue
+end-if
+
+#REMOVE ChunkUpdateAttributesQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateAttributesQueue:read-resource
+    jms-queue remove --queue-address=ChunkUpdateAttributesQueue
+end-if
+
+#REMOVE ChunkUpdateAttributeGroupsQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateAttributeGroupsQueue:read-resource
+    jms-queue remove --queue-address=ChunkUpdateAttributeGroupsQueue
+end-if
+
+#REMOVE ChunkUpdateCatalogueQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateCatalogueQueue:read-resource
+    jms-queue remove --queue-address=ChunkUpdateCatalogueQueue
+end-if
+
+#REMOVE ChunkUpdateRelationsQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateRelationsQueue:read-resource
+    jms-queue remove --queue-address=ChunkUpdateRelationsQueue
+end-if
+
+#REMOVE ChunkUpdateProducerQueue
+if (outcome == success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateProducersQueue:read-resource
+    jms-queue remove --queue-address=ChunkUpdateProducersQueue
+end-if

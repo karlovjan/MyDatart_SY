@@ -1,0 +1,27 @@
+#add - novy overlay se vlozi do standalone/data/content/
+[standalone@localhost:9990 /] deployment-overlay add --name=myDatartTest2CZOverlay --content=/lib/myDatart-configuration-1.0.jar/application.properties=../../../../Tmp/Wildfly/myDatartDist/conf/test2cz/application.properties --deployments=myDatart.ear --redeploy-affected
+
+#add test1cz
+deployment-overlay add --name=myDatartTest1CZOverlay --content=/lib/myDatart-configuration-test1cz.jar/application.properties=../../../../Tmp/Wildfly/myDatartDist/conf/test1cz/application.properties,/myDatart-erpUpdate-test1cz.jar/META-INF/switchyard.xml=../../../../Tmp/Wildfly/myDatartDist/conf/test1cz/switchyard_erpUpdate_test1cz.xml,/myDatart-chunks-test1cz.jar/META-INF/switchyard.xml=../../../../Tmp/Wildfly/myDatartDist/conf/test1cz/switchyard_chunks_test1cz.xml,/myDatart-chunks-configuration-test1cz.jar/META-INF/switchyard.xml=../../../../Tmp/Wildfly/myDatartDist/conf/test1cz/switchyard_chunksConf_test1cz.xml,/myDatart-eshop-notification-test1cz.jar/META-INF/switchyard.xml=../../../../Tmp/Wildfly/myDatartDist/conf/test1cz/switchyard_notify_test1cz.xml --deployments=myDatart-test1cz.ear --redeploy-affected
+
+#add test2cz
+deployment-overlay add --name=myDatartTest2CZOverlay --content=/lib/myDatart-configuration-test2cz.jar/application.properties=../../../../Tmp/Wildfly/myDatartDist/conf/test2cz/application.properties,/myDatart-erpUpdate-test2cz.jar/META-INF/switchyard.xml=../../../../Tmp/Wildfly/myDatartDist/conf/test2cz/switchyard_erpUpdate_test2cz.xml,/myDatart-chunks-test2cz.jar/META-INF/switchyard.xml=../../../../Tmp/Wildfly/myDatartDist/conf/test2cz/switchyard_chunks_test2cz.xml,/myDatart-chunks-configuration-test2cz.jar/META-INF/switchyard.xml=../../../../Tmp/Wildfly/myDatartDist/conf/test2cz/switchyard_chunksConf_test2cz.xml,/myDatart-eshop-notification-test2cz.jar/META-INF/switchyard.xml=../../../../Tmp/Wildfly/myDatartDist/conf/test2cz/switchyard_notify_test2cz.xml --deployments=myDatart-test2cz.ear --redeploy-affected
+
+
+
+#change on test3 - NENI povoleno zmenit obsah uz jednou uploadovaneho obsahu /lib/myDatart-configuration-1.0.jar/application.properties ve stejnem overlay myDatartTest2CZOverlay
+#musim vytvorit novy overlay a repeloy package
+#[standalone@localhost:9990 /] deployment-overlay upload --name=myDatartTest2CZOverlay --content=/lib/myDatart-configuration-1.0.jar/application.properties=../../../../Tmp/Wildfly/myDatartDist/conf/test3cz/application.properties --redeploy-affected
+
+#Remvoe overlay
+[standalone@localhost:9990 /] deployment-overlay remove --name=myDatartTest2CZOverlay --redeploy-affected
+
+#Redeploy existing overlay
+[standalone@localhost:9990 /] deployment-overlay redeploy-affected --name=myDatartTest2CZOverlay
+#pokud redeploy-affected --name=myDatartTest2CZOverlay a mame naposled pridany overlay se jmenem =myDatartTest3CZOverlay ktery je spojen se stejnym balickem myDatart.ear,
+# tak se vsune do balicku prave obsah z tohoto posledniho overlay myDatartTest3CZOverlay a ne nami chteneho myDatartTest2CZOverlay.
+# Vazby mezi obsahem a balickem musi byt jednoznacne
+
+#list all overlays
+[standalone@localhost:9990 /] deployment-overlay -l
+

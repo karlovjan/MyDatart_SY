@@ -1,0 +1,23 @@
+#How to call this script
+#jboss-cli.sh --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-data-sources-undeploy.cli
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-data-sources-undeploy.cli
+ 
+#set NOPAUSE=true
+# Connect to Wildfly instance
+connect
+
+# Mark the commands below to be run as a batch
+batch
+
+
+#uninstall the datasource which will connect to the default "postgres" database on localhost
+data-source remove --name=myDatart-test-DS
+
+# Remove Driver
+#tento prikaz nesmi byt v if 
+
+/subsystem=datasources/jdbc-driver=postgresql:remove
+
+# Execute the batch
+run-batch
+# oznámí se jestli batch cely probehl uspesne, pokud operace nebezi v batch tak si nejsem jisty jestli vsechny operace probehly

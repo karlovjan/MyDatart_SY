@@ -1,0 +1,30 @@
+# Mark the commands below to be run as a batch
+#batch -- if is not allowed while in batch mode.
+
+#ADD EshopOrderUpdateQueue
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopOrderUpdateQueue-TEST:read-resource
+    jms-queue remove --queue-address=EshopOrderUpdateQueue-TEST
+end-if
+
+#ADD EshopUserUpdateQueue
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopUserUpdateQueue-TEST:read-resource
+    jms-queue remove --queue-address=EshopUserUpdateQueue-TEST
+end-if
+
+#ADD EshopManualUpdateQueue
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopManualUpdateQueue-TEST:read-resource
+    jms-queue remove --queue-address=EshopManualUpdateQueue-TEST
+end-if
+
+#ADD EshopOfferUpdateQueue
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopOfferUpdateQueue-TEST:read-resource
+    jms-queue remove --queue-address=EshopOfferUpdateQueue-TEST
+end-if
+
+#ADD EshopComplaintUpdateQueue
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopComplaintUpdateQueue-TEST:read-resource
+    jms-queue remove --queue-address=EshopComplaintUpdateQueue-TEST
+end-if
+
+# Execute the batch
+#run-batch

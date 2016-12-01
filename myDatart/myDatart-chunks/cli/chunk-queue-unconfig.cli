@@ -1,0 +1,45 @@
+# Mark the commands below to be run as a batch
+#batch -- if is not allowed while in batch mode.
+
+#ADD ChunkUpdateCategoriesQueue-CZ
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateCategoriesQueue-CZ:read-resource
+    jms-queue remove --queue-address=ChunkUpdateCategoriesQueue-CZ
+end-if
+
+#ADD ChunkUpdateAvailabilityQueue-CZ
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAvailabilityQueue-CZ:read-resource
+    jms-queue remove --queue-address=ChunkUpdateAvailabilityQueue-CZ
+end-if
+
+#ADD ChunkUpdatePricesQueue-CZ
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdatePricesQueue-CZ:read-resource
+    jms-queue remove --queue-address=ChunkUpdatePricesQueue-CZ
+end-if
+
+#ADD ChunkUpdateAttributesQueue-CZ
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAttributesQueue-CZ:read-resource
+    jms-queue remove --queue-address=ChunkUpdateAttributesQueue-CZ
+end-if
+
+#ADD ChunkUpdateAttributeGroupsQueue-CZ
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAttributeGroupsQueue-CZ:read-resource
+    jms-queue remove --queue-address=ChunkUpdateAttributeGroupsQueue-CZ
+end-if
+
+#ADD ChunkUpdateCatalogueQueue-CZ
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateCatalogueQueue-CZ:read-resource
+    jms-queue remove --queue-address=ChunkUpdateCatalogueQueue-CZ
+end-if
+
+#ADD ChunkUpdateRelationsQueue-CZ
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateRelationsQueue-CZ:read-resource
+    jms-queue remove --queue-address=ChunkUpdateRelationsQueue-CZ
+end-if
+
+#ADD ChunkUpdateProducerQueue-CZ
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateProducersQueue-CZ:read-resource
+    jms-queue remove --queue-address=ChunkUpdateProducersQueue-CZ
+end-if
+
+# Execute the batch
+#run-batch

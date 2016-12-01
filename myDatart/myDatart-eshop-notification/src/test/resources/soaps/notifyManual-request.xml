@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:myd="http://myDatart.doxologic.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <myd:notifyManual>
+
+         <manualId>AXC-00002836</manualId>
+
+         <deleted>false</deleted>
+
+	</myd:notifyManual>
+   </soapenv:Body>
+</soapenv:Envelope>

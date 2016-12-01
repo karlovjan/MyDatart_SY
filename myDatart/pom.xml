@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>cz.datart.jboss.myDatart</groupId>
+  <artifactId>myDatart</artifactId>
+  <version>1.0</version>
+  <packaging>pom</packaging>
+  <name>Main myDatart project EAR deployment</name>
+  <description>Parent myDAtart project</description>
+  
+  
+    <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <version.enforcer.maven>1.4.1</version.enforcer.maven>
+    <version.wildfly.maven>1.1.0.Alpha11</version.wildfly.maven>
+    <version.surefire.plugin>2.19.1</version.surefire.plugin>
+        
+    <switchyard.version>2.0.0.Final</switchyard.version>
+    <wildfly.version>8.1.0.Final</wildfly.version>
+    
+    <environment>TEST</environment>
+    <segment>CZ</segment>
+    
+<!--     <jpa.persistence.unit.name>ChunkConfigurationPU-${environment}-${segment}</jpa.persistence.unit.name> -->
+    <jpa.persistence.datasource.name>java:jboss/datasources/myDatart-test-DS</jpa.persistence.datasource.name>
+  	<jpa.db.driver>org.hibernate.dialect.PostgreSQLDialect</jpa.db.driver>
+  	<jpa.db.show_sql>true</jpa.db.show_sql>
+  	
+  </properties>
+  
+  
+  <modules>
+    <module>myDatart-chunks-config-persistence</module>
+    <module>myDatart-chunks-config-jpa-dao</module>
+    <module>myDatart-ear-assembly</module>
+    <module>myDatart-chunks-configuration</module>
+    <module>myDatart-erpUpdate</module>
+    <module>myDatart-eshop-notification</module>
+    <module>myDatart-artifacts</module>
+    <module>myDatart-configuration</module>
+    <module>myDatart-utilities</module>
+    <module>myDatart-chunks</module>
+  </modules>
+  
+  
+<repositories>
+    	<repository>
+	      <id>redhat-techpreview-all-repository</id>
+	      <name>Red Hat Tech Preview repository (all)</name>
+	      
+	      <url>http://maven.repository.redhat.com/techpreview/all/</url>
+	      
+	                  <layout>default</layout>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </snapshots>
+	    </repository>
+	 </repositories>
+  
+  
+  <dependencyManagement>
+	    <dependencies>        
+	       
+	        <dependency>
+	            <groupId>org.wildfly.bom</groupId>
+			    <artifactId>jboss-javaee-7.0-with-all</artifactId>
+			    <version>${wildfly.version}</version>
+	            <type>pom</type>
+	            <scope>import</scope>
+	        </dependency>
+	        
+	        <dependency>
+		        <groupId>org.switchyard</groupId>
+		        <artifactId>switchyard-bom</artifactId>
+		        <version>${switchyard.version}</version>
+		        <type>pom</type>
+		        <scope>import</scope>
+		      </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.utils</groupId>
+			    <artifactId>myDatart-utilities</artifactId>
+			    <version>${project.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart</groupId>
+			    <artifactId>myDatart-artifacts</artifactId>
+			    <version>${project.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	        	<groupId>cz.datart.jboss.myDatart</groupId>
+	        	<artifactId>myDatart-configuration</artifactId>
+	        	<version>${project.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.chunks.config.persistence</groupId>
+			    <artifactId>myDatart-chunks-config-persistence</artifactId>
+			    <version>${project.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.chunks.config.jpa.dao</groupId>
+			    <artifactId>myDatart-chunks-config-jpa-dao</artifactId>
+			    <version>${project.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.chunks.config</groupId>
+			    <artifactId>myDatart-chunks-configuration</artifactId>
+			    <version>${project.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.erpUpdate</groupId>
+			    <artifactId>myDatart-erpUpdate</artifactId>
+			    <version>${project.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart</groupId>
+			    <artifactId>myDatart-eshop-notification</artifactId>
+			    <version>${project.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.chunks</groupId>
+			    <artifactId>myDatart-chunks</artifactId>
+			    <version>${project.version}</version>
+	        </dependency>
+	 
+	    </dependencies>
+	</dependencyManagement>
+	
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${version.surefire.plugin}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-junit4</artifactId>
+                        <version>${version.surefire.plugin}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${version.enforcer.maven}</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <phase>clean</phase>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>1.8</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven}</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            
+            <!-- Attach sources -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+	
+</project>

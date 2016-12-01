@@ -1,0 +1,184 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cz.datart.jboss.myDatart</groupId>
+    <artifactId>myDatart</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>myDatart-ear-assembly</artifactId>
+  <packaging>ear</packaging>
+  <name>Ear assembly project</name>
+  <description>Ear assembly project</description>
+  
+  
+  <properties>
+        <config.file>config.cli</config.file>
+        <unconfig.file>unconfig.cli</unconfig.file>
+        <wildfly.port>9999</wildfly.port>
+    </properties>
+    <dependencies>
+    
+    		<dependency>
+	            <groupId>cz.datart.jboss.myDatart.utils</groupId>
+			    <artifactId>myDatart-utilities</artifactId>
+	        </dependency>
+    
+    		<dependency>
+	            <groupId>cz.datart.jboss.myDatart</groupId>
+			    <artifactId>myDatart-artifacts</artifactId>
+	        </dependency>
+	        
+	        <dependency>
+	        	<groupId>cz.datart.jboss.myDatart</groupId>
+	        	<artifactId>myDatart-configuration</artifactId>
+	        </dependency>
+	        
+        	<dependency>
+	            <groupId>cz.datart.jboss.myDatart.chunks.config.persistence</groupId>
+			    <artifactId>myDatart-chunks-config-persistence</artifactId>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.chunks.config.jpa.dao</groupId>
+			    <artifactId>myDatart-chunks-config-jpa-dao</artifactId>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.chunks.config</groupId>
+			    <artifactId>myDatart-chunks-configuration</artifactId>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.erpUpdate</groupId>
+			    <artifactId>myDatart-erpUpdate</artifactId>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart</groupId>
+			    <artifactId>myDatart-eshop-notification</artifactId>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.chunks</groupId>
+			    <artifactId>myDatart-chunks</artifactId>
+	        </dependency>
+	        
+    </dependencies>
+    <build>
+        <finalName>${project.parent.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>2.10.1</version>
+                <configuration>
+                    <filtering>true</filtering>
+                    <version>7</version>
+                    <modules>
+                    	<jarModule>
+                            <groupId>cz.datart.jboss.myDatart.utils</groupId>
+			    			<artifactId>myDatart-utilities</artifactId>
+                            <bundleDir>lib</bundleDir>
+                        </jarModule>
+                    	<jarModule>
+                            <groupId>cz.datart.jboss.myDatart</groupId>
+			    			<artifactId>myDatart-artifacts</artifactId>
+                            <bundleDir>lib</bundleDir>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>cz.datart.jboss.myDatart</groupId>
+			    			<artifactId>myDatart-configuration</artifactId>
+                            <bundleDir>lib</bundleDir>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>cz.datart.jboss.myDatart.chunks.config.persistence</groupId>
+			    			<artifactId>myDatart-chunks-config-persistence</artifactId>
+                            <bundleDir>lib</bundleDir>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>cz.datart.jboss.myDatart.chunks.config.jpa.dao</groupId>
+			    			<artifactId>myDatart-chunks-config-jpa-dao</artifactId>
+                            <includeInApplicationXml>true</includeInApplicationXml>
+                        </jarModule>
+                        <jarModule>
+                            <groupId>cz.datart.jboss.myDatart.chunks.config</groupId>
+			    			<artifactId>myDatart-chunks-configuration</artifactId>
+                            <includeInApplicationXml>true</includeInApplicationXml>
+                        </jarModule>
+                        <jarModule>
+				            <groupId>cz.datart.jboss.myDatart.erpUpdate</groupId>
+						    <artifactId>myDatart-erpUpdate</artifactId>
+						    <includeInApplicationXml>true</includeInApplicationXml>
+				        </jarModule>
+				        
+				        <jarModule>
+				            <groupId>cz.datart.jboss.myDatart</groupId>
+						    <artifactId>myDatart-eshop-notification</artifactId>
+						    <includeInApplicationXml>true</includeInApplicationXml>
+				        </jarModule>
+				        
+				        <jarModule>
+				            <groupId>cz.datart.jboss.myDatart.chunks</groupId>
+						    <artifactId>myDatart-chunks</artifactId>
+						    <includeInApplicationXml>true</includeInApplicationXml>
+				        </jarModule>
+				        
+                    </modules>
+                    <packagingIncludes>
+                        myDatart-*, 
+                        lib/*,
+                        META-INF/*
+                    </packagingIncludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven}</version>
+<!--                 <executions> -->
+<!--                     <execution> -->
+<!--                         <id>deploy</id> -->
+<!--                         <phase>install</phase> -->
+<!--                         <goals> -->
+<!--                             <goal>deploy-only</goal> -->
+<!--                         </goals> -->
+<!--                         <configuration> -->
+<!--                             <beforeDeployment> -->
+<!--                                 <scripts> -->
+<!--                                     <script>${config.file}</script> -->
+<!--                                 </scripts> -->
+<!--                             </beforeDeployment> -->
+<!--                             <skip>${deploy.skip}</skip> -->
+<!--                         </configuration> -->
+<!--                     </execution> -->
+<!--                     <execution> -->
+<!--                         <id>undeploy</id> -->
+<!--                         <phase>clean</phase> -->
+<!--                         <goals> -->
+<!--                             <goal>undeploy</goal> -->
+<!--                         </goals> -->
+<!--                         <configuration> -->
+<!--                             <afterDeployment> -->
+<!--                                 <scripts> -->
+<!--                                     <script>${unconfig.file}</script> -->
+<!--                                 </scripts> -->
+<!--                             </afterDeployment> -->
+<!--                             <skip>${deploy.skip}</skip> -->
+<!--                         </configuration> -->
+<!--                     </execution> -->
+<!--                 </executions> -->
+            </plugin>
+            
+        </plugins>
+    </build>
+<!--     <profiles> -->
+<!--         <profile> -->
+<!--             <id>wildfly</id> -->
+<!--             <properties> -->
+<!--                 <wildfly.port>9990</wildfly.port> -->
+<!--                 <config.file>config_wildfly.cli</config.file> -->
+<!--                 <unconfig.file>unconfig_wildfly.cli</unconfig.file> -->
+<!--             </properties> -->
+<!--         </profile> -->
+<!--     </profiles> -->
+    
+</project>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:jms="urn:switchyard-component-camel-jms:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" xmlns:trfm="urn:switchyard-config:transform:2.0" xmlns:vldt="urn:switchyard-config:validate:2.0" name="myDatart-eshop-notification" targetNamespace="urn:cz.datart.jboss:myDatart-eshop-notification:1.0.0">
+  <sca:composite name="myDatart-eshop-notification" targetNamespace="urn:cz.datart.jboss:myDatart-eshop-notification:1.0.0">
+    <sca:component name="AxaptaNotificationServiceRoute">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.AxaptaNotificationServiceRoute"/>
+      </camel:implementation.camel>
+      <sca:service name="AxaNotificationServiceEndpoint">
+        <sca:interface.wsdl interface="wsdl/notifyService.wsdl#wsdl.porttype(AxaAdviceEndpoint)"/>
+      </sca:service>
+      <sca:reference name="OrderQueueRef">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="UserQueueRef">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="ManualQueueRef">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="OfferQueueRef">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="ComplaintQueueRef">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="AxaNotificationServiceEndpoint" promote="AxaptaNotificationServiceRoute/AxaNotificationServiceEndpoint">
+      <sca:interface.wsdl interface="wsdl/notifyService.wsdl#wsdl.porttype(AxaAdviceEndpoint)"/>
+      <soap:binding.soap name="AxaNotificationWSSoap">
+        <soap:contextMapper soapHeadersType="VALUE"/>
+        <soap:messageComposer unwrapped="true"/>
+        <soap:wsdl>wsdl/notifyService.wsdl</soap:wsdl>
+        <soap:socketAddr>:${soapPort}</soap:socketAddr>
+        <soap:contextPath>${myDatart.erp.notification.context.path}</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+    <sca:reference name="OrderQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/OrderQueueRef">
+      <interface.esb inputType="java:java.lang.String"/>
+      <jms:binding.jms name="eshopOrderUpdateQueueJmsBinding">
+        <jms:queue>EshopOrderUpdateQueue</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+    </sca:reference>
+    <sca:reference name="UserQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/UserQueueRef">
+      <interface.esb inputType="java:java.lang.String"/>
+      <jms:binding.jms name="userQueueJmsBinding">
+        <jms:queue>EshopUserUpdateQueue</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+    </sca:reference>
+    <sca:reference name="ManualQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/ManualQueueRef">
+      <interface.esb inputType="java:java.lang.String"/>
+      <jms:binding.jms name="eshopManualQueueJmsBinding">
+        <jms:queue>EshopManualUpdateQueue</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+    </sca:reference>
+    <sca:reference name="OfferQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/OfferQueueRef">
+      <interface.esb inputType="java:java.lang.String"/>
+      <jms:binding.jms name="eshopOfferQueueJmsBinding">
+        <jms:queue>EshopOfferUpdateQueue</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+    </sca:reference>
+    <sca:reference name="ComplaintQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/ComplaintQueueRef">
+      <interface.esb inputType="java:java.lang.String"/>
+      <jms:binding.jms name="eshopComplaintJmsQueueBinding">
+        <jms:queue>EshopComplaintUpdateQueue</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+        <jms:transacted>false</jms:transacted>
+      </jms:binding.jms>
+    </sca:reference>
+    <sca:component name="EshopUpdateQueueConsumerRoute">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.EshopUpdateQueueConsumerRoute"/>
+      </camel:implementation.camel>
+      <sca:service name="EshopUpdateQueueConsumerService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="PrepareUpdateEntityService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="EshopUserUpdateQueueConsumerService" promote="EshopUpdateQueueConsumerRoute/EshopUpdateQueueConsumerService">
+      <interface.esb inputType="java:java.lang.String"/>
+      <jms:binding.jms name="userConsumer-jmsBinding">
+        <jms:queue>EshopUserUpdateQueue</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+    </sca:service>
+    <sca:service name="EshopOrderUpdateQueueConsumerService" promote="EshopUpdateQueueConsumerRoute/EshopUpdateQueueConsumerService">
+      <interface.esb inputType="java:java.lang.String"/>
+      <jms:binding.jms name="orderUpdate-jmsBinding">
+        <jms:queue>EshopOrderUpdateQueue</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+    </sca:service>
+    <sca:service name="EshopManualUpdateQueueConsumerService" promote="EshopUpdateQueueConsumerRoute/EshopUpdateQueueConsumerService">
+      <interface.esb inputType="java:java.lang.String"/>
+      <jms:binding.jms name="manual-jmsBinding">
+        <jms:queue>EshopManualUpdateQueue</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+    </sca:service>
+    <sca:service name="EshopOfferUpdateQueueConsumerService" promote="EshopUpdateQueueConsumerRoute/EshopUpdateQueueConsumerService">
+      <interface.esb inputType="java:java.lang.String"/>
+      <jms:binding.jms name="offerConsumer-jmsBinding">
+        <jms:queue>EshopOfferUpdateQueue</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+    </sca:service>
+    <sca:service name="EshopComplaintUpdateQueueConsumerService" promote="EshopUpdateQueueConsumerRoute/EshopUpdateQueueConsumerService">
+      <interface.esb inputType="java:java.lang.String"/>
+      <jms:binding.jms name="complaintConsumer-jmsBinding">
+        <jms:queue>EshopComplaintUpdateQueue</jms:queue>
+        <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+      </jms:binding.jms>
+    </sca:service>
+    <sca:component name="PrepareUpdateEntity">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.PrepareUpdateEntity"/>
+      </camel:implementation.camel>
+      <sca:service name="PrepareUpdateEntityService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="PrepareDeletingEntityService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="PrepareGettingDetailService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DeleteEntity">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.DeleteEntity"/>
+      </camel:implementation.camel>
+      <sca:service name="DeleteEntityService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="EshopWS">
+        <interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="ProcessUpdateEshopResponseService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="PrepareDeletingEntity">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.PrepareDeletingEntity"/>
+      </camel:implementation.camel>
+      <sca:service name="PrepareDeletingEntityService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="DeleteEntityService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:reference name="EshopWS" multiplicity="0..1" promote="DeleteEntity/EshopWS">
+      <interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      <soap:binding.soap name="eshopWS-soapBinding">
+        <soap:contextMapper soapHeadersType="VALUE"/>
+        <soap:messageComposer unwrapped="true"/>
+        <soap:wsdl>wsdl/bambinoEshopUpdate.wsdl</soap:wsdl>
+        <soap:endpointAddress>${myDatart.eshop.ws.endpoint}</soap:endpointAddress>
+        <soap:timeout>${myDatart.ws.request.timeout}</soap:timeout>
+      </soap:binding.soap>
+    </sca:reference>
+    <sca:reference name="AxaptaWS" multiplicity="0..1" promote="GetDetail/AxaptaWS">
+      <interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      <soap:binding.soap name="axaptaWS-soapBinding">
+        <soap:contextMapper soapHeadersType="VALUE"/>
+        <soap:messageComposer unwrapped="true"/>
+        <soap:wsdl>wsdl/myDatartAxaptaWS.wsdl</soap:wsdl>
+        <soap:endpointAddress>${myDatart.axapta.ws.endpoint}</soap:endpointAddress>
+        <soap:timeout>${myDatart.ws.request.timeout}</soap:timeout>
+      </soap:binding.soap>
+    </sca:reference>
+    <sca:component name="ProcessUpdateEshopResponse">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.ProcessUpdateEshopResponse"/>
+      </camel:implementation.camel>
+      <sca:service name="ProcessUpdateEshopResponseService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="PrepareAxaptaNotificationService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="GetDetail">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.GetDetail"/>
+      </camel:implementation.camel>
+      <sca:service name="GetDetailService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="AxaptaWS">
+        <interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="ProcessAxaptaAnswResponseService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="PrepareUpdateEshopEntityService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="PrepareGettingDetail">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.PrepareGettingDetail"/>
+      </camel:implementation.camel>
+      <sca:service name="PrepareGettingDetailService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="GetDetailService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="PrepareAxaptaNotification">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.PrepareAxaptaNotification"/>
+      </camel:implementation.camel>
+      <sca:service name="PrepareAxaptaNotificationService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="SendAxaptaAnswerService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="SendAxaptaAnswer">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.SendAxaptaAnswer"/>
+      </camel:implementation.camel>
+      <sca:service name="SendAxaptaAnswerService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="AxaptaWS">
+        <interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="ProcessAxaptaAnswResponseService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="ProcessAxaptaAnswResponse">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.ProcessAxaptaAnswResponse"/>
+      </camel:implementation.camel>
+      <sca:service name="ProcessAxaptaAnswResponseService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="PrepareUpdateEshopEntity">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.PrepareUpdateEshopEntity"/>
+      </camel:implementation.camel>
+      <sca:service name="PrepareUpdateEshopEntityService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="UpdateEshopEntityService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="UpdateEshopEntity">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.eshop.notification.UpdateEshopEntity"/>
+      </camel:implementation.camel>
+      <sca:service name="UpdateEshopEntityService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="EshopWS">
+        <interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="ProcessUpdateEshopResponseService">
+        <interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+  </sca:composite>
+  <domain>
+    <properties load="application.properties"/>
+  </domain>
+</switchyard>

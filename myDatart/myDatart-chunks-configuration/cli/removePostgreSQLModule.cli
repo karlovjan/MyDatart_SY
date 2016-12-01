@@ -1,0 +1,13 @@
+
+# Connect to Wildfly instance
+connect
+ 
+if (outcome == success) of /subsystem=datasources/jdbc-driver=postgresgl:read-attribute(name=driver-name)
+ 
+    # Remove Driver
+    /subsystem=datasources/jdbc-driver=postgresgl:remove
+ 
+end-if
+ 
+# Remove Oracle JDBC Driver Module
+module remove --name=org.postgresgl

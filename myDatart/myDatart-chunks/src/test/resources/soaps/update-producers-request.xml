@@ -1,0 +1,7 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/">
+    <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+        <UpdateProducersRequest xmlns="http://etnetera.com/projects/datart/bambino">
+            <xml xmlns="">&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;producers&gt;&lt;eProducer deleted="false"&gt;&lt;id&gt;PANA&lt;/id&gt;&lt;recid&gt;5643539838&lt;/recid&gt;&lt;created&gt;2016-03-18T09:30:52+01:00&lt;/created&gt;&lt;title&gt;&lt;cs&gt;Panasonic&lt;/cs&gt;&lt;/title&gt;&lt;/eProducer&gt;&lt;eProducer deleted="false"&gt;&lt;id&gt;MIRA&lt;/id&gt;&lt;recid&gt;5643539839&lt;/recid&gt;&lt;created&gt;2016-03-18T09:30:52+01:00&lt;/created&gt;&lt;title&gt;&lt;cs&gt;Sony&lt;/cs&gt;&lt;/title&gt;&lt;/eProducer&gt;&lt;/producers&gt;</xml>
+        </UpdateProducersRequest>
+    </s:Body>
+</s:Envelope>

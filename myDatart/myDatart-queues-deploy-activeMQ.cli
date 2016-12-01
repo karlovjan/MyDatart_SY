@@ -1,0 +1,78 @@
+#How to call this script
+#jboss-cli.sh --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-queues-deploy.cli
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-queues-deploy.cli
+ 
+# Connect to Wildfly instance
+connect
+
+#eshop notofication proeprties
+
+
+
+#queue definitions
+#ADD EshopOrderUpdateQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=EshopOrderUpdateQueue:read-resource
+    jms-queue add --queue-address=EshopOrderUpdateQueue --entries=jms/queue/EshopOrderUpdateQueue,java:jboss/exported/jms/queue/EshopOrderUpdateQueue
+end-if
+
+#ADD EshopUserUpdateQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=EshopUserUpdateQueue:read-resource
+    jms-queue add --queue-address=EshopUserUpdateQueue --entries=jms/queue/EshopUserUpdateQueue,java:jboss/exported/jms/queue/EshopUserUpdateQueue
+end-if
+
+#ADD EshopManualUpdateQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=EshopManualUpdateQueue:read-resource
+    jms-queue add --queue-address=EshopManualUpdateQueue --entries=jms/queue/EshopManualUpdateQueue,java:jboss/exported/jms/queue/EshopManualUpdateQueue
+end-if
+
+#ADD EshopOfferUpdateQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=EshopOfferUpdateQueue:read-resource
+    jms-queue add --queue-address=EshopOfferUpdateQueue --entries=jms/queue/EshopOfferUpdateQueue,java:jboss/exported/jms/queue/EshopOfferUpdateQueue
+end-if
+
+#ADD EshopComplaintUpdateQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=EshopComplaintUpdateQueue:read-resource
+    jms-queue add --queue-address=EshopComplaintUpdateQueue --entries=jms/queue/EshopComplaintUpdateQueue,java:jboss/exported/jms/queue/EshopComplaintUpdateQueue
+end-if
+
+
+#Chunk queue configuration
+#ADD ChunkUpdateAttributesQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateAttributesQueue:read-resource
+    jms-queue add --queue-address=ChunkUpdateAttributesQueue --entries=jms/queue/ChunkUpdateAttributesQueue,java:jboss/exported/jms/queue/ChunkUpdateAttributesQueue
+end-if
+
+#ADD ChunkUpdateProducersQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateProducersQueue:read-resource
+    jms-queue add --queue-address=ChunkUpdateProducersQueue --entries=jms/queue/ChunkUpdateProducersQueue,java:jboss/exported/jms/queue/ChunkUpdateProducersQueue
+end-if
+
+#ADD ChunkUpdateCategoriesQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateCategoriesQueue:read-resource
+    jms-queue add --queue-address=ChunkUpdateCategoriesQueue --entries=jms/queue/ChunkUpdateCategoriesQueue,java:jboss/exported/jms/queue/ChunkUpdateCategoriesQueue
+end-if
+
+#ADD ChunkUpdateAvailabilityQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateAvailabilityQueue:read-resource
+    jms-queue add --queue-address=ChunkUpdateAvailabilityQueue --entries=jms/queue/ChunkUpdateAvailabilityQueue,java:jboss/exported/jms/queue/ChunkUpdateAvailabilityQueue
+end-if
+
+#ADD ChunkUpdatePricesQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdatePricesQueue:read-resource
+    jms-queue add --queue-address=ChunkUpdatePricesQueue --entries=jms/queue/ChunkUpdatePricesQueue,java:jboss/exported/jms/queue/ChunkUpdatePricesQueue
+end-if
+
+#ADD ChunkUpdateAttributeGroupsQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateAttributeGroupsQueue:read-resource
+    jms-queue add --queue-address=ChunkUpdateAttributeGroupsQueue --entries=jms/queue/ChunkUpdateAttributeGroupsQueue,java:jboss/exported/jms/queue/ChunkUpdateAttributeGroupsQueue
+end-if
+
+#ADD ChunkUpdateCatalogueQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateCatalogueQueue:read-resource
+    jms-queue add --queue-address=ChunkUpdateCatalogueQueue --entries=jms/queue/ChunkUpdateCatalogueQueue,java:jboss/exported/jms/queue/ChunkUpdateCatalogueQueue
+end-if
+
+#ADD ChunkUpdateRelationsQueue
+if (outcome != success) of /subsystem=messaging-activemq/server=default/jms-queue=ChunkUpdateRelationsQueue:read-resource
+    jms-queue add --queue-address=ChunkUpdateRelationsQueue --entries=jms/queue/ChunkUpdateRelationsQueue,java:jboss/exported/jms/queue/ChunkUpdateRelationsQueue
+end-if

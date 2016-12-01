@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:jca="urn:switchyard-component-jca:config:2.0" xmlns:jms="urn:switchyard-component-camel-jms:config:2.0" xmlns:jpa="urn:switchyard-component-camel-jpa:config:2.0" xmlns:quartz="urn:switchyard-component-camel-quartz:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" xmlns:sy="urn:switchyard-config:switchyard:2.0" name="myDatart-chunks" targetNamespace="urn:cz.datart.jboss.myDatart.chunks:myDatart-chunks:1.0">
+  <sca:composite name="myDatart-chunks" targetNamespace="urn:cz.datart.jboss.myDatart.chunks:myDatart-chunks:1.0">
+    <sca:component name="EshopChunkUpdateRoute">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.chunks.EshopChunkUpdateRoute"/>
+      </camel:implementation.camel>
+      <sca:service name="EshopChunkUpdateService">
+        <sca:interface.wsdl interface="wsdl/chunkUpdate.wsdl#wsdl.porttype(EsbChunkUpdate)"/>
+      </sca:service>
+      <sca:reference name="DissassembleCategoriesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleAvailabilitiesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassemblePricesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleAttributesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleAttributeGroupsService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleCataloguesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleRelationsService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleProducersService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="EshopChunkUpdateService" promote="EshopChunkUpdateRoute/EshopChunkUpdateService">
+      <sca:interface.wsdl interface="wsdl/chunkUpdate.wsdl#wsdl.porttype(EsbChunkUpdate)"/>
+      <soap:binding.soap name="eshopChunkUpdateServiceSoapBinding">
+        <soap:contextMapper soapHeadersType="VALUE"/>
+        <soap:messageComposer unwrapped="true"/>
+        <soap:wsdl>wsdl/chunkUpdate.wsdl</soap:wsdl>
+        <soap:socketAddr>:${myDatart.soapPort}</soap:socketAddr>
+        <soap:contextPath>${myDatart.chunks.update.context.path}</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+    <sca:component name="DissassembleProducersServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.DissassembleProducersServiceBean"/>
+      <sca:service name="DissassembleProducersService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleCategoriesServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.DissassembleCategoriesServiceBean"/>
+      <sca:service name="DissassembleCategoriesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleAvailabilitiesServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.DissassembleAvailabilitiesServiceBean"/>
+      <sca:service name="DissassembleAvailabilitiesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassemblePricesServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.DissassemblePricesServiceBean"/>
+      <sca:service name="DissassemblePricesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleAttributesServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.DissassembleAttributesServiceBean"/>
+      <sca:service name="DissassembleAttributesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleAttributeGroupsServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.DissassembleAttributeGroupsServiceBean"/>
+      <sca:service name="DissassembleAttributeGroupsService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleCataloguesServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.DissassembleCataloguesServiceBean"/>
+      <sca:service name="DissassembleCataloguesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleRelationsServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.DissassembleRelationsServiceBean"/>
+      <sca:service name="DissassembleRelationsService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="ChunkGroupMonitorServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.ChunkGroupMonitorServiceBean"/>
+      <sca:service name="ChunkGroupMonitorService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.jpa.ChunkGroupMonitor"/>
+      </sca:service>
+      <sca:reference name="ChunkProcessManager">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.ChunkProcessManager"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="ChunkGroupMonitorService" promote="ChunkGroupMonitorServiceBean/ChunkGroupMonitorService">
+      <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.jpa.ChunkGroupMonitor"/>
+      <jpa:binding.jpa name="updateGroupsServiceJPABinding">
+        <jpa:entityClassName>cz.datart.jboss.myDatart.chunks.config.persistence.model.Group</jpa:entityClassName>
+        <jpa:persistenceUnit>ChunkConfigurationPU</jpa:persistenceUnit>
+        <jpa:transactionManager>#jtaTransactionManager</jpa:transactionManager>
+        <jpa:consume>
+          <jpa:delay>30000</jpa:delay>
+          <jpa:consumeDelete>false</jpa:consumeDelete>
+          <jpa:consumeLockEntity>false</jpa:consumeLockEntity>
+          <jpa:consumer.transacted>true</jpa:consumer.transacted>
+        </jpa:consume>
+      </jpa:binding.jpa>
+    </sca:service>
+    <sca:component name="ChunkProcessManagerBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.ChunkProcessManagerBean"/>
+      <sca:service name="ChunkProcessManager">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.ChunkProcessManager"/>
+      </sca:service>
+      <sca:reference name="ChunkCreation">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.ChunkCreation"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="ChunkProcessSchedulerService" promote="ChunkProcessManagerBean/ChunkProcessManager">
+      <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.ChunkProcessManager"/>
+      <quartz:binding.quartz name="ChunkProcessSchedulerService1">
+        <sy:operationSelector operationName="startProcessingAllChunkGroups"/>
+        <quartz:name>ChunkProcessScheduler</quartz:name>
+        <quartz:cron>0/20 * * * * ?</quartz:cron>
+      </quartz:binding.quartz>
+    </sca:service>
+    <sca:component name="SendChunkToEshopRoute">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.chunks.SendChunkToEshopRoute"/>
+      </camel:implementation.camel>
+      <sca:service name="SendChunkToEshopService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="EshopWS">
+        <sy:interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="EshopResponseService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:reference name="EshopWS" multiplicity="0..1" promote="SendChunkToEshopRoute/EshopWS">
+      <sy:interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      <soap:binding.soap name="SendChunkToEshopSoapBinding">
+        <soap:contextMapper soapHeadersType="VALUE"/>
+        <soap:messageComposer unwrapped="true"/>
+        <soap:wsdl>wsdl/bambinoEshopUpdate.wsdl</soap:wsdl>
+        <soap:endpointAddress>${myDatart.eshop.ws.endpoint}</soap:endpointAddress>
+        <soap:timeout>${myDatart.ws.request.timeout}</soap:timeout>
+      </soap:binding.soap>
+    </sca:reference>
+    <sca:component name="ChunkCreationBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.ChunkCreationBean"/>
+      <sca:service name="ChunkCreation">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.ChunkCreation"/>
+      </sca:service>
+      <sca:reference name="PrepareChunkSendingService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.SendChunkToEshopService"/>
+      </sca:reference>
+      <sca:reference name="UpdateChunkVersionService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.UpdateChunkVersionService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="UpdateChunkVersionsRoute">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.chunks.UpdateChunkVersionsRoute"/>
+      </camel:implementation.camel>
+      <sca:service name="UpdateChunkVersionService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.UpdateChunkVersionService"/>
+      </sca:service>
+      <sca:reference name="EshopWS">
+        <sy:interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="ProcessEshopResponse">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.chunks.ProcessEshopResponse"/>
+      </camel:implementation.camel>
+      <sca:service name="EshopResponseService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="NotifyAxaptaService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:reference name="AxaptaWS" multiplicity="0..1" promote="SendAxaptaNotification/AxaptaWS">
+      <sy:interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      <soap:binding.soap name="axaptaWSEndpointSoap">
+        <soap:contextMapper soapHeadersType="VALUE"/>
+        <soap:messageComposer unwrapped="true"/>
+        <soap:wsdl>wsdl/myDatartAxaptaWS.wsdl</soap:wsdl>
+        <soap:endpointAddress>${myDatart.axapta.ws.endpoint}</soap:endpointAddress>
+        <soap:timeout>${myDatart.ws.request.timeout}</soap:timeout>
+      </soap:binding.soap>
+    </sca:reference>
+    <sca:component name="NotifyAxaptaRoute">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.chunks.NotifyAxaptaRoute"/>
+      </camel:implementation.camel>
+      <sca:service name="NotifyAxaptaService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="PrepareAxaptaNotificationService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="ProcessAxaptaNotificationResponse">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.chunks.ProcessAxaptaNotificationResponse"/>
+      </camel:implementation.camel>
+      <sca:service name="ProcessAxaptaNotificationResponseService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="PrepareAxaptaNotification">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.chunks.PrepareAxaptaNotification"/>
+      </camel:implementation.camel>
+      <sca:service name="PrepareAxaptaNotificationService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="SendAxaptaNotificationService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="SendAxaptaNotification">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.chunks.SendAxaptaNotification"/>
+      </camel:implementation.camel>
+      <sca:service name="SendAxaptaNotificationService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="AxaptaWS">
+        <sy:interface.esb faultType="java:java.lang.String" inputType="java:java.lang.String" outputType="java:java.lang.String"/>
+      </sca:reference>
+      <sca:reference name="ProcessAxaptaNotificationResponseService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="PrepareChunkSending">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.chunks.PrepareChunkSending"/>
+      </camel:implementation.camel>
+      <sca:service name="PrepareChunkSendingService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:service>
+      <sca:reference name="SendChunkToEshopService">
+        <sy:interface.esb inputType="java:java.lang.String"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="StoreDisassembledItemsJMSServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.StoreDisassembledItemsJMSServiceBean"/>
+      <sca:service name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.StoreDisassembledItemsJMSService"/>
+      </sca:service>
+    </sca:component>
+  </sca:composite>
+  <sy:domain>
+    <sy:properties load="application.properties"/>
+  </sy:domain>
+</sy:switchyard>

@@ -1,0 +1,62 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bam="http://etnetera.com/projects/datart/bambino">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <bam:updateNeeded>
+         <segment>CZ</segment>
+         <versions>
+        		 
+	            <verAttributes>1</verAttributes>
+	             
+	            <verAvailability>1</verAvailability>
+	             
+	            <verCatalogue>1</verCatalogue>
+	             
+	            <verCategories>1</verCategories>
+	             
+	            <verComplaints>1</verComplaints>
+	             
+	            <verOrders>1</verOrders>
+	             
+	            <verPrices>1</verPrices>
+	             
+	            <verProducers>1</verProducers>
+	             
+	            <verRelations>1</verRelations>
+	             
+	            <verCommodityFamilies>1</verCommodityFamilies>
+	             
+	            <verCommoditySegments>1</verCommoditySegments>
+	             
+	            <verProductLines>1</verProductLines>
+	             
+	            <verSellGroups>1</verSellGroups>
+	             
+	            <verSlotForRegion>1</verSlotForRegion>
+	             
+	            <verDeliveryRegion>1</verDeliveryRegion>
+	             
+	            <verMicroRegion>1</verMicroRegion>
+	             
+	            <verZipCode>1</verZipCode>
+	             
+	            <verTimeSlotDate>1</verTimeSlotDate>
+	             
+	            <verTimeSlotPricingDetail>1</verTimeSlotPricingDetail>
+	             
+	            <verEANVoucher>1</verEANVoucher>
+	             
+	            <verVoucher>1</verVoucher>
+	             
+	            <verDailySales>1</verDailySales>
+	             
+	            <verDeliveryDelay>1</verDeliveryDelay>
+	             
+	            <verAttributeGroups>1</verAttributeGroups>
+	             
+	            <verBranches>1</verBranches>
+	            
+	            <verEmployeeWorkingHours>1</verEmployeeWorkingHours>
+            </versions>
+      </bam:updateNeeded>
+   </soapenv:Body>
+</soapenv:Envelope>

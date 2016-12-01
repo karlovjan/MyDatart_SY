@@ -1,0 +1,21 @@
+##jboss-cli.sh --file=remove-postgresql.cli 
+
+connect
+
+#install the datasource which will connect to the default "postgres" database on localhost
+data-source add \
+    --name=myDatart-test-DS \
+    --jndi-name=java:jboss/datasources/myDatart-test-DS \
+    --use-java-context=true \
+    --use-ccm=true \
+    --connection-url=jdbc:postgresql://localhost:5432/myDatart-test \
+    --driver-name=postgresql \
+    --user-name=myDatart_test \
+    --password=test \
+    --check-valid-connection-sql="SELECT 1" \
+    --background-validation=true \
+    --background-validation-millis=60000 \
+    --flush-strategy=IdleConnections \
+    --min-pool-size=10 \
+    --max-pool-size=50 \
+    --pool-prefill=false

@@ -1,0 +1,78 @@
+#How to call this script
+#jboss-cli.sh --file=d:\Projects\Datart\JBoss\MyDatart_SY\myDatart-queues-undeploy.cli
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\MyDatart_SY\myDatart-queues-undeploy.cli
+ 
+# Connect to Wildfly instance
+connect
+
+#eshop notofication proeprties
+
+
+
+#Remove Queues
+#REMOVE EshopOrderUpdateQueue
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopOrderUpdateQueue-TEST:read-resource
+    jms-queue remove --queue-address=EshopOrderUpdateQueue-TEST
+end-if
+
+#REMOVE EshopUserUpdateQueue
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopUserUpdateQueue-TEST:read-resource
+    jms-queue remove --queue-address=EshopUserUpdateQueue-TEST
+end-if
+
+#REMOVE EshopManualUpdateQueue
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopManualUpdateQueue-TEST:read-resource
+    jms-queue remove --queue-address=EshopManualUpdateQueue-TEST
+end-if
+
+#REMOVE EshopOfferUpdateQueue
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopOfferUpdateQueue-TEST:read-resource
+    jms-queue remove --queue-address=EshopOfferUpdateQueue-TEST
+end-if
+
+#REMOVE EshopComplaintUpdateQueue
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopComplaintUpdateQueue-TEST:read-resource
+    jms-queue remove --queue-address=EshopComplaintUpdateQueue-TEST
+end-if
+
+
+#Chunk queue configuration
+#REMOVE ChunkUpdateCategoriesQueue-TEST
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateCategoriesQueue-TEST:read-resource
+    jms-queue remove --queue-address=ChunkUpdateCategoriesQueue-TEST
+end-if
+
+#REMOVE ChunkUpdateAvailabilityQueue-TEST
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAvailabilityQueue-TEST:read-resource
+    jms-queue remove --queue-address=ChunkUpdateAvailabilityQueue-TEST
+end-if
+
+#REMOVE ChunkUpdatePricesQueue-TEST
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdatePricesQueue-TEST:read-resource
+    jms-queue remove --queue-address=ChunkUpdatePricesQueue-TEST
+end-if
+
+#REMOVE ChunkUpdateAttributesQueue-TEST
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAttributesQueue-TEST:read-resource
+    jms-queue remove --queue-address=ChunkUpdateAttributesQueue-TEST
+end-if
+
+#REMOVE ChunkUpdateAttributeGroupsQueue-TEST
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAttributeGroupsQueue-TEST:read-resource
+    jms-queue remove --queue-address=ChunkUpdateAttributeGroupsQueue-TEST
+end-if
+
+#REMOVE ChunkUpdateCatalogueQueue-TEST
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateCatalogueQueue-TEST:read-resource
+    jms-queue remove --queue-address=ChunkUpdateCatalogueQueue-TEST
+end-if
+
+#REMOVE ChunkUpdateRelationsQueue-TEST
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateRelationsQueue-TEST:read-resource
+    jms-queue remove --queue-address=ChunkUpdateRelationsQueue-TEST
+end-if
+
+#REMOVE ChunkUpdateProducerQueue-TEST
+if (outcome == success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateProducersQueue-TEST:read-resource
+    jms-queue remove --queue-address=ChunkUpdateProducersQueue-TEST
+end-if

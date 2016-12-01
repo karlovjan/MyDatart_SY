@@ -1,0 +1,25 @@
+#How to call this script
+#jboss-cli.sh --file=d:\Projects\Datart\JBoss\MyDatart_SY\myDatart-deploy.cli
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\MyDatart_SY\myDatart-deploy.cli 
+
+set NOPAUSE=true
+
+# Connect to Wildfly instance
+connect
+
+#deploy --force - re-deploy balicek ktery uz bezi
+#deploy --disabled zakáže nahraný balíček
+#deploy --name=[jméno balíčku] - povolí balíček
+
+# Mark the commands below to be run as a batch
+batch
+
+deploy --name=myDatart-erpUpdate.jar
+deploy --name=myDatart-eshop-notification.jar
+deploy --name=myDatart-chunks-configuration.jar
+deploy --name=myDatart-chunks.jar
+
+
+# Execute the batch
+run-batch
+#zobrazi se vysledek batche

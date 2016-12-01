@@ -1,0 +1,16 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:myd="http://myDatart.doxologic.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <myd:notifyUser>
+	         <scope>
+	            <segment>cz</segment>
+	            <oldVersion>1</oldVersion>
+	            <newVersion>2</newVersion>
+	         </scope>
+	         <clientId>ESH-106379</clientId>
+	         <deleted>false</deleted>
+	         <name>martin.hubenak@datart.cz</name>
+ 			<businessRelationship>B2C</businessRelationship>
+		</myd:notifyUser> 
+   </soapenv:Body>
+</soapenv:Envelope>

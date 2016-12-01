@@ -1,0 +1,78 @@
+#How to call this script
+#jboss-cli.sh --file=d:\Projects\Datart\JBoss\MyDatart_SY\myDatart-queues-deploy.cli
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\MyDatart_SY\myDatart-queues-deploy.cli
+ 
+# Connect to Wildfly instance
+connect
+
+#eshop notofication proeprties
+
+
+
+#queue definitions
+#ADD EshopOrderUpdateQueue
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopOrderUpdateQueue-TEST:read-resource
+    jms-queue add --queue-address=EshopOrderUpdateQueue-TEST --entries=jms/queue/EshopOrderUpdateQueue-TEST,java:jboss/exported/jms/queue/EshopOrderUpdateQueue-TEST
+end-if
+
+#ADD EshopUserUpdateQueue
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopUserUpdateQueue-TEST:read-resource
+    jms-queue add --queue-address=EshopUserUpdateQueue-TEST --entries=jms/queue/EshopUserUpdateQueue-TEST,java:jboss/exported/jms/queue/EshopUserUpdateQueue-TEST
+end-if
+
+#ADD EshopManualUpdateQueue
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopManualUpdateQueue-TEST:read-resource
+    jms-queue add --queue-address=EshopManualUpdateQueue-TEST --entries=jms/queue/EshopManualUpdateQueue-TEST,java:jboss/exported/jms/queue/EshopManualUpdateQueue-TEST
+end-if
+
+#ADD EshopOfferUpdateQueue
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopOfferUpdateQueue-TEST:read-resource
+    jms-queue add --queue-address=EshopOfferUpdateQueue-TEST --entries=jms/queue/EshopOfferUpdateQueue-TEST,java:jboss/exported/jms/queue/EshopOfferUpdateQueue-TEST
+end-if
+
+#ADD EshopComplaintUpdateQueue
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=EshopComplaintUpdateQueue-TEST:read-resource
+    jms-queue add --queue-address=EshopComplaintUpdateQueue-TEST --entries=jms/queue/EshopComplaintUpdateQueue-TEST,java:jboss/exported/jms/queue/EshopComplaintUpdateQueue-TEST
+end-if
+
+
+#Chunk queue configuration
+#ADD ChunkUpdateAttributesQueue-TEST
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAttributesQueue-TEST:read-resource
+    jms-queue add --queue-address=ChunkUpdateAttributesQueue-TEST --entries=jms/queue/ChunkUpdateAttributesQueue-TEST,java:jboss/exported/jms/queue/ChunkUpdateAttributesQueue-TEST
+end-if
+
+#ADD ChunkUpdateProducersQueue-TEST
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateProducersQueue-TEST:read-resource
+    jms-queue add --queue-address=ChunkUpdateProducersQueue-TEST --entries=jms/queue/ChunkUpdateProducersQueue-TEST,java:jboss/exported/jms/queue/ChunkUpdateProducersQueue-TEST
+end-if
+
+#ADD ChunkUpdateCategoriesQueue-TEST
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateCategoriesQueue-TEST:read-resource
+    jms-queue add --queue-address=ChunkUpdateCategoriesQueue-TEST --entries=jms/queue/ChunkUpdateCategoriesQueue-TEST,java:jboss/exported/jms/queue/ChunkUpdateCategoriesQueue-TEST
+end-if
+
+#ADD ChunkUpdateAvailabilityQueue-TEST
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAvailabilityQueue-TEST:read-resource
+    jms-queue add --queue-address=ChunkUpdateAvailabilityQueue-TEST --entries=jms/queue/ChunkUpdateAvailabilityQueue-TEST,java:jboss/exported/jms/queue/ChunkUpdateAvailabilityQueue-TEST
+end-if
+
+#ADD ChunkUpdatePricesQueue-TEST
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdatePricesQueue-TEST:read-resource
+    jms-queue add --queue-address=ChunkUpdatePricesQueue-TEST --entries=jms/queue/ChunkUpdatePricesQueue-TEST,java:jboss/exported/jms/queue/ChunkUpdatePricesQueue-TEST
+end-if
+
+#ADD ChunkUpdateAttributeGroupsQueue-TEST
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAttributeGroupsQueue-TEST:read-resource
+    jms-queue add --queue-address=ChunkUpdateAttributeGroupsQueue-TEST --entries=jms/queue/ChunkUpdateAttributeGroupsQueue-TEST,java:jboss/exported/jms/queue/ChunkUpdateAttributeGroupsQueue-TEST
+end-if
+
+#ADD ChunkUpdateCatalogueQueue-TEST
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateCatalogueQueue-TEST:read-resource
+    jms-queue add --queue-address=ChunkUpdateCatalogueQueue-TEST --entries=jms/queue/ChunkUpdateCatalogueQueue-TEST,java:jboss/exported/jms/queue/ChunkUpdateCatalogueQueue-TEST
+end-if
+
+#ADD ChunkUpdateRelationsQueue-TEST
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateRelationsQueue-TEST:read-resource
+    jms-queue add --queue-address=ChunkUpdateRelationsQueue-TEST --entries=jms/queue/ChunkUpdateRelationsQueue-TEST,java:jboss/exported/jms/queue/ChunkUpdateRelationsQueue-TEST
+end-if

@@ -1,0 +1,310 @@
+<wsdl:definitions
+        name="EshopUpdateNotificationService"
+        targetNamespace="http://myDatart.doxologic.com/"
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns:tns="http://myDatart.doxologic.com/"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <wsdl:types>
+        <xs:schema targetNamespace="http://myDatart.doxologic.com/"
+                   version="1.0"
+                   xmlns:tns="http://myDatart.doxologic.com/"
+                   xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+            <!-- platnost a rozsah aktualizace -->
+            <xs:complexType name="UpdateScope">
+                <xs:sequence>
+                    <xs:element name="segment" type="xsd:string"/>
+                    <xs:element name="oldVersion" type="xsd:long"/>
+                    <xs:element name="newVersion" type="xsd:long"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <!--
+            |
+            |   Exception type
+            |
+            -->
+            <xs:complexType name="WSDeliveryException">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="message" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="WSDeliveryException" type="tns:WSDeliveryException"/>
+
+			<!-- typ obchodniho vztahu -->
+			<xs:simpleType name="BusinessRelationship">
+				<xs:restriction base="xsd:string">
+					<xs:enumeration value="B2C"/>
+					<xs:enumeration value="B2B"/>
+				</xs:restriction>
+			</xs:simpleType>
+	
+            <!--
+            |
+            | User advice & its response types
+            |
+            -->
+            <xs:complexType name="userAdviceRequest">
+                <xs:sequence>
+                    <xs:element name="scope" type="tns:UpdateScope" />
+                    <xs:element name="clientId" type="xs:string"/>
+                    <xs:element name="deleted" type="xs:boolean"/>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="businessRelationship" type="tns:BusinessRelationship"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="notifyUser" nillable="false" type="tns:userAdviceRequest"/>
+
+            <xs:complexType name="userAdviceResponse">
+                <xs:sequence>
+                    <xs:element name="code" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="notifyUserResponse" nillable="false" type="tns:userAdviceResponse"/>
+
+            <!--
+            |
+            | Order advice & its response types
+            |
+            -->
+            <xs:complexType name="orderAdviceRequest">
+                <xs:sequence>
+                    <xs:element name="orderId" type="xs:string" />
+                    <xs:element name="clientId" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="notifyOrder" nillable="false" type="tns:orderAdviceRequest" />
+
+            <xs:complexType name="orderAdviceResponse">
+                <xs:sequence>
+                    <xs:element name="code" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="notifyOrderResponse" nillable="false" type="tns:orderAdviceResponse"/>
+
+            <!--
+            |
+            | Manual advice & its response type
+            |
+            -->
+            <xs:complexType name="manualAdviceRequest">
+                <xs:sequence>
+                    <xs:element name="manualId" type="xs:string" />
+                    <xs:element name="deleted" type="xs:boolean" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="notifyManual" nillable="false" type="tns:manualAdviceRequest" />
+
+            <xs:complexType name="manualAdviceResponse">
+                <xs:sequence>
+                    <xs:element name="code" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="notifyManualResponse" nillable="false" type="tns:manualAdviceResponse" />
+
+
+            <!--
+            |
+            | Offer advice & its response type
+            |
+            -->
+            <xs:complexType name="offerAdviceRequest">
+                <xs:sequence>
+                    <xs:element name="scope" type="tns:UpdateScope" />
+                    <xs:element name="id" type="xs:string"/>
+                    <xs:element name="deleted" type="xs:boolean" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="notifyOffer" nillable="false" type="tns:offerAdviceRequest" />
+
+            <xs:complexType name="offerAdviceResponse">
+                <xs:sequence>
+                    <xs:element name="code" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="notifyOfferResponse" nillable="false" type="tns:offerAdviceResponse" />
+            
+             <!--
+            |
+            | Update complaint request and response types
+            |
+            -->
+            <xs:complexType name="updateComplaintRequest">
+                <xs:sequence>
+                    <xs:element name="scope" type="tns:UpdateScope" />
+                    <xs:element name="id" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateComplaint" nillable="false" type="tns:updateComplaintRequest" />
+
+            <xs:complexType name="updateComplaintResponse">
+                <xs:sequence>
+                    <xs:element name="code" type="xs:string" />
+                </xs:sequence>
+            </xs:complexType>
+
+            <xs:element name="updateComplaintResponse" nillable="false" type="tns:updateComplaintResponse" />
+            
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="WSDeliveryException">
+        <wsdl:part element="tns:WSDeliveryException" name="WSDeliveryException"/>
+    </wsdl:message>
+
+    <wsdl:message name="AxaAdviceEndpoint_notifyUserResponse">
+        <wsdl:part element="tns:notifyUserResponse" name="notifyUserResponse"/>
+    </wsdl:message>
+
+    <wsdl:message name="AxaAdviceEndpoint_notifyUser">
+        <wsdl:part element="tns:notifyUser" name="notifyUser"/>
+    </wsdl:message>
+
+    <wsdl:message name="AxaAdviceEndpoint_notifyOrder">
+        <wsdl:part element="tns:notifyOrder" name="notifyOrder" />
+    </wsdl:message>
+
+    <wsdl:message name="AxaAdviceEndpoint_notifyOrderResponse">
+        <wsdl:part element="tns:notifyOrderResponse" name="notifyOrderResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="AxaAdviceEndpoint_notifyManual">
+        <wsdl:part element="tns:notifyManual" name="notifyManual" />
+    </wsdl:message>
+
+    <wsdl:message name="AxaAdviceEndpoint_notifyManualResponse">
+        <wsdl:part element="tns:notifyManualResponse" name="notifyManualResponse" />
+    </wsdl:message>
+
+    <wsdl:message name="AxaAdviceEndpoint_notifyOffer">
+        <wsdl:part element="tns:notifyOffer" name="notifyOffer" />
+    </wsdl:message>
+
+    <wsdl:message name="AxaAdviceEndpoint_notifyOfferResponse">
+        <wsdl:part element="tns:notifyOfferResponse" name="notifyOfferResponse" />
+    </wsdl:message>
+    
+    <wsdl:message name="AxaAdviceEndpoint_updateComplaint">
+        <wsdl:part element="tns:updateComplaint" name="updateComplaint" />
+    </wsdl:message>
+
+    <wsdl:message name="AxaAdviceEndpoint_updateComplaintResponse">
+        <wsdl:part element="tns:updateComplaintResponse" name="updateComplaintResponse" />
+    </wsdl:message>
+
+    <wsdl:portType name="AxaAdviceEndpoint">
+        <wsdl:operation name="notifyUser" parameterOrder="notifyUser">
+            <wsdl:input message="tns:AxaAdviceEndpoint_notifyUser"/>
+            <wsdl:output message="tns:AxaAdviceEndpoint_notifyUserResponse"/>
+            <wsdl:fault message="tns:WSDeliveryException" name="WSDeliveryException"/>
+        </wsdl:operation>
+        <wsdl:operation name="notifyOrder" parameterOrder="notifyOrder">
+            <wsdl:input message="tns:AxaAdviceEndpoint_notifyOrder"/>
+            <wsdl:output message="tns:AxaAdviceEndpoint_notifyOrderResponse"/>
+            <wsdl:fault message="tns:WSDeliveryException" name="WSDeliveryException"/>
+        </wsdl:operation>
+        <wsdl:operation name="notifyManual" parameterOrder="notifyManual">
+            <wsdl:input message="tns:AxaAdviceEndpoint_notifyManual"/>
+            <wsdl:output message="tns:AxaAdviceEndpoint_notifyManualResponse"/>
+            <wsdl:fault message="tns:WSDeliveryException" name="WSDeliveryException"/>
+        </wsdl:operation>
+        <wsdl:operation name="notifyOffer" parameterOrder="notifyOffer">
+            <wsdl:input message="tns:AxaAdviceEndpoint_notifyOffer"/>
+            <wsdl:output message="tns:AxaAdviceEndpoint_notifyOfferResponse" />
+            <wsdl:fault message="tns:WSDeliveryException"  name="WSDeliveryException" />
+        </wsdl:operation>
+        <wsdl:operation name="updateComplaint" parameterOrder="updateComplaint">
+            <wsdl:input message="tns:AxaAdviceEndpoint_updateComplaint"/>
+            <wsdl:output message="tns:AxaAdviceEndpoint_updateComplaintResponse" />
+            <wsdl:fault message="tns:WSDeliveryException"  name="WSDeliveryException" />
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="AxaAdviceEndpointBinding" type="tns:AxaAdviceEndpoint">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+
+        <wsdl:operation name="notifyUser">
+            <soap:operation soapAction="notifyUser"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="WSDeliveryException">
+                <soap:fault name="WSDeliveryException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="notifyOrder">
+            <soap:operation soapAction="notifyOrder"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="WSDeliveryException">
+                <soap:fault name="WSDeliveryException" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+
+        <wsdl:operation name="notifyManual">
+            <soap:operation soapAction="notifyManual" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="WSDeliveryException">
+                <soap:fault name="WSDeliveryException" use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+        
+
+        <wsdl:operation name="notifyOffer">
+            <soap:operation soapAction="notifyOffer" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="WSDeliveryException">
+                <soap:fault name="WSDeliveryException" use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+        
+        <wsdl:operation name="updateComplaint">
+            <soap:operation soapAction="updateComplaint" />
+            <wsdl:input>
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="WSDeliveryException">
+                <soap:fault name="WSDeliveryException" use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="EshopUpdateNotificationService">
+        <wsdl:port binding="tns:AxaAdviceEndpointBinding" name="AxaAdviceEndpointPort">
+            <soap:address location="http://127.0.0.1:8080/myDatart/http/axaptaNotify"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bam="http://etnetera.com/projects/datart/bambino">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <bam:changeOrderOwner>
+         <segment>cz</segment>
+         <request>
+            <orderId>123</orderId>
+            <totalPrice>100</totalPrice>
+            <userRef>1</userRef>
+         </request>
+      </bam:changeOrderOwner>
+   </soapenv:Body>
+</soapenv:Envelope>

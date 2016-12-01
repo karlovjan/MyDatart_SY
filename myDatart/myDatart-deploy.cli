@@ -1,0 +1,82 @@
+#How to call this script
+#jboss-cli.sh --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-deploy.cli
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-deploy.cli 
+
+set NOPAUSE=true
+
+# Connect to Wildfly instance
+connect
+
+#unset properties
+
+if (outcome == success) of /system-property=segment:read-resource
+	#remove segmen
+	/system-property=segment:remove
+end-if
+if (outcome == success) of /system-property=axaptaWSEndpoint:read-resource
+	#remove Axapta endpoint
+	/system-property=axaptaWSEndpoint:remove
+end-if
+if (outcome == success) of /system-property=eshopWSEndpoint:read-resource
+	#remove Eshop endpoint
+	/system-property=eshopWSEndpoint:remove
+end-if
+if (outcome == success) of /system-property=myDatart.erp.update.soap.context.path:read-resource
+	#remove erpUpdate context path
+	/system-property=myDatart.erp.update.soap.context.path:remove
+end-if
+if (outcome == success) of /system-property=myDatart.chunks.configuration.context.path:read-resource
+	#remove configuration properties
+	/system-property=myDatart.chunks.configuration.context.path:remove
+end-if
+if (outcome == success) of /system-property=myDatart.notif.eshop.update.soap.context.path:read-resource
+	#remove notification eshop update
+	/system-property=myDatart.notif.eshop.update.soap.context.path:remove
+end-if
+if (outcome == success) of /system-property=myDatart.chunks.update.soap.context.path:read-resource
+	#remove chunks eshop update context path
+	/system-property=myDatart.chunks.update.soap.context.path:remove
+end-if
+
+#set properties
+
+#segmen
+/system-property=segment:add(value=TEST)
+#Axapta endpoint
+/system-property=axaptaWSEndpoint:add(value=http://localhost:8088/axaptaWS)
+#Eshop endpoint
+/system-property=eshopWSEndpoint:add(value=http://localhost:28080/eShopUpdate)
+#erpUpdate context path
+/system-property=myDatart.erp.update.soap.context.path:add(value=erpUpdate)
+#chunk configuration properties
+/system-property=myDatart.chunks.configuration.context.path:add(value=chunks/configuration)
+#notification eshop update
+/system-property=myDatart.notif.eshop.update.soap.context.path:add(value=eshopUpdateNotification)
+#chunks eshop update context path
+/system-property=myDatart.chunks.update.soap.context.path:add(value=chunks/eshopUpdate123)
+
+
+
+
+#d:\Install\JBoss\wildfly-8.1.0.Final_SY2_Final\bin>jboss-cli.bat --connect --comm
+#and="deploy --force d:\Projects\Datart\JBoss\MyDatart_SY\myDatart-eshop-update-m
+#anual\target\myDatart-eshop-update-manual.jar"
+
+#deploy --force - re-deploy balicek ktery uz bezi
+#deploy --disabled zakáže nahraný balíček
+#deploy --name=[jméno balíčku] - povolí balíček
+
+# Mark the commands below to be run as a batch
+batch
+
+deploy --force d:\Tmp\Wildfly\myDatartDist\myDatart-erpUpdate.jar
+deploy --force d:\Tmp\Wildfly\myDatartDist\myDatart-eshop-notification.jar
+deploy --force d:\Tmp\Wildfly\myDatartDist\myDatart-chunks-configuration.jar
+deploy --force d:\Tmp\Wildfly\myDatartDist\myDatart-chunks.jar
+
+
+# Execute the batch
+run-batch
+#zobrazi se vysledek batche
+
+#musi se jeste spustit skript na povoleni palicku bokud byly balicky disablovane

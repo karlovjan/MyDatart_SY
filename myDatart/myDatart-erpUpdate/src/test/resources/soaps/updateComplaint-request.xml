@@ -1,0 +1,14 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bam="http://etnetera.com/projects/datart/bambino">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <bam:updateComplaint>
+          <segment>CZ</segment>
+         <complaint>
+            <id>1</id>
+            <userId>12</userId>
+            <orderItemRef>123</orderItemRef>
+            <comment>blala</comment>
+         </complaint>
+      </bam:updateComplaint>
+   </soapenv:Body>
+</soapenv:Envelope>

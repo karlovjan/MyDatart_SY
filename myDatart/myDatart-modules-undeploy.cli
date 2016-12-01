@@ -1,0 +1,34 @@
+#How to call this script
+#jboss-cli.sh --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-modules-undeploy.cli
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-modules-undeploy.cli
+
+# Connect to Wildfly instance
+connect
+
+# Mark the commands below to be run as a batch
+batch
+
+
+#Remove Saxon module
+
+#if (outcome == success) of /subsystem=ee/global-modules=default/module=net.sf.saxon:read-resource
+
+	#module remove --name=net.sf.saxon
+	#/subsystem=ee/global-modules remove --name=net.sf.saxon
+	#/subsystem=ee/global-modules=default/module=net.sf.saxon:remove
+	#/subsystem=ee:remove(name="net.sf.saxon")
+#end-if
+
+#melo by se odstraneni nebo pridani volat mimo if
+#sekce /subsystem=ee/global-modules neni k ni pristup z CLI
+
+
+
+module remove --name=org.postgresql
+#musim se presvedcit ze se cely modul odstranil, jinak rucne, pak dela problemy pri vytvoreni nevytvori se main.xml soubor
+#stane se kdyz nejaky prikaz vys se korektne neprovede
+
+
+# Execute the batch
+run-batch
+# oznámí se jestli batch cely probehl uspesne, pokud operace nebezi v batch tak si nejsem jisty jestli vsechny operace probehly

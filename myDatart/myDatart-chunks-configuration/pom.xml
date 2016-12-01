@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>cz.datart.jboss.myDatart</groupId>
+    <artifactId>myDatart</artifactId>
+    <version>1.0</version>
+  </parent>
+  <groupId>cz.datart.jboss.myDatart.chunks.config</groupId>
+  <artifactId>myDatart-chunks-configuration</artifactId>
+<!--   <version>1.0</version> -->
+  <name>myDatart-chunks-configuration</name>
+  <url>http://maven.apache.org</url>
+  <properties>
+<!--     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+  </properties>
+   
+  <dependencies>
+    <dependency>
+  		<groupId>cz.datart.jboss.myDatart.chunks.config.persistence</groupId>
+  		<artifactId>myDatart-chunks-config-persistence</artifactId>
+  	</dependency>
+  	
+  	<dependency>
+  		<groupId>cz.datart.jboss.myDatart.chunks.config.jpa.dao</groupId>
+  		<artifactId>myDatart-chunks-config-jpa-dao</artifactId>
+  	</dependency>
+  	
+  	<dependency>
+        <groupId>cz.datart.jboss.myDatart.utils</groupId>
+   		<artifactId>myDatart-utilities</artifactId>
+    </dependency>
+    
+    <dependency>
+    	<groupId>cz.datart.jboss.myDatart</groupId>
+    	<artifactId>myDatart-configuration</artifactId>
+    </dependency>
+  	
+    <dependency>
+      <groupId>org.switchyard</groupId>
+      <artifactId>switchyard-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard</groupId>
+      <artifactId>switchyard-transform</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard</groupId>
+      <artifactId>switchyard-validate</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard</groupId>
+      <artifactId>switchyard-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.switchyard.components</groupId>
+      <artifactId>switchyard-component-test-mixin-cdi</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.switchyard.components</groupId>
+    	<artifactId>switchyard-component-bean</artifactId>
+    </dependency>
+    <dependency>
+    	<groupId>org.switchyard.components</groupId>
+    	<artifactId>switchyard-component-soap</artifactId>
+    </dependency>
+
+
+    
+<!--     <dependency> -->
+<!-- 	    <groupId>org.jboss.weld.se</groupId> -->
+<!-- 	    <artifactId>weld-se</artifactId> -->
+<!-- 	    <version>2.2.10.Final</version> -->
+<!-- 	    <scope>test</scope> -->
+<!-- 	</dependency> -->
+	
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>test</scope>
+    </dependency>
+<!--     <dependency> -->
+<!--         <groupId>org.mockito</groupId> -->
+<!--         <artifactId>mockito-all</artifactId> -->
+<!--         <scope>test</scope> -->
+<!--     </dependency> -->
+    <dependency>
+        <groupId>org.switchyard.components</groupId>
+        <artifactId>switchyard-component-test-mixin-jca</artifactId>
+        <scope>test</scope>
+    </dependency>
+    
+<!--     importent for compilation -->
+    <dependency>
+	    <groupId>org.jboss</groupId>
+	    <artifactId>jandex</artifactId>
+<!--  	    <version>2.0.2.Final</version>  -->
+<!-- 	    <scope>test</scope> -->
+	</dependency>
+  </dependencies>
+  
+  <build>
+<!--         <finalName>${project.artifactId}</finalName> -->
+       
+<!-- 	       <resources> -->
+<!-- 		      <resource> -->
+<!--                 <filtering>true</filtering> -->
+<!--                 <directory>src/main/resources</directory> -->
+<!--             </resource> -->
+<!--             <resource> -->
+<!--                 <filtering>false</filtering> -->
+<!--                 <directory>src/main/resources</directory> -->
+<!--                 <includes> -->
+<!--                     <include>**/switchyard.xml</include> -->
+<!--                 </includes> -->
+<!--             </resource> -->
+<!-- 		    </resources> -->
+	    
+        <plugins>
+            
+            
+<!--             <plugin> -->
+<!-- 	          <groupId>org.apache.maven.plugins</groupId> -->
+<!-- 	          <artifactId>maven-jar-plugin</artifactId> -->
+<!-- 	          <version>3.0.0</version> -->
+<!-- 	          <configuration> -->
+<!-- 		         <archive> -->
+<!-- 		            <manifestEntries> -->
+<!-- 		               <Dependencies>cz.datart.jboss.myDatart.chunks.jpa.${environment}.${segment}</Dependencies> -->
+<!-- 		            </manifestEntries> -->
+<!-- 		         </archive> -->
+<!-- 		     </configuration> -->
+<!-- 	        </plugin> -->
+	        
+            <plugin>
+                <groupId>org.switchyard</groupId>
+                <artifactId>switchyard-plugin</artifactId>
+                <version>${switchyard.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>configure</goal>
+                        </goals>
+                        <configuration>
+                            <scannerClassNames>
+                                <param>org.switchyard.transform.config.model.TransformSwitchYardScanner</param>
+                            </scannerClassNames>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.wildfly.plugins</groupId>
+                <artifactId>wildfly-maven-plugin</artifactId>
+                <version>${version.wildfly.maven}</version>
+                <inherited>false</inherited>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+</project>

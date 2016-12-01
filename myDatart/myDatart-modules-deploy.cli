@@ -1,0 +1,25 @@
+#How to call this script
+#jboss-cli.sh --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-modules-deploy.cli
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\MyDatart_SY_EAR\myDatart\myDatart-modules-deploy.cli
+
+# Connect to Wildfly instance
+connect
+
+# Mark the commands below to be run as a batch
+batch
+
+#Install Saxon module
+#path to the resource d:\Projects\Datart\JBoss\MyDatart_SY\Libs\Saxon-HE-9.5.1-2.jar
+#modul uz je pridan defaultne v modulech soa.net...
+#module add --name=net.sf.saxon --resources=d:\Projects\Datart\JBoss\MyDatart_SY\Libs\Saxon-HE-9.5.1-2.jar --dependencies=javax.api,org.jaxen
+#vytvorit jen modul v konfiguraci jbossu
+#/subsystem=ee:write-attribute(name="global-modules",value=[{"name" => "net.sf.saxon","slot" => "main"}])
+
+#Install module containing the JDBC Driver. 
+module add --name=org.postgresql --resources=d:\Install\JDBC-Drivers\postgresql-9.4.1208.jar --dependencies=javax.api,javax.transaction.api
+
+
+
+# Execute the batch
+run-batch
+# oznámí se jestli batch cely probehl uspesne, pokud operace nebezi v batch tak si nejsem jisty jestli vsechny operace probehly

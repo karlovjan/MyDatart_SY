@@ -1,0 +1,8 @@
+<soapenv:Fault xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+	<faultcode>
+		soapenv:UnknownError
+	</faultcode>
+	<faultstring>
+		fault Message
+	</faultstring>
+</soapenv:Fault>

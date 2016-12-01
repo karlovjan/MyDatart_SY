@@ -1,0 +1,46 @@
+# Mark the commands below to be run as a batch
+#batch -- if is not allowed while in batch mode.
+
+
+#ADD ChunkUpdateAttributesQueue-CZ
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAttributesQueue-CZ:read-resource
+    jms-queue add --queue-address=ChunkUpdateAttributesQueue-CZ --entries=jms/queue/ChunkUpdateAttributesQueue-CZ,java:jboss/exported/jms/queue/ChunkUpdateAttributesQueue-CZ
+end-if
+
+#ADD ChunkUpdateProducersQueue-CZ
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateProducersQueue-CZ:read-resource
+    jms-queue add --queue-address=ChunkUpdateProducersQueue-CZ --entries=jms/queue/ChunkUpdateProducersQueue-CZ,java:jboss/exported/jms/queue/ChunkUpdateProducersQueue-CZ
+end-if
+
+#ADD ChunkUpdateCategoriesQueue-CZ
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateCategoriesQueue-CZ-CZ:read-resource
+    jms-queue add --queue-address=ChunkUpdateCategoriesQueue-CZ-CZ --entries=jms/queue/ChunkUpdateCategoriesQueue-CZ-CZ,java:jboss/exported/jms/queue/ChunkUpdateCategoriesQueue-CZ-CZ
+end-if
+
+#ADD ChunkUpdateAvailabilityQueue-CZ
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAvailabilityQueue-CZ-CZ:read-resource
+    jms-queue add --queue-address=ChunkUpdateAvailabilityQueue-CZ-CZ --entries=jms/queue/ChunkUpdateAvailabilityQueue-CZ-CZ,java:jboss/exported/jms/queue/ChunkUpdateAvailabilityQueue-CZ-CZ
+end-if
+
+#ADD ChunkUpdatePricesQueue-CZ
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdatePricesQueue-CZ-CZ:read-resource
+    jms-queue add --queue-address=ChunkUpdatePricesQueue-CZ-CZ --entries=jms/queue/ChunkUpdatePricesQueue-CZ-CZ,java:jboss/exported/jms/queue/ChunkUpdatePricesQueue-CZ
+end-if
+
+#ADD ChunkUpdateAttributeGroupsQueue-CZ
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateAttributeGroupsQueue-CZ:read-resource
+    jms-queue add --queue-address=ChunkUpdateAttributeGroupsQueue-CZ --entries=jms/queue/ChunkUpdateAttributeGroupsQueue-CZ,java:jboss/exported/jms/queue/ChunkUpdateAttributeGroupsQueue-CZ
+end-if
+
+#ADD ChunkUpdateCatalogueQueue-CZ
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateCatalogueQueue-CZ:read-resource
+    jms-queue add --queue-address=ChunkUpdateCatalogueQueue-CZ --entries=jms/queue/ChunkUpdateCatalogueQueue-CZ,java:jboss/exported/jms/queue/ChunkUpdateCatalogueQueue-CZ
+end-if
+
+#ADD ChunkUpdateRelationsQueue-CZ
+if (outcome != success) of /subsystem=messaging/hornetq-server=default/jms-queue=ChunkUpdateRelationsQueue-CZ:read-resource
+    jms-queue add --queue-address=ChunkUpdateRelationsQueue-CZ --entries=jms/queue/ChunkUpdateRelationsQueue-CZ,java:jboss/exported/jms/queue/ChunkUpdateRelationsQueue-CZ
+end-if
+
+# Execute the batch
+#run-batch
