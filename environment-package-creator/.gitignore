@@ -1,0 +1,8 @@
+/target/
+.classpath
+.project
+.settings
+/src/test/resources/dist/
+/src/test/resources/conf/
+/src/test/resources/test1czTmp/
+/src/test/resources/myDatart.ear

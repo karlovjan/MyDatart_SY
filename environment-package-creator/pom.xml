@@ -7,13 +7,18 @@
   <description>Unpack jar file and modify its content</description>
   
   <properties>
-
+	
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	<maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>  
   
   </properties>
   
+  <developers>
+	  <developer>
+	  	<name>Miroslav Baroš</name>
+	  </developer>
+  </developers>
   
   <dependencies>
     <dependency>
@@ -23,7 +28,56 @@
 	    <scope>test</scope>
 	</dependency>
 
-  
+<!-- https://logging.apache.org/log4j/2.0/faq.html -->
+<!-- http://logging.apache.org/log4j/2.x/manual/migration.html -->
+  	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-api</artifactId>
+	    <version>2.7</version>
+	    <scope>provided</scope>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j-core</artifactId>
+	    <version>2.7</version>
+	    
+	</dependency>
+	  
   </dependencies>
   
+  <build>
+  	<finalName>repackage</finalName>
+  
+  	<plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+          <archive>
+          	<addMavenDescriptor>false</addMavenDescriptor>
+<!--             <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile> -->
+			<manifest>
+				<addClasspath>true</addClasspath>	
+				<classpathPrefix>lib/</classpathPrefix>		
+				<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+				<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+				<mainClass>cz.datart.jboss.deployer.Repackage</mainClass>
+			</manifest>
+<!-- 			<manifestSections> -->
+<!-- 				<manifestSection> -->
+<!-- 					<name>Developer Section</name> -->
+<!-- 					<manifestEntries> -->
+<!-- 						<name>${project.developers.developer.name}</name> -->
+<!-- 					</manifestEntries> -->
+<!-- 				</manifestSection> -->
+<!-- 			</manifestSections> -->
+          </archive>
+        </configuration>
+        
+      </plugin>
+    </plugins>
+    
+  </build>
 </project>
