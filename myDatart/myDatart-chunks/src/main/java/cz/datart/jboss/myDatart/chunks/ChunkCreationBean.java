@@ -48,12 +48,12 @@ public class ChunkCreationBean implements ChunkCreation {
 	@EJB
 	private ChunkVersionStorage versionStorage;
 
-	@Property(name="myDatart.segment")
-//	@ApplicationProperty(name="myDatart.segment")
+	@Property(name="segment")
+//	@ApplicationProperty(name="segment")
 	private String scopeSegment; //CZ, SK
 	
 
-	@Property(name="myDatart.environment")
+	@Property(name="environment")
 	private String environment;
 	
 	private XMLInputFactory inputFactory = XMLInputFactory.newInstance();

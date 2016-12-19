@@ -12,8 +12,8 @@
       <soap:binding.soap name="chunkGroupConfigurationSoapBinding">
         <soap:contextMapper soapHeadersType="VALUE"/>
         <soap:wsdl>wsdl/ChunkGroupConfigurator.wsdl</soap:wsdl>
-        <soap:socketAddr>:${myDatart.soapPort}</soap:socketAddr>
-        <soap:contextPath>${myDatart.chunks.configuration.context.path}</soap:contextPath>
+        <soap:socketAddr>:${soapPort}</soap:socketAddr>
+        <soap:contextPath>${chunks.configuration.context.path}</soap:contextPath>
       </soap:binding.soap>
     </sca:service>
   </sca:composite>

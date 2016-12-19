@@ -31,7 +31,7 @@
         <soap:messageComposer unwrapped="true"/>
         <soap:wsdl>wsdl/notifyService.wsdl</soap:wsdl>
         <soap:socketAddr>:${soapPort}</soap:socketAddr>
-        <soap:contextPath>${myDatart.erp.notification.context.path}</soap:contextPath>
+        <soap:contextPath>${erp.notification.context.path}</soap:contextPath>
       </soap:binding.soap>
     </sca:service>
     <sca:reference name="OrderQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/OrderQueueRef">
@@ -161,8 +161,8 @@
         <soap:contextMapper soapHeadersType="VALUE"/>
         <soap:messageComposer unwrapped="true"/>
         <soap:wsdl>wsdl/bambinoEshopUpdate.wsdl</soap:wsdl>
-        <soap:endpointAddress>${myDatart.eshop.ws.endpoint}</soap:endpointAddress>
-        <soap:timeout>${myDatart.ws.request.timeout}</soap:timeout>
+        <soap:endpointAddress>${eshop.ws.endpoint}</soap:endpointAddress>
+        <soap:timeout>${ws.request.timeout}</soap:timeout>
       </soap:binding.soap>
     </sca:reference>
     <sca:reference name="AxaptaWS" multiplicity="0..1" promote="GetDetail/AxaptaWS">
@@ -171,8 +171,8 @@
         <soap:contextMapper soapHeadersType="VALUE"/>
         <soap:messageComposer unwrapped="true"/>
         <soap:wsdl>wsdl/myDatartAxaptaWS.wsdl</soap:wsdl>
-        <soap:endpointAddress>${myDatart.axapta.ws.endpoint}</soap:endpointAddress>
-        <soap:timeout>${myDatart.ws.request.timeout}</soap:timeout>
+        <soap:endpointAddress>${axapta.ws.endpoint}</soap:endpointAddress>
+        <soap:timeout>${ws.request.timeout}</soap:timeout>
       </soap:binding.soap>
     </sca:reference>
     <sca:component name="ProcessUpdateEshopResponse">

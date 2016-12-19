@@ -23,12 +23,12 @@ public class DissassembleRelationsServiceBean extends ChunkDissassemblyBean impl
 	@Reference("StoreDisassembledItemsJMSService")
 	private StoreDisassembledItemsJMSService jms;
 	
-	@Property(name="myDatart.segment")
-//	@ApplicationProperty(name="myDatart.segment")
+	@Property(name="segment")
+//	@ApplicationProperty(name="segment")
 	private String scopeSegment; //CZ, SK
 	
 
-	@Property(name="myDatart.environment")
+	@Property(name="environment")
 	private String environment;
 	
 	@Override

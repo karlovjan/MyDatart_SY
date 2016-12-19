@@ -19,7 +19,7 @@
         <soap:messageComposer unwrapped="true"/>
         <soap:wsdl>wsdl/bambinoErpUpdate.wsdl</soap:wsdl>
         <soap:socketAddr>:${soapPort}</soap:socketAddr>
-        <soap:contextPath>${myDatart.erp.update.context.path}</soap:contextPath>
+        <soap:contextPath>${erp.update.context.path}</soap:contextPath>
       </soap:binding.soap>
     </sca:service>
     <sca:reference name="AxaptaWS" multiplicity="0..1" promote="ErpUpdateTransformation/AxaptaWS">
@@ -28,8 +28,8 @@
         <soap:contextMapper soapHeadersType="VALUE"/>
         <soap:messageComposer unwrapped="true"/>
         <soap:wsdl>wsdl/myDatartAxaptaWS.wsdl</soap:wsdl>
-        <soap:endpointAddress>${myDatart.axapta.ws.endpoint}</soap:endpointAddress>
-        <soap:timeout>${myDatart.ws.request.timeout}</soap:timeout>
+        <soap:endpointAddress>${axapta.ws.endpoint}</soap:endpointAddress>
+        <soap:timeout>${ws.request.timeout}</soap:timeout>
       </soap:binding.soap>
     </sca:reference>
     <sca:component name="ErpUpdateTransformation">

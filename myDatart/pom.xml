@@ -14,11 +14,13 @@
   	<maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <version.enforcer.maven>1.4.1</version.enforcer.maven>
-    <version.wildfly.maven>1.1.0.Alpha11</version.wildfly.maven>
+    <version.wildfly.maven>1.1.0.Beta1</version.wildfly.maven>
     <version.surefire.plugin>2.19.1</version.surefire.plugin>
         
-    <switchyard.version>2.0.0.Final</switchyard.version>
-    <wildfly.version>8.1.0.Final</wildfly.version>
+    <switchyard.version>2.1.0.redhat-630187</switchyard.version>
+<!--     <switchyard.version>2.1.0.Final</switchyard.version> -->
+<!--     <wildfly.version>10.0.1.Final</wildfly.version> -->
+    <wildfly.wildfly-patching.verison>7.5.0.Final-redhat-21</wildfly.wildfly-patching.verison>
     
     <environment>TEST</environment>
     <segment>CZ</segment>
@@ -45,36 +47,24 @@
   </modules>
   
   
-<repositories>
-    	<repository>
-	      <id>redhat-techpreview-all-repository</id>
-	      <name>Red Hat Tech Preview repository (all)</name>
-	      
-	      <url>http://maven.repository.redhat.com/techpreview/all/</url>
-	      
-	                  <layout>default</layout>
-            <releases>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>never</updatePolicy>
-            </snapshots>
-	    </repository>
-	 </repositories>
   
   
   <dependencyManagement>
 	    <dependencies>        
 	       
-	        <dependency>
-	            <groupId>org.wildfly.bom</groupId>
-			    <artifactId>jboss-javaee-7.0-with-all</artifactId>
-			    <version>${wildfly.version}</version>
-	            <type>pom</type>
-	            <scope>import</scope>
-	        </dependency>
+<!-- 	        <dependency> -->
+<!-- 	            <groupId>org.wildfly.wildfly-patching</groupId> -->
+<!-- 			    <artifactId>wildfly-javaee7-with-tools</artifactId> -->
+<!-- 			    <version>${wildfly.version}</version> -->
+<!-- 	            <type>pom</type> -->
+<!-- 	            <scope>import</scope> -->
+<!-- 	        </dependency> -->
+
+<!-- 			<dependency> -->
+<!-- 			    <groupId>org.jboss.spec</groupId> -->
+<!-- 			    <artifactId>jboss-javaee-7.0</artifactId> -->
+<!-- 			    <version>1.0.4.Final</version> -->
+<!-- 			</dependency> -->
 	        
 	        <dependency>
 		        <groupId>org.switchyard</groupId>
@@ -143,6 +133,7 @@
 	
 	<build>
         <plugins>
+        
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
