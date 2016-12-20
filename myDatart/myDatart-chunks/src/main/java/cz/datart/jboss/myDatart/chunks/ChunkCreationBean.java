@@ -45,7 +45,7 @@ public class ChunkCreationBean implements ChunkCreation {
 	@EJB
 	private IJMSChunkLoader jmsClient;
 	
-	@EJB
+	@Inject
 	private ChunkVersionStorage versionStorage;
 
 	@Property(name="segment")
@@ -70,7 +70,7 @@ public class ChunkCreationBean implements ChunkCreation {
 		String chunkName = chunkParameters.getName();
 		String chunkGroup = chunkParameters.getGroup().getId();
 		
-		log.info(String.format("Create chunk %s from the chunk  group %s, environment: %s, segment: %s", chunkName, chunkGroup, environment, scopeSegment));
+		log.info(String.format("Create chunk %s from the chunk group %s, environment: %s, segment: %s", chunkName, chunkGroup, environment, scopeSegment));
 		//ChunkUpdateAttributesQueue
 		String queueName = ChunkUtils.getChunkQueueName(chunkName, environment, scopeSegment);
 		//load chunks

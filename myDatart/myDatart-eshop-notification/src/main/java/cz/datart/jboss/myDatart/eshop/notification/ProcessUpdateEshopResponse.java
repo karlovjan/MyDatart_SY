@@ -24,7 +24,7 @@ public class ProcessUpdateEshopResponse extends RouteBuilder {
 				
 				.setProperty("FaultErrorMessage").xpath("concat(//*[local-name() = 'Fault']//faultcode[position() = 1]/text(), ',',//*[local-name() = 'Fault']//faultcode[position() = 2]/text(), ',',//*[local-name() = 'Fault']//faultstring/text())", String.class)
 				
-				.setHeader("axaErrorText").property("FaultErrorMessage")
+				.setHeader("axaErrorText").exchangeProperty("FaultErrorMessage")
 				
 				.throwException(new FaultException("General soap fault exception"))	
 			

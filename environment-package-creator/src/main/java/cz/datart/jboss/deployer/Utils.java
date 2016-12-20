@@ -51,7 +51,22 @@ public class Utils {
 
 	public static String getFileName(Path filePath) {
 		
-		return String.format("%s", filePath.getFileName());
+		//return String.format("%s", filePath.getFileName());
+		return filePath.getFileName().toString();
+	}
+
+	public static boolean parseBoolean(String booleanText) {
+		
+		if(isStringEmpty(booleanText)){
+			return false;
+		}
+		
+		return "true".equalsIgnoreCase(booleanText.trim());
+	}
+
+	public static String toString(boolean boolValue) {
+		
+		return Boolean.toString(boolValue);
 	}
 
 }

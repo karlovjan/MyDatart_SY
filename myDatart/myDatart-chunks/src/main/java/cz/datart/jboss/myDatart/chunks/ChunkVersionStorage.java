@@ -2,18 +2,27 @@ package cz.datart.jboss.myDatart.chunks;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.ejb.ConcurrencyManagement;
-import javax.ejb.ConcurrencyManagementType;
-import javax.ejb.Singleton;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import org.apache.log4j.Logger;
+
 
 @Singleton
 //@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
-@ConcurrencyManagement(ConcurrencyManagementType.BEAN)
 public class ChunkVersionStorage extends ConcurrentHashMap<String, String> {
 
 	//pri @ConcurrencyManagement( nesmim pouzit @Lock( protoze je containerem ignorovan, defaultne jsou vsechny metody @LOck(Write), musim 
 	
+	@Inject
+	private Logger log;
 	
+	@PostConstruct
+	public void init() {
+	    log.info("Creating ChunkVersionStorage singleton instance.");
+	}
 	
 	private static final long serialVersionUID = 1L;
 
@@ -22,5 +31,11 @@ public class ChunkVersionStorage extends ConcurrentHashMap<String, String> {
 		if(chunkName != null){
 			this.remove(chunkName);
 		}
+	}
+	
+	@PreDestroy
+	public void dispose() {
+		log.info("Desposing ChunkVersionStorage singleton instance.");
+		this.clear();
 	}
 }

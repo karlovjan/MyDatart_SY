@@ -37,35 +37,35 @@
     <sca:reference name="OrderQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/OrderQueueRef">
       <interface.esb inputType="java:java.lang.String"/>
       <jms:binding.jms name="eshopOrderUpdateQueueJmsBinding">
-        <jms:queue>EshopOrderUpdateQueue</jms:queue>
+        <jms:queue>myDatart-EshopOrderUpdateQueue-${environment}${segment}</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
       </jms:binding.jms>
     </sca:reference>
     <sca:reference name="UserQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/UserQueueRef">
       <interface.esb inputType="java:java.lang.String"/>
       <jms:binding.jms name="userQueueJmsBinding">
-        <jms:queue>EshopUserUpdateQueue</jms:queue>
+        <jms:queue>myDatart-EshopUserUpdateQueue-${environment}${segment}</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
       </jms:binding.jms>
     </sca:reference>
     <sca:reference name="ManualQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/ManualQueueRef">
       <interface.esb inputType="java:java.lang.String"/>
       <jms:binding.jms name="eshopManualQueueJmsBinding">
-        <jms:queue>EshopManualUpdateQueue</jms:queue>
+        <jms:queue>myDatart-EshopManualUpdateQueue-${environment}${segment}</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
       </jms:binding.jms>
     </sca:reference>
     <sca:reference name="OfferQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/OfferQueueRef">
       <interface.esb inputType="java:java.lang.String"/>
       <jms:binding.jms name="eshopOfferQueueJmsBinding">
-        <jms:queue>EshopOfferUpdateQueue</jms:queue>
+        <jms:queue>myDatart-EshopOfferUpdateQueue-${environment}${segment}</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
       </jms:binding.jms>
     </sca:reference>
     <sca:reference name="ComplaintQueueRef" multiplicity="0..1" promote="AxaptaNotificationServiceRoute/ComplaintQueueRef">
       <interface.esb inputType="java:java.lang.String"/>
       <jms:binding.jms name="eshopComplaintJmsQueueBinding">
-        <jms:queue>EshopComplaintUpdateQueue</jms:queue>
+        <jms:queue>myDatart-EshopComplaintUpdateQueue-${environment}${segment}</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
         <jms:transacted>false</jms:transacted>
       </jms:binding.jms>
@@ -84,35 +84,35 @@
     <sca:service name="EshopUserUpdateQueueConsumerService" promote="EshopUpdateQueueConsumerRoute/EshopUpdateQueueConsumerService">
       <interface.esb inputType="java:java.lang.String"/>
       <jms:binding.jms name="userConsumer-jmsBinding">
-        <jms:queue>EshopUserUpdateQueue</jms:queue>
+        <jms:queue>myDatart-EshopUserUpdateQueue-${environment}${segment}</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
       </jms:binding.jms>
     </sca:service>
     <sca:service name="EshopOrderUpdateQueueConsumerService" promote="EshopUpdateQueueConsumerRoute/EshopUpdateQueueConsumerService">
       <interface.esb inputType="java:java.lang.String"/>
       <jms:binding.jms name="orderUpdate-jmsBinding">
-        <jms:queue>EshopOrderUpdateQueue</jms:queue>
+        <jms:queue>myDatart-EshopOrderUpdateQueue-${environment}${segment}</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
       </jms:binding.jms>
     </sca:service>
     <sca:service name="EshopManualUpdateQueueConsumerService" promote="EshopUpdateQueueConsumerRoute/EshopUpdateQueueConsumerService">
       <interface.esb inputType="java:java.lang.String"/>
       <jms:binding.jms name="manual-jmsBinding">
-        <jms:queue>EshopManualUpdateQueue</jms:queue>
+        <jms:queue>myDatart-EshopManualUpdateQueue-${environment}${segment}</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
       </jms:binding.jms>
     </sca:service>
     <sca:service name="EshopOfferUpdateQueueConsumerService" promote="EshopUpdateQueueConsumerRoute/EshopUpdateQueueConsumerService">
       <interface.esb inputType="java:java.lang.String"/>
       <jms:binding.jms name="offerConsumer-jmsBinding">
-        <jms:queue>EshopOfferUpdateQueue</jms:queue>
+        <jms:queue>myDatart-EshopOfferUpdateQueue-${environment}${segment}</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
       </jms:binding.jms>
     </sca:service>
     <sca:service name="EshopComplaintUpdateQueueConsumerService" promote="EshopUpdateQueueConsumerRoute/EshopUpdateQueueConsumerService">
       <interface.esb inputType="java:java.lang.String"/>
       <jms:binding.jms name="complaintConsumer-jmsBinding">
-        <jms:queue>EshopComplaintUpdateQueue</jms:queue>
+        <jms:queue>myDatart-EshopComplaintUpdateQueue-${environment}${segment}</jms:queue>
         <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
       </jms:binding.jms>
     </sca:service>

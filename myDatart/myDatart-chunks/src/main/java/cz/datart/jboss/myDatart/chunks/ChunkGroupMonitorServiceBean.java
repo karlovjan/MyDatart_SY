@@ -1,6 +1,5 @@
 package cz.datart.jboss.myDatart.chunks;
 
-import javax.ejb.EJB;
 import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
@@ -20,7 +19,7 @@ public class ChunkGroupMonitorServiceBean implements ChunkGroupMonitor {
 	@Reference("ChunkProcessManager")
 	private ChunkProcessManager chunkProcessor;
 	
-	@EJB
+	@Inject
 	private ChunkGroupConfigurationStorage chunkGroupConfiguration;
 	
 	@Override

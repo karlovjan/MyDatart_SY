@@ -200,17 +200,17 @@ public class ExtractJavaPackageFilesTest {
 		String environment = "test5";
 		String segment = "CZ";
 		
-		String jarEntryName = "myDatart-chunks-1.0.jar";
+//		String jarEntryName = "myDatart-chunks-1.0.jar";
 		String earFile = "/home/mbaros/Projects/Datart/Backup/myDatart.ear";
-		
-		String newJarMOdulName = "myDatart-chunks-" + environment + segment + ".jar";
+//		
+//		String newJarMOdulName = "myDatart-chunks-" + environment + segment + ".jar";
 		
 		    Path earFilePath = Paths.get(earFile);
 		    
 		    try( FileSystem fs = FileSystems.newFileSystem(earFilePath, null) ){
 		    	
-		    	Path oldJarPath = fs.getPath(jarEntryName);
-		    	Path newJarPath = fs.getPath(newJarMOdulName);
+//		    	Path oldJarPath = fs.getPath(jarEntryName);
+//		    	Path newJarPath = fs.getPath(newJarMOdulName);
 		    	
 //		    	Files.move(newJarPath, oldJarPath);
 //		    	Files.move(oldJarPath, newJarPath);
@@ -608,26 +608,20 @@ public class ExtractJavaPackageFilesTest {
     
 	}
 	
-	private void updateElementValue(Document doc, String elementName, String suffix) {
-        NodeList javaModules = doc.getElementsByTagName(elementName);
-        //Element emp = null;
-        //loop for each employee
-        for(int i=0; i < javaModules.getLength(); i++){
-        	Node name = javaModules.item(0).getFirstChild();
-             
-        	String jarName = name.getNodeValue();
-        	if(jarName != null){
-        		name.setNodeValue(jarName.replaceFirst("1.0", suffix));
-        	} else {
-        		System.out.println("jarName is null");
-        	}
-        }
-    }
 	
 	public void commandJarExtractEar(){
 		
-		ProcessBuilder pb =
-				   new ProcessBuilder("jar", "xf", MYDATART_EAR);
+//		ProcessBuilder pb =
+//				   new ProcessBuilder("jar", "xf", MYDATART_EAR);
 		
+	}
+	
+//	@Test
+	public void getFilenameFromPathTest() {
+		
+		Path testPath = Paths.get(".", "testFolder", "testFile.txt");
+		
+		assertEquals("testFile.txt", testPath.getFileName().toString());
+		assertEquals("testFile.txt", Utils.getFileName(testPath));
 	}
 }

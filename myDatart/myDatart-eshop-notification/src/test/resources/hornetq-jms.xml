@@ -26,24 +26,24 @@
       </entries>
    </connection-factory>
    
-   <queue name="EshopOrderUpdateQueue-TEST">
-      <entry name="EshopOrderUpdateQueue-TEST"/>
+   <queue name="myDatart-EshopOrderUpdateQueue-TEST">
+      <entry name="myDatart-EshopOrderUpdateQueue-TEST"/>
    </queue>
    
-   <queue name="EshopUserUpdateQueue-TEST">
-      <entry name="EshopUserUpdateQueue-TEST"/>
+   <queue name="myDatart-EshopUserUpdateQueue-TEST">
+      <entry name="myDatart-EshopUserUpdateQueue-TEST"/>
    </queue>
    
-   <queue name="EshopManualUpdateQueue-TEST">
-      <entry name="EshopManualUpdateQueue-TEST"/>
+   <queue name="myDatart-EshopManualUpdateQueue-TEST">
+      <entry name="myDatart-EshopManualUpdateQueue-TEST"/>
    </queue>
    
-   <queue name="EshopOfferUpdateQueue-TEST">
-      <entry name="EshopOfferUpdateQueue-TEST"/>
+   <queue name="myDatart-EshopOfferUpdateQueue-TEST">
+      <entry name="myDatart-EshopOfferUpdateQueue-TEST"/>
    </queue>
    
-   <queue name="EshopComplaintUpdateQueue-TEST">
-      <entry name="EshopComplaintUpdateQueue-TEST"/>
+   <queue name="myDatart-EshopComplaintUpdateQueue-TEST">
+      <entry name="myDatart-EshopComplaintUpdateQueue-TEST"/>
    </queue>
    
 </configuration>

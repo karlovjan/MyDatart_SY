@@ -12,7 +12,7 @@ public class PrepareUpdateEntity extends RouteBuilder {
 		from("switchyard://PrepareUpdateEntityService")
 			.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Message received from PrepareUpdateEntityService: ${body}")
 			.choice()
-			  .when(property("deleteEntity").isEqualTo("true"))
+			  .when(exchangeProperty("deleteEntity").isEqualTo("true"))
 			  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Delete entity: ${property.entity}")
 			  	.to("switchyard://PrepareDeletingEntityService")
 			  .otherwise()

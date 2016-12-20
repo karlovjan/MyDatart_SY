@@ -23,35 +23,35 @@ public class PrepareGettingDetail extends RouteBuilder {
 		.log(LoggingLevel.INFO, LOG_NAME, "Received message for 'PrepareGettingDetail' : ${body}")
 		
 		.choice()
-		  .when(property("entity").isEqualTo("User"))
+		  .when(exchangeProperty("entity").isEqualTo("User"))
 		  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepere a sending get user detail reguest")
 
 		  	.to("xslt:xsl/sendCustomerDetailRequest.xsl?saxon=true")
 		  	
 		  	.to("switchyard://GetDetailService")
 
-		  .when(property("entity").isEqualTo("Order"))
+		  .when(exchangeProperty("entity").isEqualTo("Order"))
 		  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepere a sending get order detail reguest")
 
 		  	.to("xslt:xsl/sendOrderDetailRequest.xsl?saxon=true")
 
 		  	.to("switchyard://GetDetailService")
 			
-		  .when(property("entity").isEqualTo("Manual"))
+		  .when(exchangeProperty("entity").isEqualTo("Manual"))
 		  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepere a sending get manual detail reguest")
 
 		  	.to("xslt:xsl/sendManualDetailRequest.xsl?saxon=true")
 
 		  	.to("switchyard://GetDetailService")
 			
-		  .when(property("entity").isEqualTo("Offer"))
+		  .when(exchangeProperty("entity").isEqualTo("Offer"))
 		  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepere a sending get offer detail reguest")
 
 			.to("xslt:xsl/sendOfferDetailRequest.xsl?saxon=true") 
 
 			.to("switchyard://GetDetailService")
 			
-		  .when(property("entity").isEqualTo("Complaint"))
+		  .when(exchangeProperty("entity").isEqualTo("Complaint"))
 		  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepere a sending get complaint detail reguest")
 
 			.to("xslt:xsl/sendComplaintDetailRequest.xsl?saxon=true") 

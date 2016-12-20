@@ -26,10 +26,10 @@ public class StoreDisassembledItemsJMSServiceBean implements StoreDisassembledIt
 
 	@Resource(mappedName = "java:/JmsXA")
     private ConnectionFactory cf;
-	private Connection connection;
+	
 	
 	@Override
-	public synchronized void storeItem(QueueItem item) {
+	public synchronized void storeItem(final QueueItem item) {
 		
 		if(item == null){
 			log.warn("The queue and message was not set");
@@ -60,6 +60,8 @@ public class StoreDisassembledItemsJMSServiceBean implements StoreDisassembledIt
     		log.info(String.format("The queue %s was not found in JNDI", item.getQueueName()));
     		return; // no queue no messages
     	}
+    	
+    	Connection connection = null;
     	
 		try {         
 

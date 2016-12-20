@@ -21,7 +21,7 @@ public class ChunkUtils {
     
     */
     
-	public String createListXML(List<String> items) {
+	public String createListXML(final List<String> items) {
 		
 		
 		return items.stream().collect(Collectors.joining("", "<list>", "</list>"));	
@@ -45,7 +45,7 @@ public class ChunkUtils {
 	}
 
 
-	public String getNewVersion(String oldVersion, int chunkSize) {
+	public String getNewVersion(final String oldVersion, final int chunkSize) {
 		
 		if(oldVersion == null || oldVersion.trim().isEmpty() || chunkSize < 1){
 			return null;
@@ -67,7 +67,7 @@ public class ChunkUtils {
 	}
 
 
-	public String getVersionSoapRequest(String scopeSegment) {
+	public String getVersionSoapRequest(final String scopeSegment) {
 		
 		final String eshopWSNamespace = "http://etnetera.com/projects/datart/bambino";
 		
@@ -83,7 +83,7 @@ public class ChunkUtils {
 		return soap.toString();
 	}
 	
-	public String getChunkNameFromRequestMessage(String body){
+	public String getChunkNameFromRequestMessage(final String body){
 		
 		if(body != null){
 			
@@ -98,7 +98,7 @@ public class ChunkUtils {
 		return null;
 	}
 	
-	private String createChunkNotificationRequest(String flowName, String newVersion, String notifications) {
+	private String createChunkNotificationRequest(final String flowName, final String newVersion, final String notifications) {
         
         StringBuilder sb = new StringBuilder();
         sb.append("<notifications>");
@@ -114,7 +114,7 @@ public class ChunkUtils {
         return sb.toString();
     }
 	
-	public String convertXMLBodyIntoEntityString(String body) {
+	public String convertXMLBodyIntoEntityString(final String body) {
         
         StringBuilder sb = new StringBuilder();
         
@@ -127,7 +127,7 @@ public class ChunkUtils {
         return sb.toString();
     }
 	
-	public String createConfirmTransAxaptaRequest(String flowName, String newVersion, String notifications){
+	public String createConfirmTransAxaptaRequest(final String flowName, final String newVersion, final String notifications){
 		
 		StringBuffer soap = new StringBuffer();
 		
@@ -141,14 +141,18 @@ public class ChunkUtils {
 		return soap.toString();
 	}
 	
-	public static String getChunkQueueName(String chunkName, String environment, String scopeSegment){
+	public static String getChunkQueueName(final String chunkName, final String environment, final String scopeSegment){
 		
-		return "ChunkUpdate" + chunkName + "Queue" + "-" + environment + scopeSegment;
+		return new StringBuilder()
+				.append("myDatart")
+				.append("-")
+				.append("ChunkUpdate")
+				.append(chunkName)
+				.append("Queue")
+				.append("-")
+				.append(environment)
+				.append(scopeSegment).toString();
 	}
 	
-	public static String getChunkQueueName(String chunkName){
-		
-		return "ChunkUpdate" + chunkName + "Queue";
-	}
 	
 }

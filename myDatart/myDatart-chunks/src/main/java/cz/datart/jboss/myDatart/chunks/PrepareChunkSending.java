@@ -52,7 +52,7 @@ public class PrepareChunkSending extends RouteBuilder {
 		.setProperty("recIDs", body())
 		
 		
-		.setBody(property("chunkRequest"))
+		.setBody(exchangeProperty("chunkRequest"))
 		
 		//pokud tohle neodstranim pred odeslanim chunku do eshopu tak zpusobuje problem - error 413 full head
 		.removeProperty("chunkRequest") 

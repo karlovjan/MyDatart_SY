@@ -31,36 +31,36 @@
       
    </connection-factory>
   
-   <queue name="ChunkUpdateProducerQueue">
-      <entry name="ChunkUpdateProducerQueue"/>
+   <queue name="myDatart-ChunkUpdateProducerQueue-TESTCZ">
+      <entry name="myDatart-ChunkUpdateProducerQueue-TESTCZ"/>
    </queue>
    
-   <queue name="ChunkUpdateRelationsQueue">
-      <entry name="ChunkUpdateRelationsQueue"/>
+   <queue name="myDatart-ChunkUpdateRelationsQueue-TESTCZ">
+      <entry name="myDatart-ChunkUpdateRelationsQueue-TESTCZ"/>
    </queue>
    
-   <queue name="ChunkUpdateCatalogueQueue">
-      <entry name="ChunkUpdateCatalogueQueue"/>
+   <queue name="myDatart-ChunkUpdateCatalogueQueue-TESTCZ">
+      <entry name="myDatart-ChunkUpdateCatalogueQueue-TESTCZ"/>
    </queue>
    
-   <queue name="ChunkUpdateAttributeGroupsQueue">
-      <entry name="ChunkUpdateAttributeGroupsQueue"/>
+   <queue name="myDatart-ChunkUpdateAttributeGroupsQueue-TESTCZ">
+      <entry name="myDatart-ChunkUpdateAttributeGroupsQueue-TESTCZ"/>
    </queue>
    
-   <queue name="ChunkUpdateAttributesQueue">
-      <entry name="ChunkUpdateAttributesQueue"/>
+   <queue name="myDatart-ChunkUpdateAttributesQueue-TESTCZ">
+      <entry name="myDatart-ChunkUpdateAttributesQueue-TESTCZ"/>
    </queue>
    
-   <queue name="ChunkUpdatePricesQueue">
-      <entry name="ChunkUpdatePricesQueue"/>
+   <queue name="myDatart-ChunkUpdatePricesQueue-TESTCZ">
+      <entry name="myDatart-ChunkUpdatePricesQueue-TESTCZ"/>
    </queue>
    
-   <queue name="ChunkUpdateAvailabilityQueue">
-      <entry name="ChunkUpdateAvailabilityQueue"/>
+   <queue name="myDatart-ChunkUpdateAvailabilityQueue-TESTCZ">
+      <entry name="myDatart-ChunkUpdateAvailabilityQueue-TESTCZ"/>
    </queue>
    
-   <queue name="ChunkUpdateCategoriesQueue">
-      <entry name="ChunkUpdateCategoriesQueue"/>
+   <queue name="myDatart-ChunkUpdateCategoriesQueue-TESTCZ">
+      <entry name="myDatart-ChunkUpdateCategoriesQueue-TESTCZ"/>
    </queue>
    
    

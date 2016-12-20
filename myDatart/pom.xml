@@ -25,7 +25,7 @@
     <environment>TEST</environment>
     <segment>CZ</segment>
     
-<!--     <jpa.persistence.unit.name>ChunkConfigurationPU-${environment}-${segment}</jpa.persistence.unit.name> -->
+<!--     <jpa.persistence.unit.name>myDatart-ChunkConfigurationPU-${environment}-${segment}</jpa.persistence.unit.name> -->
     <jpa.persistence.datasource.name>java:jboss/datasources/myDatart-test-DS</jpa.persistence.datasource.name>
   	<jpa.db.driver>org.hibernate.dialect.PostgreSQLDialect</jpa.db.driver>
   	<jpa.db.show_sql>true</jpa.db.show_sql>

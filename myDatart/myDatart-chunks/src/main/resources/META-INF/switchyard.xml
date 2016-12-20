@@ -128,7 +128,7 @@
       <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.jpa.ChunkGroupMonitor"/>
       <jpa:binding.jpa name="updateGroupsServiceJPABinding">
         <jpa:entityClassName>cz.datart.jboss.myDatart.chunks.config.persistence.model.Group</jpa:entityClassName>
-        <jpa:persistenceUnit>ChunkConfigurationPU</jpa:persistenceUnit>
+        <jpa:persistenceUnit>myDatart-ChunkConfigurationPU</jpa:persistenceUnit>
         <jpa:transactionManager>#jtaTransactionManager</jpa:transactionManager>
         <jpa:consume>
           <jpa:delay>30000</jpa:delay>

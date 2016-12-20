@@ -21,35 +21,35 @@ public class PrepareAxaptaNotification extends RouteBuilder {
 		from("switchyard://PrepareAxaptaNotificationService")
 		
 		.choice()
-		  .when(property("entity").isEqualTo("User"))
+		  .when(exchangeProperty("entity").isEqualTo("User"))
 		  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepare a sending User update result to axapta")
 
 		  	.to("xslt:xsl/answDetailCustomerRequest.xsl?saxon=true")
 		  	
 		  	.to("switchyard://SendAxaptaAnswerService")
 		  	
-		  .when(property("entity").isEqualTo("Order"))
+		  .when(exchangeProperty("entity").isEqualTo("Order"))
 		  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepare a sending Order update result to axapta")
 
 		  	.to("xslt:xsl/answDetailOrderRequest.xsl?saxon=true")
 		  	
 		  	.to("switchyard://SendAxaptaAnswerService")
 		  	
-		  .when(property("entity").isEqualTo("Manual"))
+		  .when(exchangeProperty("entity").isEqualTo("Manual"))
 		  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepare a sending Manual update result to axapta")
 
 		  	.to("xslt:xsl/answDetailManualRequest.xsl?saxon=true")
 		  	
 		  	.to("switchyard://SendAxaptaAnswerService")
 		  	
-		  .when(property("entity").isEqualTo("Offer"))
+		  .when(exchangeProperty("entity").isEqualTo("Offer"))
 		  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepare a sending Offer update result to axapta")
 
 		  	.to("xslt:xsl/answDetailOfferRequest.xsl?saxon=true")
 		  	
 		  	.to("switchyard://SendAxaptaAnswerService")
 		  	
-		  .when(property("entity").isEqualTo("Complaint"))
+		  .when(exchangeProperty("entity").isEqualTo("Complaint"))
 		  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepare a sending Complaint update result to axapta")
 
 		  	.to("xslt:xsl/answDetailComplaintRequest.xsl?saxon=true")

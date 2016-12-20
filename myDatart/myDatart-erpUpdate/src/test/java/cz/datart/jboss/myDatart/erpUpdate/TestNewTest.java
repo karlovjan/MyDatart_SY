@@ -10,18 +10,12 @@ import org.switchyard.test.Invoker;
 import org.switchyard.test.ServiceOperation;
 import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
-import org.switchyard.test.SwitchYardTestKit;
-
-import cz.datart.jboss.myDatart.utils.ApplicationProperty;
 
 @RunWith(SwitchYardRunner.class)
 @SwitchYardTestCaseConfig(config = SwitchYardTestCaseConfig.SWITCHYARD_XML, mixins = { CDIMixIn.class,
 		HTTPMixIn.class })
 public class TestNewTest {
 
-	private SwitchYardTestKit testKit;
-	private CDIMixIn cdiMixIn;
-	private HTTPMixIn httpMixIn;
 	@ServiceOperation("BambinoErpUpdateService")
 	private Invoker service;
 

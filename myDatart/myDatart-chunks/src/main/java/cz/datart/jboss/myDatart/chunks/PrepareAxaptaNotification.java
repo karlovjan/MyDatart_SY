@@ -22,14 +22,14 @@ public class PrepareAxaptaNotification extends RouteBuilder {
 		from("switchyard://PrepareAxaptaNotificationService")
 		.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Prepare a notification for Axapta for chunk ${property.chunkName}")
 		
-	  	.setBody(property("recIDs"))
+	  	.setBody(exchangeProperty("recIDs"))
 	  	
 //	  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Rec ids ${body}")
 	  	
 //	  	.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Rec ids ${property.eshopError}")
 	  	
-	  	.setHeader("error").property("isError")
-		.setHeader("errorText", property("eshopError"))
+	  	.setHeader("error").exchangeProperty("isError")
+		.setHeader("errorText", exchangeProperty("eshopError"))
 		
 		.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | isError: ${in.header.error}, errorText: ${in.header.errorText}")
 		

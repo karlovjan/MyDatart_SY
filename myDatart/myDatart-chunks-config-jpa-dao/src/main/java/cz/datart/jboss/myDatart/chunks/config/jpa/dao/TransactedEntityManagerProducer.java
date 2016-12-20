@@ -13,6 +13,6 @@ public class TransactedEntityManagerProducer {
 
 	
 	@Produces
-	@PersistenceContext(unitName="ChunkConfigurationPU", type = PersistenceContextType.TRANSACTION) 
+	@PersistenceContext(unitName="myDatart-ChunkConfigurationPU", type = PersistenceContextType.TRANSACTION) 
 	protected EntityManager entityManager;
 }

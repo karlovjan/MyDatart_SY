@@ -145,7 +145,12 @@ public class Repackage {
 		configData.setEnvironment(prop.getProperty("environment"));
 		configData.setSegment(prop.getProperty("segment"));
 		
+		configData.setDataSourceName(prop.getProperty("jpa.persistence.datasource.name"));
+		configData.setSqlDriver(prop.getProperty("jpa.db.driver"));
+		configData.setShowSql(Utils.parseBoolean(prop.getProperty("jpa.db.show_sql")));
+		
 		log.info("Loaded environment: {}, segment: {}", configData.getEnvironment(), configData.getSegment());
+		log.info("Loaded datasource: {}, sqlDriver: {}, showSgl: {}", configData.getDataSourceName(), configData.getSqlDriver(), configData.isShowSql());
 	}
 
 	private File getInputConfigFile() throws FileNotFoundException {
@@ -422,6 +427,38 @@ public class Repackage {
         }
         
 	}
+	
+	private void updatePersistenceXml(Document xmlDoc) {
+		
+		NodeList elementName;
+		Node nodeName;
+		
+		
+		elementName = xmlDoc.getElementsByTagName("jta-data-source");
+		nodeName = elementName.item(0).getFirstChild();
+		nodeName.setNodeValue(configData.getDataSourceName());
+		
+		NodeList properties = xmlDoc.getElementsByTagName("property");
+		Element propertyElement;
+		int j = 0;
+		
+		for (int i = 0; i != properties.getLength() && j != 3; i++) {
+			
+			propertyElement = (Element) properties.item(i);
+			
+			if(propertyElement.getAttribute("hibernate.dialect") != null){
+				propertyElement.setAttribute("hibernate.dialect", configData.getSqlDriver());
+				++j;
+			} else if(propertyElement.getAttribute("hibernate.show_sql") != null){
+				propertyElement.setAttribute("hibernate.show_sql", Utils.toString(configData.isShowSql()));
+				++j;
+			} else if(propertyElement.getAttribute("hibernate.format_sql") != null){
+				propertyElement.setAttribute("hibernate.format_sql", Utils.toString(configData.isShowSql()));
+				++j;
+			}
+		}
+		
+	}
 
 	private void repackageJar(Path jarPath, Path newJarPath) throws IOException, TransformerException {
 		
@@ -447,7 +484,9 @@ public class Repackage {
 			//configuration jar
 			modifyConfigurationApplication(fs2.getPath(configData.getPackageConfigurationFileName()), tmpJarPackageName);
 			
-		
+			//persistance jar
+			modifyPersistenceApplication(fs2.getPath(RepackageData.METAINF_FOLDER_NAME, configData.getPersistenceXmlFileName()), tmpJarPackageName);
+			
 			//switchyard project 
 			modifySwitchyardApplication(fs2.getPath(RepackageData.METAINF_FOLDER_NAME, configData.getSwitchyardXmlFileName()), tmpJarPackageName);
 			
@@ -496,6 +535,18 @@ public class Repackage {
 		return null; //not contain "switchyard configuration" in a package
 	}
 	
+	private Path isPersistencePackage(final String jarName, Path persistenceConfigFilePath) throws IOException {
+		
+		try {
+			//copy sy config file from config package jar to temporary folder
+			return Files.copy(persistenceConfigFilePath, Paths.get(getTemporaryFolderName(), configData.getPersistenceXmlFileName()), StandardCopyOption.REPLACE_EXISTING);
+		} catch (NoSuchFileException e) {
+			log.debug(String.format("file %s not found in a package %s", persistenceConfigFilePath.toString(), jarName));
+		}
+			
+		return null; //not contain "persistence.xml" in a package
+	}
+	
 
 	private String renamePackage(String oldPackageName, String suffix, String packageType) {
 		final String fullSuffix = new StringBuilder().append("-").append(suffix).append(".").append(packageType).toString();
@@ -524,6 +575,30 @@ public class Repackage {
 //
 //		return false;
 //	}
+	
+	private void modifyPersistenceApplication(Path configFilePath, final String packageName) throws IOException, TransformerException {
+		
+		Path unpackedTmpPesistenceFilePath = isPersistencePackage(packageName, configFilePath);
+		if(unpackedTmpPesistenceFilePath != null) {
+	    	
+	    	
+			Document xmlDoc = getXmlDocument(unpackedTmpPesistenceFilePath.toFile());
+			
+			if(xmlDoc == null){
+				return;
+			}
+			
+			updatePersistenceXml(xmlDoc);
+			
+			saveXmlFile(xmlDoc, unpackedTmpPesistenceFilePath.toFile());
+			
+			//move switchyard xml file back into jar
+			Files.move(unpackedTmpPesistenceFilePath, configFilePath, StandardCopyOption.REPLACE_EXISTING );
+		}
+	}
+
+
+	
 
 	private void modifyConfigurationApplication(Path configFilePath, final String packageName) throws IOException {
 		

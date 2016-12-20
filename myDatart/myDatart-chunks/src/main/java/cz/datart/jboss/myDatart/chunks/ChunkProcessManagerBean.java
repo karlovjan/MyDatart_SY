@@ -1,7 +1,6 @@
 package cz.datart.jboss.myDatart.chunks;
 
 import javax.annotation.Resource;
-import javax.ejb.EJB;
 import javax.enterprise.concurrent.ManagedThreadFactory;
 import javax.inject.Inject;
 
@@ -22,10 +21,10 @@ public class ChunkProcessManagerBean implements ChunkProcessManager {
 	@Reference("ChunkCreation")
 	private ChunkCreation chunkProcessor;
 	
-	@EJB
+	@Inject
 	private ChunkGroupConfigurationStorage chunkGroupConfiguration;
 	
-	@EJB
+	@Inject
 	private ChunkProcessThreadManager chunkGroupWorkerStorage;
 	
 	@Override

@@ -1,7 +1,5 @@
 package cz.datart.jboss.deployer;
 
-import java.io.File;
-
 public class RepackageData {
 
 	public final static String METAINF_FOLDER_NAME = "META-INF";
@@ -21,6 +19,9 @@ public class RepackageData {
 	private String earPackageDescriptorDisplayNameElement = "display-name";
 	private String earPackageDescriptorJavaElement = "java";
 	
+	private String dataSourceName;
+	private String sqlDriver;
+	private boolean showSql;
 	
 	private String packageConfigurationFileName = "application.properties";
 
@@ -189,6 +190,39 @@ public class RepackageData {
 	public String getConfigurationPackageTag() {
 		
 		return "configuration";
+	}
+
+	/**
+	 * 
+	 * @return persistence.xml
+	 */
+	public String getPersistenceXmlFileName() {
+		
+		return "persistence.xml";
+	}
+
+	public String getDataSourceName() {
+		return dataSourceName;
+	}
+
+	public void setDataSourceName(String dataSourceName) {
+		this.dataSourceName = dataSourceName;
+	}
+
+	public String getSqlDriver() {
+		return sqlDriver;
+	}
+
+	public void setSqlDriver(String sqlDriver) {
+		this.sqlDriver = sqlDriver;
+	}
+
+	public boolean isShowSql() {
+		return showSql;
+	}
+
+	public void setShowSql(boolean showSql) {
+		this.showSql = showSql;
 	}
 
 	

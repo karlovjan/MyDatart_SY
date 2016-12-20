@@ -7,10 +7,11 @@ import cz.datart.jboss.myDatart.chunks.IJMSChunkLoader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.annotation.Resource;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
-import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.jms.*;
 import javax.naming.InitialContext;
@@ -18,7 +19,6 @@ import javax.naming.NamingException;
 
 @Stateless
 @Local
-@Dependent
 public class JMSChunkLoader implements IJMSChunkLoader {
  
 //	@Resource(mappedName="jms/ConnectionFactory")
@@ -26,8 +26,7 @@ public class JMSChunkLoader implements IJMSChunkLoader {
 	
 	@Resource(mappedName = "java:/JmsXA")
     private ConnectionFactory cf;
-	private Connection connection;
-
+	
 
 //	@Resource(mappedName="jms/queue/" + producerQueue)
 //	private static Queue queue;
@@ -47,15 +46,15 @@ public class JMSChunkLoader implements IJMSChunkLoader {
 //    private JMSContext context;
 
 
-//    @PostConstruct
-//    void initBean(){
-//    	
-//    }
-//
-//    @PreDestroy
-//    void destroyBean(){
-//    	
-//    }
+    @PostConstruct
+    void init(){
+    	log.info("Creating JMSChunkLoader instance...");
+    }
+
+    @PreDestroy
+    void destroy(){
+    	log.info("Destroying JMSChunkLoader instance...");
+    }
         
 	
 //    @Override
@@ -108,6 +107,12 @@ public class JMSChunkLoader implements IJMSChunkLoader {
     	
     	log.info(String.format("%s: Count of loading Messages from queue %s is %s", thisJobName, queueName, count));
     	
+    	// trim parameters
+        if (count <= 0) {
+        	log.warn("Loading Message count parameter is less than 0");
+            return null;
+        }
+        
     	Queue queue = null;
         try {
        
@@ -121,15 +126,11 @@ public class JMSChunkLoader implements IJMSChunkLoader {
     		return null; // no queue no messages
     	}
     	
-        // trim parameters
-        if (count <= 0) {
-        	log.warn("Messab count in chunk is less than 0");
-            return null;
-        }
+        
 
 		List<String> messages = null; 
 
-		
+		Connection connection = null;
 		try {         
 
             connection = cf.createConnection();

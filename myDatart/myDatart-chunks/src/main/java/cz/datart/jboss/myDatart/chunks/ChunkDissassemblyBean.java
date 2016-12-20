@@ -221,7 +221,7 @@ public class ChunkDissassemblyBean implements ChunkDissassembly {
 	}
 
 	
-	protected void storeItemsToJms(StoreDisassembledItemsJMSService jmsService, List<String> disassembleItems, String queueName) {
+	protected synchronized void storeItemsToJms(StoreDisassembledItemsJMSService jmsService, final List<String> disassembleItems, final String queueName) {
 		for (String item : disassembleItems) {
 			try{
 //				log.info("store to the queue");

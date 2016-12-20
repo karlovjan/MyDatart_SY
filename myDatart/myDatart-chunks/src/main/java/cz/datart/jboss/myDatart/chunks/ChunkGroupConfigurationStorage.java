@@ -1,18 +1,14 @@
 package cz.datart.jboss.myDatart.chunks;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
+import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.PostConstruct;
-import javax.ejb.AccessTimeout;
-import javax.ejb.Lock;
-import javax.ejb.LockType;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
+import javax.annotation.PreDestroy;
+
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import org.apache.log4j.Logger;
 
@@ -21,30 +17,38 @@ import cz.datart.jboss.myDatart.chunks.config.persistence.model.ChunkStatus;
 import cz.datart.jboss.myDatart.chunks.config.persistence.model.Group;
 
 
-@Startup
+//@Startup
 @Singleton
 //@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
-@AccessTimeout(value = 5, unit = TimeUnit.MINUTES)
+//@AccessTimeout(value = 5, unit = TimeUnit.MINUTES)
 public class ChunkGroupConfigurationStorage {
 
 	@Inject
 	private Logger log;
 	
-	private Map<String, Group> mChunkGroups;
+	private final Map<String, Group> mChunkGroups;
+	
+	public ChunkGroupConfigurationStorage() {
+		this.mChunkGroups = new ConcurrentHashMap<>();
+	}
 	
 	@PostConstruct
     private void startup() {
         log.info("Chunk group configuration storage created!");
     }
 
-	
-
-	@Lock(LockType.WRITE)
-	public void setNewChunkGroup(Group newChunkGroup) {
+	@PreDestroy
+	public void destroy(){
+		log.info("Destroying ChunkGroupConfigurationStorage...");
 		
-		if(!isChunkGroupsConfigurationSet()){
-			this.mChunkGroups = new HashMap<>();
-		} 
+		if(mChunkGroups != null){
+			
+			mChunkGroups.clear();
+			
+		}
+	}
+
+	public void setNewChunkGroup(final Group newChunkGroup) {
 		
 		if(newChunkGroup == null){
 			log.warn("A new chunk group is null");
@@ -59,12 +63,7 @@ public class ChunkGroupConfigurationStorage {
 		this.mChunkGroups.put(newChunkGroup.getId(), newChunkGroup);
 	}
 	
-	@Lock(LockType.WRITE)
-	public void setChunkGroup(Group updatedChunkGroup) {
-		
-		if(!isChunkGroupsConfigurationSet()){
-			this.mChunkGroups = new HashMap<>();
-		} 
+	public void setChunkGroup(final Group updatedChunkGroup) {
 		
 		if(updatedChunkGroup == null){
 			log.warn("A modified chunk group is null");
@@ -97,48 +96,30 @@ public class ChunkGroupConfigurationStorage {
 		
 	}
 	
-	@Lock(LockType.READ)
-	public Map<String, Group> getChunkGroups() {
-		return mChunkGroups;
-	}
+//	public Map<String, Group> getChunkGroups() {
+//		return mChunkGroups;
+//	}
 	
-	@Lock(LockType.READ)
-	public boolean isChunkGroupsConfigurationSet() {
-		if( mChunkGroups == null){
-			log.warn("chunk groups storage is not set");
-			return false;
-		}
-		
-		return true;
-	}
-	
-	@Lock(LockType.READ)
 	public int getChunkGroupCount() {
-		return isChunkGroupsConfigurationSet() ? mChunkGroups.size() : 0;
+		return mChunkGroups.size();
 	}
 	
-	@Lock(LockType.READ)
 	public String[] getChunkGroupIds() {
-		return isChunkGroupsConfigurationSet() ? mChunkGroups.keySet().toArray(new String[0]) : new String[0];
+		return mChunkGroups.keySet().toArray(new String[0]);
 	}
 
-	@Lock(LockType.READ)
 	public Group getChunkGroup(String groupId) {
 		
-		return isChunkGroupsConfigurationSet() ? this.mChunkGroups.get(groupId) : null;
+		return this.mChunkGroups.get(groupId);
 	}
 
-	@Lock(LockType.READ)
 	public boolean existChunkGroup(String groupId) {
 		
-		return isChunkGroupsConfigurationSet() ? this.mChunkGroups.containsKey(groupId) : false;
+		return this.mChunkGroups.containsKey(groupId);
 	}
 
-	@Lock(LockType.READ)
 	public boolean notifyAxapta(String chunkName) {
 		
-		if(isChunkGroupsConfigurationSet()){
-			
 			List<Chunk> chunks = new ArrayList<>();
 					
 			for (Group group : this.mChunkGroups.values()) {
@@ -158,7 +139,7 @@ public class ChunkGroupConfigurationStorage {
 				
 				
 			}
-		}
+		
 		return false;
 	}
 }
