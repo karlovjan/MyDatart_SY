@@ -21,6 +21,7 @@ public abstract class AbstractDAOImpl<T extends Serializable> implements Seriali
 	private final Class<T> clazz;
 	
 	@Inject
+	@ChunkConfigurationDb
 	private EntityManager em;
 	
 //	@PostConstruct

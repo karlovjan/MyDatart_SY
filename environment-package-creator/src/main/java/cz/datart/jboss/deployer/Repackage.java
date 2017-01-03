@@ -114,6 +114,7 @@ public class Repackage {
 	private File inputConfigFile;
 	private String packageName;
 	private boolean configurationFileModified;
+	private boolean persistenceConfigModified;
 
 	public void setDatamodel(RepackageData pRepackageConfigData) {
 		
@@ -438,6 +439,10 @@ public class Repackage {
 		nodeName = elementName.item(0).getFirstChild();
 		nodeName.setNodeValue(configData.getDataSourceName());
 		
+//		Element compositeElement = (Element) xmlDoc.getElementsByTagName("persistence-unit").item(0);
+//		compositeElement.setAttribute("name", configData.getChunkPersistenceUnitName());
+		
+		
 		NodeList properties = xmlDoc.getElementsByTagName("property");
 		Element propertyElement;
 		int j = 0;
@@ -446,14 +451,14 @@ public class Repackage {
 			
 			propertyElement = (Element) properties.item(i);
 			
-			if(propertyElement.getAttribute("hibernate.dialect") != null){
-				propertyElement.setAttribute("hibernate.dialect", configData.getSqlDriver());
+			if("hibernate.dialect".equals(propertyElement.getAttribute("name"))){
+				propertyElement.setAttribute("value", configData.getSqlDriver());
 				++j;
-			} else if(propertyElement.getAttribute("hibernate.show_sql") != null){
-				propertyElement.setAttribute("hibernate.show_sql", Utils.toString(configData.isShowSql()));
+			} else if("hibernate.show_sql".equals(propertyElement.getAttribute("name"))){
+				propertyElement.setAttribute("value", Utils.toString(configData.isShowSql()));
 				++j;
-			} else if(propertyElement.getAttribute("hibernate.format_sql") != null){
-				propertyElement.setAttribute("hibernate.format_sql", Utils.toString(configData.isShowSql()));
+			} else if("hibernate.format_sql".equals(propertyElement.getAttribute("name"))){
+				propertyElement.setAttribute("value", Utils.toString(configData.isShowSql()));
 				++j;
 			}
 		}
@@ -577,11 +582,15 @@ public class Repackage {
 //	}
 	
 	private void modifyPersistenceApplication(Path configFilePath, final String packageName) throws IOException, TransformerException {
+		if (this.persistenceConfigModified){
+			return;
+		}
 		
 		Path unpackedTmpPesistenceFilePath = isPersistencePackage(packageName, configFilePath);
 		if(unpackedTmpPesistenceFilePath != null) {
 	    	
-	    	
+			persistenceConfigModified = true;
+			
 			Document xmlDoc = getXmlDocument(unpackedTmpPesistenceFilePath.toFile());
 			
 			if(xmlDoc == null){

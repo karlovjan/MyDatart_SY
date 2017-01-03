@@ -25,6 +25,8 @@ public class RepackageData {
 	
 	private String packageConfigurationFileName = "application.properties";
 
+	private String chunkPersistenceUnitName;
+
 	public RepackageData() {
 		
 	}
@@ -225,7 +227,14 @@ public class RepackageData {
 		this.showSql = showSql;
 	}
 
-	
+	public String getChunkPersistenceUnitName() {
+		
+		return this.chunkPersistenceUnitName;
+	}
+
+	public void setChunkPersistenceUnitName(String chunkPersistenceUnitName) {
+		this.chunkPersistenceUnitName = chunkPersistenceUnitName;
+	}
 	
 	
 }

@@ -16,7 +16,7 @@ public class FileUtils {
 	 */
 	public static String readFile(InputStream input) throws IOException {
         try (BufferedReader buffer = new BufferedReader(new InputStreamReader(input))) {
-            return buffer.lines().collect(Collectors.joining("\n"));
+            return buffer.lines().collect(Collectors.joining(String.format("%n")));//"\n" System.lineSeparator()
         }
     }
 }
