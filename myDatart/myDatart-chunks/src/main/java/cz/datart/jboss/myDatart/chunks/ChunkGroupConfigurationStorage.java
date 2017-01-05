@@ -18,9 +18,9 @@ import cz.datart.jboss.myDatart.chunks.config.persistence.model.Group;
 
 
 //@Startup
-@Singleton
 //@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 //@AccessTimeout(value = 5, unit = TimeUnit.MINUTES)
+@Singleton
 public class ChunkGroupConfigurationStorage {
 
 	@Inject
@@ -41,11 +41,8 @@ public class ChunkGroupConfigurationStorage {
 	public void destroy(){
 		log.info("Destroying ChunkGroupConfigurationStorage...");
 		
-		if(mChunkGroups != null){
-			
-			mChunkGroups.clear();
-			
-		}
+		mChunkGroups.clear();
+		
 	}
 
 	public void setNewChunkGroup(final Group newChunkGroup) {
@@ -61,6 +58,7 @@ public class ChunkGroupConfigurationStorage {
 		newChunkGroup.setStatus(ChunkStatus.FINISHED);
 		
 		this.mChunkGroups.put(newChunkGroup.getId(), newChunkGroup);
+	
 	}
 	
 	public void setChunkGroup(final Group updatedChunkGroup) {
@@ -72,7 +70,7 @@ public class ChunkGroupConfigurationStorage {
 		
 		log.info(String.format("Store a modified chunk group %s", updatedChunkGroup.getId()));
 		
-		Group existingChunkGroup = getChunkGroup(updatedChunkGroup.getId());
+		final Group existingChunkGroup = getChunkGroup(updatedChunkGroup.getId());
 		//exist a chunk group?
 		if(existingChunkGroup != null){
 			//group already exist
@@ -83,7 +81,9 @@ public class ChunkGroupConfigurationStorage {
 			//use the existing finished date
 			updatedChunkGroup.setEndExecutionTime(existingChunkGroup.getEndExecutionTime());
 			
+			
 			this.mChunkGroups.put(existingChunkGroup.getId(), updatedChunkGroup);
+			
 			
 		} else {
 			//a group don't exist
@@ -91,8 +91,6 @@ public class ChunkGroupConfigurationStorage {
 			log.info(String.format("A chunk group %s doesn't exist in the storage", updatedChunkGroup.getId()));
 			setNewChunkGroup(updatedChunkGroup);
 		}
-		
-		
 		
 	}
 	

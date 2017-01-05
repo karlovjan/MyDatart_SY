@@ -57,9 +57,6 @@ public class ChunkGroupMonitorServiceBean implements ChunkGroupMonitor {
 			chunkProcessor.startProcessingChunkGroup(updatedGroup.getId());
 		}
 		
-		
-		
-		
 	}
 
 }

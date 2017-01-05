@@ -1,23 +1,25 @@
-package cz.datart.jboss.myDatart.chunks;
+package cz.datart.jboss.myDatart.chunks.queueing;
 
 import java.util.List;
 
 import javax.inject.Inject;
-
 import org.apache.log4j.Logger;
 import org.switchyard.component.bean.Property;
 import org.switchyard.component.bean.Reference;
 import org.switchyard.component.bean.Service;
 
-@Service(value = DissassembledItemJMSService.class, name = "DissassemblePricesService")
-public class DissassemblePricesServiceBean extends ChunkDissassemblyBean implements DissassembledItemJMSService {
+import cz.datart.jboss.myDatart.utils.ChunkUtils;
 
-//	@Inject
-//	@Reference("StoreDissassembledPricesRef")
-//	private DissassembledItemJMSService jms;
+@Service(value = DissassembledItemJMSService.class, name = "DissassembleProducersService")
+public class DissassembleProducersServiceBean extends ChunkDissassemblyBean implements DissassembledItemJMSService {
 	
 	@Inject
 	private Logger log;
+		
+	
+//	@Reference("StoreDissassembledProducersRef")
+//	private DissassembledItemJMSService jms;
+	
 	
 	@Inject
 	@Reference("StoreDisassembledItemsJMSService")
@@ -33,15 +35,17 @@ public class DissassemblePricesServiceBean extends ChunkDissassemblyBean impleme
 	
 	@Override
 	public void process(String xml) {
-//		dissassemble(jms, xml, ChunkItems.Price);
-		log.info("Dissassemble Price xml items and send items to the chunk queue");
-		List<String> disassembleItems = disassemble(jms, xml, ChunkItems.Price);
 		
-		String queueName = ChunkUtils.getChunkQueueName("Prices", environment, scopeSegment);
+		log.info("Dissassemble Producer xml items and send items to the chunk queue");
+		List<String> disassembleItems = disassemble(jms, xml, ChunkItems.Producer);
+		
+		String queueName = ChunkUtils.getChunkQueueName("Producers", environment, scopeSegment);
 		
 		log.info(String.format("Send items to the chunk queue: %s", queueName));
 		
 		storeItemsToJms(jms, disassembleItems, queueName);
+		
+		
 	}
 
 }

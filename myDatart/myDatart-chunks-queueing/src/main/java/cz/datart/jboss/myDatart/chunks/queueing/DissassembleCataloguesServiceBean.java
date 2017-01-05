@@ -1,4 +1,4 @@
-package cz.datart.jboss.myDatart.chunks;
+package cz.datart.jboss.myDatart.chunks.queueing;
 
 import java.util.List;
 
@@ -9,11 +9,13 @@ import org.switchyard.component.bean.Property;
 import org.switchyard.component.bean.Reference;
 import org.switchyard.component.bean.Service;
 
-@Service(value = DissassembledItemJMSService.class, name = "DissassembleAttributesService")
-public class DissassembleAttributesServiceBean extends ChunkDissassemblyBean implements DissassembledItemJMSService {
+import cz.datart.jboss.myDatart.utils.ChunkUtils;
+
+@Service(value = DissassembledItemJMSService.class, name = "DissassembleCataloguesService")
+public class DissassembleCataloguesServiceBean extends ChunkDissassemblyBean implements DissassembledItemJMSService {
 
 //	@Inject
-//	@Reference("StoreDissassembledAttributesRef")
+//	@Reference("StoreDissassembledCataloguesRef")
 //	private DissassembledItemJMSService jms;
 	
 	@Inject
@@ -33,20 +35,17 @@ public class DissassembleAttributesServiceBean extends ChunkDissassemblyBean imp
 	
 	@Override
 	public void process(String xml) {
+//		dissassemble(jms, xml, ChunkItems.Commodity);
 		
-//		dissassemble(jms, xml, ChunkItems.Attribute);
-		
-		log.info("Dissassemble Attribute xml items and send items to the chunk queue");
-		List<String> disassembleItems = disassemble(jms, xml, ChunkItems.Attribute);
-		
-		String queueName = ChunkUtils.getChunkQueueName("Attributes", environment, scopeSegment);
+		log.info("Dissassemble Catalogue xml items and send items to the chunk queue");
+		List<String> disassembleItems = disassemble(jms, xml, ChunkItems.Catalogue);
+		//fronta Catalogue neni v mnoznem cisle
+		String queueName = ChunkUtils.getChunkQueueName("Catalogue", environment, scopeSegment);
 		
 		log.info(String.format("Send items to the chunk queue: %s", queueName));
 		
 		storeItemsToJms(jms, disassembleItems, queueName);
 		
 	}
-	
-	
 
 }

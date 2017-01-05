@@ -17,6 +17,8 @@ import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.test.SwitchYardTestKit;
 
+import cz.datart.jboss.myDatart.utils.ChunkUtils;
+
 @RunWith(SwitchYardRunner.class)
 @SwitchYardTestCaseConfig(config = SwitchYardTestCaseConfig.SWITCHYARD_XML, mixins = { CDIMixIn.class, HornetQMixIn.class, TransactionMixIn.class })
 public class SendChunkToEshopServiceTest {

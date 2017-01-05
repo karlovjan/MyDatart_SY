@@ -53,6 +53,8 @@ public class ChunkProcessManagerBean implements ChunkProcessManager {
 		
 		
 		worker.start();
+		
+		
 	}
 
 	@Override
@@ -70,6 +72,7 @@ public class ChunkProcessManagerBean implements ChunkProcessManager {
 		for (String chunkGroupID : chunkGroupsIDs) {
 			startProcessingChunkGroup(chunkGroupID);
 		}
+		
 	}
 
 	@Override
@@ -90,6 +93,7 @@ public class ChunkProcessManagerBean implements ChunkProcessManager {
 		if(worker != null){
 			worker.stop();
 		}
+		
 	}
 
 	@Override

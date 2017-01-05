@@ -1,4 +1,4 @@
-package cz.datart.jboss.myDatart.chunks;
+package cz.datart.jboss.myDatart.chunks.queueing;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;

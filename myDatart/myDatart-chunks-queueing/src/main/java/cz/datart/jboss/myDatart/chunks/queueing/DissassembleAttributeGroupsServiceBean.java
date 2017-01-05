@@ -1,4 +1,4 @@
-package cz.datart.jboss.myDatart.chunks;
+package cz.datart.jboss.myDatart.chunks.queueing;
 
 import java.util.List;
 
@@ -8,6 +8,9 @@ import org.apache.log4j.Logger;
 import org.switchyard.component.bean.Property;
 import org.switchyard.component.bean.Reference;
 import org.switchyard.component.bean.Service;
+
+import cz.datart.jboss.myDatart.utils.ChunkUtils;
+
 
 @Service(value = DissassembledItemJMSService.class, name = "DissassembleAttributeGroupsService")
 public class DissassembleAttributeGroupsServiceBean extends ChunkDissassemblyBean implements DissassembledItemJMSService {

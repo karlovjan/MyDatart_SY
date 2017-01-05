@@ -1,4 +1,4 @@
-package cz.datart.jboss.myDatart.chunks;
+package cz.datart.jboss.myDatart.chunks.queueing;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -20,6 +20,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+
 
 public class ChunkDissassemblyBean implements ChunkDissassembly {
 

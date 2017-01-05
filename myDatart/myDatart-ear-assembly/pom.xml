@@ -63,6 +63,11 @@
 			<groupId>cz.datart.jboss.myDatart.chunks</groupId>
 			<artifactId>myDatart-chunks</artifactId>
 		</dependency>
+		
+		<dependency>
+			<groupId>cz.datart.jboss.myDatart.chunks.queueing</groupId>
+			<artifactId>myDatart-chunks-queueing</artifactId>
+		</dependency>
 
 	</dependencies>
 	<build>
@@ -122,6 +127,12 @@
 						<jarModule>
 							<groupId>cz.datart.jboss.myDatart.chunks</groupId>
 							<artifactId>myDatart-chunks</artifactId>
+							<includeInApplicationXml>true</includeInApplicationXml>
+						</jarModule>
+						
+						<jarModule>
+							<groupId>cz.datart.jboss.myDatart.chunks.queueing</groupId>
+							<artifactId>myDatart-chunks-queueing</artifactId>
 							<includeInApplicationXml>true</includeInApplicationXml>
 						</jarModule>
 

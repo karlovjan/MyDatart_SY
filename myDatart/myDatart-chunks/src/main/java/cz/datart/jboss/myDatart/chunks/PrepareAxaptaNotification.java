@@ -5,6 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 
 import cz.datart.jboss.myDatart.chunks.exception.EmptyResponseException;
 import cz.datart.jboss.myDatart.chunks.exception.SoapFaultException;
+import cz.datart.jboss.myDatart.utils.ChunkUtils;
 
 public class PrepareAxaptaNotification extends RouteBuilder {
 

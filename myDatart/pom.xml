@@ -44,6 +44,7 @@
     <module>myDatart-configuration</module>
     <module>myDatart-utilities</module>
     <module>myDatart-chunks</module>
+    <module>myDatart-chunks-queueing</module>
   </modules>
   
   
@@ -125,6 +126,12 @@
 	        <dependency>
 	            <groupId>cz.datart.jboss.myDatart.chunks</groupId>
 			    <artifactId>myDatart-chunks</artifactId>
+			    <version>${project.version}</version>
+	        </dependency>
+	        
+	        <dependency>
+	            <groupId>cz.datart.jboss.myDatart.chunks.queueing</groupId>
+			    <artifactId>myDatart-chunks-queueing</artifactId>
 			    <version>${project.version}</version>
 	        </dependency>
 	 

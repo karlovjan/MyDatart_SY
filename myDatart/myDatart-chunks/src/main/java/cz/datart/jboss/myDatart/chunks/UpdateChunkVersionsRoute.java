@@ -3,6 +3,8 @@ package cz.datart.jboss.myDatart.chunks;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 
+import cz.datart.jboss.myDatart.utils.ChunkUtils;
+
 public class UpdateChunkVersionsRoute extends RouteBuilder {
 
 	private static final String LOG_NAME = "UpdateChunkVersionsRoute";

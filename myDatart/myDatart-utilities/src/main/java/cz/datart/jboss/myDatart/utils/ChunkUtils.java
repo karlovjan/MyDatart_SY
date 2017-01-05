@@ -1,8 +1,7 @@
-package cz.datart.jboss.myDatart.chunks;
+package cz.datart.jboss.myDatart.utils;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import cz.datart.jboss.myDatart.utils.BodyTransformer;
 
 public class ChunkUtils {
 

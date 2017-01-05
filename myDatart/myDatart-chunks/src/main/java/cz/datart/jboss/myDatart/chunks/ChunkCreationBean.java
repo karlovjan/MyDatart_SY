@@ -16,6 +16,7 @@ import org.switchyard.component.bean.Reference;
 import org.switchyard.component.bean.Service;
 
 import cz.datart.jboss.myDatart.chunks.config.persistence.model.Chunk;
+import cz.datart.jboss.myDatart.utils.ChunkUtils;
 
 
 @Service(ChunkCreation.class)

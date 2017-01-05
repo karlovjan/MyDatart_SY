@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sy:switchyard xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" xmlns:sy="urn:switchyard-config:switchyard:2.0" name="myDatart-chunks-queueing" targetNamespace="urn:cz.datart.jboss.myDatart.chunks.queueing:myDatart-chunks-queueing:1.0">
+  <sca:composite name="myDatart-chunks-queueing" targetNamespace="urn:cz.datart.jboss.myDatart.chunks.queueing:myDatart-chunks-queueing:1.0">
+    <sca:component name="EshopChunkUpdateRoute">
+      <camel:implementation.camel>
+        <camel:java class="cz.datart.jboss.myDatart.chunks.queueing.EshopChunkUpdateRoute"/>
+      </camel:implementation.camel>
+      <sca:service name="EshopChunkUpdateService">
+        <sca:interface.wsdl interface="wsdl/chunkUpdate.wsdl#wsdl.porttype(EsbChunkUpdate)"/>
+      </sca:service>
+      <sca:reference name="DissassembleCategoriesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleAvailabilitiesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassemblePricesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleAttributesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleAttributeGroupsService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleCataloguesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleRelationsService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:reference>
+      <sca:reference name="DissassembleProducersService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:service name="EshopChunkUpdateService" promote="EshopChunkUpdateRoute/EshopChunkUpdateService">
+      <sca:interface.wsdl interface="wsdl/chunkUpdate.wsdl#wsdl.porttype(EsbChunkUpdate)"/>
+      <soap:binding.soap name="eshopChunkUpdateSoapBinding">
+        <soap:contextMapper soapHeadersType="VALUE"/>
+        <soap:messageComposer unwrapped="true"/>
+        <soap:wsdl>wsdl/chunkUpdate.wsdl</soap:wsdl>
+        <soap:socketAddr>:${soapPort}</soap:socketAddr>
+        <soap:contextPath>${chunks.update.context.path}</soap:contextPath>
+      </soap:binding.soap>
+    </sca:service>
+    <sca:component name="DissassembleCategoriesServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.queueing.DissassembleCategoriesServiceBean"/>
+      <sca:service name="DissassembleCategoriesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="StoreDisassembledItemsJMSServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.queueing.StoreDisassembledItemsJMSServiceBean"/>
+      <sca:service name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.StoreDisassembledItemsJMSService"/>
+      </sca:service>
+    </sca:component>
+    <sca:component name="DissassembleAvailabilitiesServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.queueing.DissassembleAvailabilitiesServiceBean"/>
+      <sca:service name="DissassembleAvailabilitiesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassemblePricesServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.queueing.DissassemblePricesServiceBean"/>
+      <sca:service name="DissassemblePricesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleAttributesServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.queueing.DissassembleAttributesServiceBean"/>
+      <sca:service name="DissassembleAttributesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleAttributeGroupsServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.queueing.DissassembleAttributeGroupsServiceBean"/>
+      <sca:service name="DissassembleAttributeGroupsService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleCataloguesServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.queueing.DissassembleCataloguesServiceBean"/>
+      <sca:service name="DissassembleCataloguesService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleRelationsServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.queueing.DissassembleRelationsServiceBean"/>
+      <sca:service name="DissassembleRelationsService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+    <sca:component name="DissassembleProducersServiceBean">
+      <bean:implementation.bean class="cz.datart.jboss.myDatart.chunks.queueing.DissassembleProducersServiceBean"/>
+      <sca:service name="DissassembleProducersService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.DissassembledItemJMSService"/>
+      </sca:service>
+      <sca:reference name="StoreDisassembledItemsJMSService">
+        <sca:interface.java interface="cz.datart.jboss.myDatart.chunks.queueing.StoreDisassembledItemsJMSService"/>
+      </sca:reference>
+    </sca:component>
+  </sca:composite>
+  <sy:domain>
+    <sy:properties load="application.properties"/>
+  </sy:domain>
+</sy:switchyard>
