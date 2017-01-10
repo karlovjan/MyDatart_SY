@@ -4,13 +4,27 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0">
   <xs:complexType name="group">
     <xs:sequence>
-      <xs:element minOccurs="0" name="cronExpression" type="xs:string"/>
+      <xs:element minOccurs="1" name="cronExpression" type="xs:string" nillable="false"/>
       <xs:element minOccurs="0" name="endExecutionTime" type="xs:dateTime"/>
-      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="1" name="id" type="xs:string" nillable="false" maxOccurs="1"/>
       <xs:element minOccurs="0" name="modifiedOn" type="xs:dateTime"/>
-      <xs:element name="resendCount" type="xs:int"/>
+      <xs:element name="resendCount" type="xs:int" minOccurs="1"/>
       <xs:element minOccurs="0" name="startExecutionTime" type="xs:dateTime"/>
       <xs:element minOccurs="0" name="status" type="tns:chunkStatus"/>
+      <xs:element minOccurs="1" name="chunks" type="tns:chunkList"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="chunkList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="1" name="chunk" nillable="true" type="tns:chunk"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="chunk">
+    <xs:sequence>
+      <xs:element minOccurs="1" name="confirmation" type="xs:boolean"/>
+      <xs:element minOccurs="1" name="count" type="xs:int"/>
+      <xs:element minOccurs="1" name="name" type="xs:string"/>
+      <xs:element minOccurs="1" name="sequence" type="xs:int"/>
     </xs:sequence>
   </xs:complexType>
   <xs:simpleType name="chunkStatus">
@@ -26,7 +40,7 @@
   <xs:element name="get" type="tns:get"/>
   <xs:complexType name="get">
     <xs:sequence>
-      <xs:element minOccurs="0" name="string" type="xs:string"/>
+      <xs:element minOccurs="0" name="chunkGroupID" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="getResponse" type="tns:getResponse"/>
@@ -38,7 +52,7 @@
   <xs:element name="delete" type="tns:delete"/>
   <xs:complexType name="delete">
     <xs:sequence>
-      <xs:element minOccurs="0" name="string" type="xs:string"/>
+      <xs:element minOccurs="0" name="chunkGroupID" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="getAll" type="tns:getAll"/>
@@ -54,13 +68,13 @@
   <xs:element name="create" type="tns:create"/>
   <xs:complexType name="create">
     <xs:sequence>
-      <xs:element minOccurs="0" name="group" type="tns:group"/>
+      <xs:element minOccurs="0" name="chunkGroup" type="tns:group"/>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="update" type="tns:update"/>
   <xs:complexType name="update">
     <xs:sequence>
-      <xs:element minOccurs="0" name="group" type="tns:group"/>
+      <xs:element minOccurs="0" name="chunkGroup" type="tns:group"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
