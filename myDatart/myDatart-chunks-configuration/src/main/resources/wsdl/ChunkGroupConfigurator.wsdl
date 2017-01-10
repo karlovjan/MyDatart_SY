@@ -1,68 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions name="ChunkGroupConfigurator" targetNamespace="urn:cz.datart.jboss:chunk-configuration:1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:cz.datart.jboss:chunk-configuration:1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+<wsdl:definitions name="ChunkGroupConfigurator" targetNamespace="urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
   <wsdl:types>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:cz.datart.jboss:chunk-configuration:1.0" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:cz.datart.jboss:chunk-configuration:1.0">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0">
   <xs:complexType name="group">
     <xs:sequence>
-      <xs:element minOccurs="1" name="chunks" type="tns:chunkList"/>
       <xs:element minOccurs="0" name="cronExpression" type="xs:string"/>
       <xs:element minOccurs="0" name="endExecutionTime" type="xs:dateTime"/>
-      <xs:element minOccurs="1" name="id" type="xs:string" />
+      <xs:element minOccurs="0" name="id" type="xs:string"/>
+      <xs:element minOccurs="0" name="modifiedOn" type="xs:dateTime"/>
       <xs:element name="resendCount" type="xs:int"/>
       <xs:element minOccurs="0" name="startExecutionTime" type="xs:dateTime"/>
       <xs:element minOccurs="0" name="status" type="tns:chunkStatus"/>
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="chunkList">
-    <xs:sequence>
-      <xs:element maxOccurs="unbounded" minOccurs="1" name="chunk" nillable="true" type="tns:chunk"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:complexType name="chunk">
-    <xs:sequence>
-      <xs:element minOccurs="1" name="confirmation" type="xs:boolean"/>
-      <xs:element minOccurs="1" name="count" type="xs:int"/>
-      <xs:element minOccurs="1" name="name" type="xs:string"/>
-      <xs:element minOccurs="1" name="sequence" type="xs:int"/>
-    </xs:sequence>
-  </xs:complexType>
   <xs:simpleType name="chunkStatus">
     <xs:restriction base="xs:string">
+      <xs:enumeration value="NEW"/>
+      <xs:enumeration value="UPDATED"/>
+      <xs:enumeration value="DELETED"/>
       <xs:enumeration value="RUNNING"/>
       <xs:enumeration value="SUSPENDED"/>
+      <xs:enumeration value="FINISHED"/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:element name="getAll" type="tns:getAll"/>
-  <xs:complexType name="getAll">
-    <xs:sequence/>
-  </xs:complexType>
-  <xs:element name="getAllResponse" type="tns:getAllResponse"/>
-<!--   <xs:complexType name="getAllResponse"> -->
-<!--     <xs:sequence> -->
-<!--       <xs:element maxOccurs="unbounded" minOccurs="0" name="list" type="tns:group"/> -->
-<!--     </xs:sequence> -->
-<!--   </xs:complexType> -->
-	<xs:complexType name="getAllResponse">
-		<xs:sequence>
-			<xs:element name="group" type="tns:group" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-  <xs:element name="create" type="tns:create"/>
-  <xs:complexType name="create">
-    <xs:sequence>
-      <xs:element minOccurs="1" name="group" type="tns:group"/>
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="update" type="tns:update"/>
-  <xs:complexType name="update">
-    <xs:sequence>
-      <xs:element minOccurs="1" name="group" type="tns:group"/>
-    </xs:sequence>
-  </xs:complexType>
   <xs:element name="get" type="tns:get"/>
   <xs:complexType name="get">
     <xs:sequence>
-      <xs:element minOccurs="1" name="chunkGroupID" type="xs:string"/>
+      <xs:element minOccurs="0" name="string" type="xs:string"/>
     </xs:sequence>
   </xs:complexType>
   <xs:element name="getResponse" type="tns:getResponse"/>
@@ -74,25 +38,35 @@
   <xs:element name="delete" type="tns:delete"/>
   <xs:complexType name="delete">
     <xs:sequence>
-      <xs:element minOccurs="1" name="chunkGroupID" type="xs:string"/>
+      <xs:element minOccurs="0" name="string" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="getAll" type="tns:getAll"/>
+  <xs:complexType name="getAll">
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="getAllResponse" type="tns:getAllResponse"/>
+  <xs:complexType name="getAllResponse">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="list" type="tns:group"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="create" type="tns:create"/>
+  <xs:complexType name="create">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="group" type="tns:group"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="update" type="tns:update"/>
+  <xs:complexType name="update">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="group" type="tns:group"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>
   </wsdl:types>
-  <wsdl:message name="getAll">
-    <wsdl:part name="parameters" element="tns:getAll">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="getAllResponse">
-    <wsdl:part name="list" element="tns:getAllResponse" />
-   
-  </wsdl:message>
-  <wsdl:message name="getResponse">
-    <wsdl:part name="parameters" element="tns:getResponse">
-    </wsdl:part>
-  </wsdl:message>
-  <wsdl:message name="get">
-    <wsdl:part name="parameters" element="tns:get">
+  <wsdl:message name="delete">
+    <wsdl:part name="parameters" element="tns:delete">
     </wsdl:part>
   </wsdl:message>
   <wsdl:message name="create">
@@ -103,11 +77,33 @@
     <wsdl:part name="parameters" element="tns:update">
     </wsdl:part>
   </wsdl:message>
-  <wsdl:message name="delete">
-    <wsdl:part name="parameters" element="tns:delete">
+  <wsdl:message name="getResponse">
+    <wsdl:part name="parameters" element="tns:getResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllResponse">
+    <wsdl:part name="parameters" element="tns:getAllResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="get">
+    <wsdl:part name="parameters" element="tns:get">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAll">
+    <wsdl:part name="parameters" element="tns:getAll">
     </wsdl:part>
   </wsdl:message>
   <wsdl:portType name="ChunkGroupConfiguratorPortType">
+    <wsdl:operation name="get">
+      <wsdl:input name="get" message="tns:get">
+    </wsdl:input>
+      <wsdl:output name="getResponse" message="tns:getResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <wsdl:input name="delete" message="tns:delete">
+    </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="getAll">
       <wsdl:input name="getAll" message="tns:getAll">
     </wsdl:input>
@@ -122,19 +118,24 @@
       <wsdl:input name="update" message="tns:update">
     </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="get">
-      <wsdl:input name="get" message="tns:get">
-    </wsdl:input>
-      <wsdl:output name="getResponse" message="tns:getResponse">
-    </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="delete">
-      <wsdl:input name="delete" message="tns:delete">
-    </wsdl:input>
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ChunkGroupConfiguratorSoapBinding" type="tns:ChunkGroupConfiguratorPortType">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="get">
+      <soap:operation soapAction="get" style="document"/>
+      <wsdl:input name="get">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="delete">
+      <soap:operation soapAction="delete" style="document"/>
+      <wsdl:input name="delete">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
     <wsdl:operation name="getAll">
       <soap:operation soapAction="getAll" style="document"/>
       <wsdl:input name="getAll">
@@ -156,25 +157,10 @@
         <soap:body use="literal"/>
       </wsdl:input>
     </wsdl:operation>
-    <wsdl:operation name="get">
-      <soap:operation soapAction="get" style="document"/>
-      <wsdl:input name="get">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="getResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="delete">
-      <soap:operation soapAction="delete" style="document"/>
-      <wsdl:input name="delete">
-        <soap:body use="literal"/>
-      </wsdl:input>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ChunkGroupConfigurator">
     <wsdl:port name="ChunkGroupConfiguratorPort" binding="tns:ChunkGroupConfiguratorSoapBinding">
-      <soap:address location="http://localhost:8080/chunk-configuration/ChunkGroupConfigurator"/>
+      <soap:address location="http://localhost:8080/myDatart-chunks-configuration/ChunkGroupConfigurator"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

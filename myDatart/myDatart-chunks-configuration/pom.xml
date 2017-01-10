@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>cz.datart.jboss.myDatart.chunks.config</groupId>
 	<artifactId>myDatart-chunks-configuration</artifactId>
-	<!-- <version>1.0</version> -->
+	<version>1.0</version>
 	<name>myDatart-chunks-configuration</name>
 	<url>http://maven.apache.org</url>
 	<properties>

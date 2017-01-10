@@ -3,11 +3,14 @@ package cz.datart.jboss.myDatart.chunks.config.jpa.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
+
+import org.apache.log4j.Logger;
 
 @Dependent
 @Transactional
@@ -18,16 +21,21 @@ public abstract class AbstractDAOImpl<T extends Serializable> implements Seriali
 	 */
 	private static final long serialVersionUID = -4827756917846496269L;
 
+	
 	private final Class<T> clazz;
+	
+	@Inject
+	private Logger log;
 	
 	@Inject
 	@ChunkConfigurationDb
 	private EntityManager em;
 	
-//	@PostConstruct
-//	public void testInit () {
-//	    return;
-//	}
+	@PostConstruct
+	public void testInit () {
+		log.info(String.format("%s DAO impl is created..", clazz.getSimpleName()));
+	    return;
+	}
 	
 	public AbstractDAOImpl(Class<T> clazz) {
 		this.clazz = clazz;
@@ -68,7 +76,7 @@ public abstract class AbstractDAOImpl<T extends Serializable> implements Seriali
 	
 	@Override
 	public void deleteAll() {
-		//TODO update version of wildfly
+		
 		//You should upgrade your hibernate version to a version that implements JPA 2.1 (Hibernate starts JPA 2.1 on version 4.3.11.Final 
 				
 //		final CriteriaDelete<T> criteriaDelete =
@@ -78,14 +86,14 @@ public abstract class AbstractDAOImpl<T extends Serializable> implements Seriali
 //				
 //		em.createQuery(criteriaDelete).executeUpdate();
 
-//		final CriteriaQuery<T> criteriaDelete =
-//				em.getCriteriaBuilder().createQuery(clazz);
-//				
-//		criteriaDelete.from(clazz);
+		final CriteriaQuery<T> criteriaDelete =
+				em.getCriteriaBuilder().createQuery(clazz);
+				
+		criteriaDelete.from(clazz);
 		
-//		final String deleteString = "DELETE FROM " + clazz.getSimpleName(); //chunk_groups
+		final String deleteString = "DELETE FROM " + clazz.getSimpleName(); //chunk_groups
 		
-//		 em.createQuery(deleteString).executeUpdate();
+		 em.createQuery(deleteString).executeUpdate();
 	}
 	
 	@Override

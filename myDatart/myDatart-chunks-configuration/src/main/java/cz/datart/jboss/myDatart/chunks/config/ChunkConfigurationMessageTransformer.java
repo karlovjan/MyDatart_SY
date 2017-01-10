@@ -30,11 +30,11 @@ public final class ChunkConfigurationMessageTransformer {
 	@Inject
 	private Logger LOG;
 
-	@Transformer(to = "{urn:cz.datart.jboss:chunk-configuration:1.0}getResponse")
+	@Transformer(to = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}getResponse")
 	public Element transformGroupToGetResponse(Group from) {
 		
 		StringBuffer xml = new StringBuffer()
-	            .append("<urn:getResponse xmlns:urn=\"cz.datart.jboss:chunk-configuration:1.0\">");
+	            .append("<urn:getResponse xmlns:urn=\"cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0\">");
 	            
 		if(from != null){
 			
@@ -141,11 +141,11 @@ public final class ChunkConfigurationMessageTransformer {
 		return xmlSB.toString();
 	}
 
-	@Transformer(to = "{urn:cz.datart.jboss:chunk-configuration:1.0}getAllResponse")
+	@Transformer(to = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}getAllResponse")
 	public Element transformListToGetAllResponse(List<Group> from) {
 		
 		StringBuffer xml = new StringBuffer()
-	            .append("<urn:getAllResponse xmlns:urn=\"cz.datart.jboss:chunk-configuration:1.0\"><list>");
+	            .append("<urn:getAllResponse xmlns:urn=\"cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0\"><list>");
 	            
 		if(from != null){
 			LOG.info(String.format("Group Count: %d", from.size()));
@@ -171,7 +171,7 @@ public final class ChunkConfigurationMessageTransformer {
 		return result;
 	}
 
-	@Transformer(from = "{urn:cz.datart.jboss:chunk-configuration:1.0}create")
+	@Transformer(from = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}create")
 	public Group transformCreateToGroup(Element from) {
 		Group chunk_group = new Group();
 
@@ -204,19 +204,19 @@ public final class ChunkConfigurationMessageTransformer {
         return chunk_group;
 	}
 
-	@Transformer(from = "{urn:cz.datart.jboss:chunk-configuration:1.0}delete")
+	@Transformer(from = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}delete")
 	public String transformDeleteToString(Element from) {
 		
 		return getElementValue(from, "chunkGroupID");
 	}
 
-	@Transformer(from = "{urn:cz.datart.jboss:chunk-configuration:1.0}get")
+	@Transformer(from = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}get")
 	public String transformGetToString(Element from) {
 		
 		return getElementValue(from, "chunkGroupID");
 	}
 
-	@Transformer(from = "{urn:cz.datart.jboss:chunk-configuration:1.0}update")
+	@Transformer(from = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}update")
 	public Group transformUpdateToGroup(Element from) {
 		
 		LOG.info("--- Update chunk group ---" );

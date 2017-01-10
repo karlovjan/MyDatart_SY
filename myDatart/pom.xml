@@ -118,7 +118,7 @@
 	        </dependency>
 	        
 	        <dependency>
-	            <groupId>cz.datart.jboss.myDatart</groupId>
+	            <groupId>cz.datart.jboss.myDatart.eshop.notification</groupId>
 			    <artifactId>myDatart-eshop-notification</artifactId>
 			    <version>${project.version}</version>
 	        </dependency>

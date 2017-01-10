@@ -7,6 +7,7 @@
     <artifactId>myDatart</artifactId>
     <version>1.0</version>
   </parent>
+  <groupId>cz.datart.jboss.myDatart.eshop.notification</groupId>
   <artifactId>myDatart-eshop-notification</artifactId>
   <name>Eshop notification</name>
   <description>Notification eshop by Axapta and update eshop</description>

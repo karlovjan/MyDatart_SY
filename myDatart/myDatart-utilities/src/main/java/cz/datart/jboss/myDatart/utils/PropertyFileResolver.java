@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Singleton;
+//import javax.annotation.PostConstruct;
+//import javax.inject.Singleton;
 
-@Singleton
+//@Singleton
 public class PropertyFileResolver {
 	
 	private String configFileName;
@@ -22,8 +22,8 @@ public class PropertyFileResolver {
 		this.configFileName = configFileName;
 	}
 
-	@PostConstruct
-    private void init() throws IOException {
+	//@PostConstruct
+    protected void init() {
           
         //matches the property name as defined in the system-properties element in WildFly
 //        String propertyFile = System.getProperty("application.properties");

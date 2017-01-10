@@ -1,5 +1,5 @@
 <wsdl:definitions
-        name="EshopUpdateNotificationService"
+        name="AxaNotificationService"
         targetNamespace="http://myDatart.doxologic.com/"
         xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
         xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
@@ -302,7 +302,7 @@
         </wsdl:operation>
     </wsdl:binding>
 
-    <wsdl:service name="EshopUpdateNotificationService">
+    <wsdl:service name="AxaNotificationServiceEndpoint">
         <wsdl:port binding="tns:AxaAdviceEndpointBinding" name="AxaAdviceEndpointPort">
             <soap:address location="http://127.0.0.1:8080/myDatart/http/axaptaNotify"/>
         </wsdl:port>

@@ -12,7 +12,6 @@ public class NotifyAxaptaRoute extends RouteBuilder {
 	 */
 	public void configure() {
 		
-		
 		from("switchyard://NotifyAxaptaService")
 		
 		

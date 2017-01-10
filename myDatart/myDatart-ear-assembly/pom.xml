@@ -55,7 +55,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>cz.datart.jboss.myDatart</groupId>
+			<groupId>cz.datart.jboss.myDatart.eshop.notification</groupId>
 			<artifactId>myDatart-eshop-notification</artifactId>
 		</dependency>
 
@@ -119,7 +119,7 @@
 						</jarModule>
 
 						<jarModule>
-							<groupId>cz.datart.jboss.myDatart</groupId>
+							<groupId>cz.datart.jboss.myDatart.eshop.notification</groupId>
 							<artifactId>myDatart-eshop-notification</artifactId>
 							<includeInApplicationXml>true</includeInApplicationXml>
 						</jarModule>

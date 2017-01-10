@@ -8,9 +8,10 @@ import javax.inject.Singleton;
 
 import org.apache.log4j.Logger;
 
-@Singleton
+//@Singleton
 //@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
 //@AccessTimeout(value = 5, unit = TimeUnit.MINUTES)
+@Singleton
 public class ChunkProcessThreadManager extends ConcurrentHashMap<String, IChunkProcessWorker> {
 
 	/**

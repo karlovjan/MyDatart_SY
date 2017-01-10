@@ -2,12 +2,8 @@
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd" version="7">
   <description>Ear assembly project</description>
   <display-name>myDatart-ear-assembly</display-name>
-  <module>
-    <java>myDatart-chunks-config-jpa-dao-1.0.jar</java>
-  </module>
-  <module>
-    <java>myDatart-chunks-configuration-1.0.jar</java>
-  </module>
+  <initialize-in-order>true</initialize-in-order>
+  
   <module>
     <java>myDatart-erpUpdate-1.0.jar</java>
   </module>
@@ -15,10 +11,17 @@
     <java>myDatart-eshop-notification-1.0.jar</java>
   </module>
   <module>
-    <java>myDatart-chunks-1.0.jar</java>
-  </module>
-  <module>
     <java>myDatart-chunks-queueing-1.0.jar</java>
   </module>
+  <module>
+    <java>myDatart-chunks-config-jpa-dao-1.0.jar</java>
+  </module>
+  <module>
+    <java>myDatart-chunks-configuration-1.0.jar</java>
+  </module>
+  <module>
+    <java>myDatart-chunks-1.0.jar</java>
+  </module>
+  
   <library-directory>lib</library-directory>
 </application>

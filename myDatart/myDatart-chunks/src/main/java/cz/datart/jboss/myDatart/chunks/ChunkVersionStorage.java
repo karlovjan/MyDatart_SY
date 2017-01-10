@@ -10,8 +10,9 @@ import javax.inject.Singleton;
 import org.apache.log4j.Logger;
 
 
-@Singleton
+//@Singleton
 //@ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
+@Singleton
 public class ChunkVersionStorage extends ConcurrentHashMap<String, String> {
 
 	//pri @ConcurrencyManagement( nesmim pouzit @Lock( protoze je containerem ignorovan, defaultne jsou vsechny metody @LOck(Write), musim 

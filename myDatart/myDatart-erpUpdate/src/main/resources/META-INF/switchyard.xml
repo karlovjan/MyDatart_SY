@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<switchyard xmlns="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" xmlns:trfm="urn:switchyard-config:transform:2.0" xmlns:vldt="urn:switchyard-config:validate:2.0" name="myDatart-erpUpdate" targetNamespace="urn:cz.datart.jboss.myDatart.erpUpdate:myDatart-erpUpdate:1.0.0">
-  <sca:composite name="myDatart-erpUpdate" targetNamespace="urn:cz.datart.jboss.myDatart.erpUpdate:myDatart-erpUpdate:1.0.0">
+<switchyard xmlns="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" xmlns:trfm="urn:switchyard-config:transform:2.0" xmlns:vldt="urn:switchyard-config:validate:2.0" name="myDatart-erpUpdate" targetNamespace="urn:cz.datart.jboss.myDatart.erpUpdate:myDatart-erpUpdate:1.0">
+  <sca:composite name="myDatart-erpUpdate" targetNamespace="urn:cz.datart.jboss.myDatart.erpUpdate:myDatart-erpUpdate:1.0">
     <sca:component name="BambinoErpUpdateServiceRoute">
       <camel:implementation.camel>
         <camel:java class="cz.datart.jboss.myDatart.erpUpdate.BambinoErpUpdateRoute"/>

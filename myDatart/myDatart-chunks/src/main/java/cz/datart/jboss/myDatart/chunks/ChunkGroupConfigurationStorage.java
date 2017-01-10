@@ -33,7 +33,7 @@ public class ChunkGroupConfigurationStorage {
 	}
 	
 	@PostConstruct
-    private void startup() {
+    protected void startup() {
         log.info("Chunk group configuration storage created!");
     }
 
