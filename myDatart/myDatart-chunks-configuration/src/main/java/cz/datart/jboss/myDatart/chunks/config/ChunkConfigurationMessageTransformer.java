@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.stream.StreamSource;
@@ -23,15 +21,16 @@ import cz.datart.jboss.myDatart.chunks.config.persistence.model.Group;
 
 import org.w3c.dom.Node;
 
-@Dependent
 public final class ChunkConfigurationMessageTransformer {
 	
-//	private static final Logger LOG = Logger.getLogger(ChunkConfigurationMessageTransformer.class);
-	@Inject
-	private Logger LOG;
+	private final Logger LOG = Logger.getLogger(ChunkConfigurationMessageTransformer.class);
+//	@Inject  neinjektuje se, haze se null pointer exception
+//	private Logger LOG;
 
 	@Transformer(to = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}getResponse")
 	public Element transformGroupToGetResponse(Group from) {
+		
+		LOG.info("--- Transform Group to xml elemnt ---" );
 		
 		StringBuffer xml = new StringBuffer()
 	            .append("<urn:getResponse xmlns:urn=\"cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0\">");
@@ -144,6 +143,8 @@ public final class ChunkConfigurationMessageTransformer {
 	@Transformer(to = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}getAllResponse")
 	public Element transformListToGetAllResponse(List<Group> from) {
 		
+		LOG.info("--- Transform List of Group to xml elemnt ---" );
+		
 		StringBuffer xml = new StringBuffer()
 	            .append("<urn:getAllResponse xmlns:urn=\"cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0\"><list>");
 	            
@@ -173,6 +174,9 @@ public final class ChunkConfigurationMessageTransformer {
 
 	@Transformer(from = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}create")
 	public Group transformCreateToGroup(Element from) {
+		
+		LOG.info("--- Transform Create xml elemnt to java chunk group class ---" );
+		
 		Group chunk_group = new Group();
 
 		chunk_group.setCronExpression(getElementValue(from, "cronExpression"));
@@ -206,20 +210,20 @@ public final class ChunkConfigurationMessageTransformer {
 
 	@Transformer(from = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}delete")
 	public String transformDeleteToString(Element from) {
-		
+		LOG.info("--- Transform Delete xml elemnt to chunkGroupID String ---" );
 		return getElementValue(from, "chunkGroupID");
 	}
 
 	@Transformer(from = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}get")
 	public String transformGetToString(Element from) {
-		
+		LOG.info("--- Transform Get xml elemnt to chunkGroupID String ---" );
 		return getElementValue(from, "chunkGroupID");
 	}
 
 	@Transformer(from = "{urn:cz.datart.jboss.myDatart.chunks.config:myDatart-chunks-configuration:1.0}update")
 	public Group transformUpdateToGroup(Element from) {
 		
-		LOG.info("--- Update chunk group ---" );
+		LOG.info("--- Transform Update xml elemnt to java chunk group class ---" );
 		Group chunk_group = new Group();
 
 		chunk_group.setCronExpression(getElementValue(from, "cronExpression"));

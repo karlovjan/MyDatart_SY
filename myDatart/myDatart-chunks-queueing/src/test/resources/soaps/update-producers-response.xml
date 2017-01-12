@@ -1,0 +1,6 @@
+<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" xmlns:bam="http://etnetera.com/projects/datart/bambino">
+   <s:Header/>
+   <s:Body>
+      <bam:updateProducersResponse/>
+   </s:Body>
+</s:Envelope>

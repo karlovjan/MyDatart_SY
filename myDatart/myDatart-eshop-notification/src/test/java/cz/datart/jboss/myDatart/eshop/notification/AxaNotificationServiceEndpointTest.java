@@ -16,7 +16,7 @@ import org.switchyard.test.SwitchYardTestKit;
 		mixins = {CDIMixIn.class, HTTPMixIn.class, HornetQMixIn.class  })
 public class AxaNotificationServiceEndpointTest {
 
-	private static final String AXA_NOTIFICATION_WEB_SERVICE = "http://localhost:8081/eshopUpdateNotification/EshopUpdateNotificationService";
+	private static final String AXA_NOTIFICATION_WEB_SERVICE = "http://localhost:8081/testcz/eshop/notify/AxaNotificationServiceEndpoint";
 	
 	private HTTPMixIn httpMixIn;
 	private SwitchYardTestKit testKit;

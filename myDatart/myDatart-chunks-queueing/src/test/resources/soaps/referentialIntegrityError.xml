@@ -1,0 +1,25 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <soapenv:Fault>
+            <faultcode>eShopOrderErrorTest</faultcode>
+            <faultstring>referentialIntegrityError</faultstring>
+            <detail>
+                <bam:referentialIntegrityError xmlns:bam="http://etnetera.com/projects/datart/bambino">
+                    <missingEntities>
+                          <entityType>itemId</entityType>
+                          <entityId>1</entityId>
+                    </missingEntities>
+                    <missingEntities>
+                           <entityType>itemId</entityType>
+                           <entityId>3</entityId>
+                    </missingEntities>
+                    <missingEntities>
+                           <entityType>itemId</entityType>
+                           <entityId>5</entityId>
+                    </missingEntities>
+                </bam:referentialIntegrityError>
+            </detail>
+        </soapenv:Fault>
+    </soapenv:Body>
+</soapenv:Envelope>

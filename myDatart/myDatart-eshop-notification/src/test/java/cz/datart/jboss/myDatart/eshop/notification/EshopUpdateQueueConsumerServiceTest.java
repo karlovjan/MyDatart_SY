@@ -1,11 +1,7 @@
 package cz.datart.jboss.myDatart.eshop.notification;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,6 +19,8 @@ import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.test.SwitchYardTestKit;
 
+import cz.datart.jboss.myDatart.utils.FileUtils;
+
 @RunWith(SwitchYardRunner.class)
 @SwitchYardTestCaseConfig(config = SwitchYardTestCaseConfig.SWITCHYARD_XML, mixins = { CDIMixIn.class,
 		HTTPMixIn.class, HornetQMixIn.class  })
@@ -33,9 +31,11 @@ public class EshopUpdateQueueConsumerServiceTest {
 	private Invoker service;
 
 	public String readFile(InputStream input) throws IOException {
-        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(input))) {
-            return buffer.lines().collect(Collectors.joining("\n"));
-        }
+//        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(input))) {
+//            return buffer.lines().collect(Collectors.joining("\n"));
+//        }
+		
+		return FileUtils.readFile(input);
     }
 	
 	@Test

@@ -26,24 +26,12 @@
       </entries>
    </connection-factory>
    
-   <queue name="myDatart-EshopOrderUpdateQueue-testcz">
-      <entry name="myDatart-EshopOrderUpdateQueue-testcz"/>
+   <queue name="myDatart-ChunkUpdateAttributesQueue-testcz">
+      <entry name="myDatart-ChunkUpdateAttributesQueue-testcz"/>
    </queue>
    
-   <queue name="myDatart-EshopUserUpdateQueue-testcz">
-      <entry name="myDatart-EshopUserUpdateQueue-testcz"/>
-   </queue>
-   
-   <queue name="myDatart-EshopManualUpdateQueue-testcz">
-      <entry name="myDatart-EshopManualUpdateQueue-testcz"/>
-   </queue>
-   
-   <queue name="myDatart-EshopOfferUpdateQueue-testcz">
-      <entry name="myDatart-EshopOfferUpdateQueue-testcz"/>
-   </queue>
-   
-   <queue name="myDatart-EshopComplaintUpdateQueue-testcz">
-      <entry name="myDatart-EshopComplaintUpdateQueue-testcz"/>
+   <queue name="myDatart-ChunkUpdateProducersQueue-testcz">
+      <entry name="jms/queue/myDatart-ChunkUpdateProducersQueue-testcz"/>
    </queue>
    
 </configuration>

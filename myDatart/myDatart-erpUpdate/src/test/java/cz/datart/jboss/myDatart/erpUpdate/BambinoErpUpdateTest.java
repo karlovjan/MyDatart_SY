@@ -13,7 +13,6 @@ import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.test.SwitchYardTestKit;
 
-import cz.datart.jboss.myDatart.utils.ApplicationProperty;
 import cz.datart.jboss.myDatart.utils.FileUtils;
 
 @RunWith(SwitchYardRunner.class)
@@ -22,7 +21,7 @@ import cz.datart.jboss.myDatart.utils.FileUtils;
 		mixins = { HTTPMixIn.class, CDIMixIn.class })
 public class BambinoErpUpdateTest {
 
-	private static final String ERP_UPDATE_WEB_SERVICE = "http://localhost:8081/test1/erpUpdate/BambinoErpUpdateService";
+	private static final String ERP_UPDATE_WEB_SERVICE = "http://localhost:8081/testcz/erpUpdate/BambinoErpUpdateService";
 	
 	private HTTPMixIn httpMixIn;
 //	protected CDIMixIn _cdimixin;
@@ -32,8 +31,8 @@ public class BambinoErpUpdateTest {
 
 	private SwitchYardTestKit testKit;
 	
-	@ApplicationProperty(name="myDatart.erp.update.context.path")
-	private String contextPath;
+//	@ApplicationProperty(name="myDatart.erp.update.context.path")
+//	private String contextPath;
 	
 	@BeforeDeploy
     public void setProperties() {

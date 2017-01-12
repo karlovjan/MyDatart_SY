@@ -1,0 +1,17 @@
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xmlns:ns0="http://etnetera.com/projects/datart/bambino">
+    <env:Body>
+        <env:Fault xsi:type="env:Fault">
+            <faultcode>env:Server</faultcode>
+            <faultstring>com.etnetera.projects.datart.ws.gen.RequestError</faultstring>
+            <detail>
+                <ns0:requestError>
+                    <errorCode>ns0:BadArguments</errorCode>
+                    <errorCode>ns0:DataVersionMismatch</errorCode>
+                    <errorText lang="en">real data version is 1322826048506 but 1 is expected by the request</errorText>
+                </ns0:requestError>
+            </detail>
+        </env:Fault>
+    </env:Body>
+</env:Envelope>

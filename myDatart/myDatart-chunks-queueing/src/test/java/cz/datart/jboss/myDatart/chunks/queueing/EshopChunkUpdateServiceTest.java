@@ -1,21 +1,14 @@
-package cz.datart.jboss.myDatart.chunks;
+package cz.datart.jboss.myDatart.chunks.queueing;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.stream.Collectors;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.switchyard.Exchange;
-import org.switchyard.ExchangeHandler;
-import org.switchyard.HandlerException;
 import org.switchyard.component.test.mixins.cdi.CDIMixIn;
 import org.switchyard.component.test.mixins.hornetq.HornetQMixIn;
 import org.switchyard.component.test.mixins.http.HTTPMixIn;
@@ -28,18 +21,20 @@ import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.test.SwitchYardTestKit;
 
+import cz.datart.jboss.myDatart.utils.FileUtils;
+
 @RunWith(SwitchYardRunner.class)
 @SwitchYardTestCaseConfig(
 		config = SwitchYardTestCaseConfig.SWITCHYARD_XML, 
 		mixins = { CDIMixIn.class, HTTPMixIn.class, HornetQMixIn.class, TransactionMixIn.class })
 public class EshopChunkUpdateServiceTest {
 
-	private static final String CHUNK_WEB_SERVICE = "http://localhost:8081/test1/chunks/eshop/update/EshopChunkUpdateService";
+	private static final String CHUNK_WEB_SERVICE = "http://localhost:8081/testcz/chunks/eshop/update/EshopChunkUpdateService";
 	
 	
 //	private static final String MY_TEST_SEGMENT = "CZ"; //NAZEV FRONTY JE V KONFIGURACI TESTOVACICH FRONT
 	
-	private static final String PRODUCER_QUEUE_NAME = "ChunkUpdateProducerQueue";
+	private static final String PRODUCER_QUEUE_NAME = "myDatart-ChunkUpdateProducersQueue-testcz";
 //	private static final String Relations_QUEUE_NAME = "ChunkUpdateRelationsQueue-"+MY_TEST_SEGMENT;
 //	private static final String Catalogue_QUEUE_NAME = "ChunkUpdateCatalogueQueue-"+MY_TEST_SEGMENT;
 //	private static final String AttributeGroups_QUEUE_NAME = "ChunkUpdateAttributeGroupsQueue-"+MY_TEST_SEGMENT;
@@ -74,14 +69,12 @@ public class EshopChunkUpdateServiceTest {
 	}
 	
 	public String readFile(InputStream input) throws IOException {
-        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(input))) {
-            return buffer.lines().collect(Collectors.joining("\n"));
-        }
+        return FileUtils.readFile(input);
     }
 	
 	@Test
     public void testProducerUpdateRequestRecived() throws Exception {
-       
+       //test akci pred dissasamble procesem, test navratove hodnoty
 		mockInOnlyReference("DissassembleProducersService");
 
 		httpMixIn.postResourceAndTestXML(CHUNK_WEB_SERVICE, "/soaps/update-producers-request.xml", "/soaps/update-producers-response.xml");
@@ -91,42 +84,57 @@ public class EshopChunkUpdateServiceTest {
 		
 	}
 	
-//	@Test
+	@Test
 	public void test_disassambly_updateProducersRequest() throws Exception {
 		
 		// initialize your test message
-		String updateRequest = readFile(testKit.getResourceAsStream("/soaps/update-producers-request.xml"));
-		String updateResponse = readFile(testKit.getResourceAsStream("/soaps/update-producers-response.xml"));
+//		String updateRequest = readFile(testKit.getResourceAsStream("/soaps/update-producers-request.xml"));
+//		String updateResponse = readFile(testKit.getResourceAsStream("/soaps/update-producers-response.xml"));
 		
 		// register the service...
 		
-		testKit.replaceService("StoreDissassembledCategoriesRef", new ExchangeHandler() {
-			
-			@Override
-			public void handleMessage(Exchange exchange) throws HandlerException {
-				String chunks = exchange.getMessage().getContent(String.class);
-				String[] chunksArray = chunks.split("</eProducer>");
-				Assert.assertEquals(2, chunksArray.length);
-			}
-			
-			@Override
-			public void handleFault(Exchange exchange) {
-				String msg = exchange.getMessage().getContent(String.class);
-				System.err.println(msg);
-				Assert.assertTrue("Error - " + msg, false);
-			}
-			
-		});
+//		testKit.replaceService("DissassembleProducersService", new ExchangeHandler() {
+//			
+//			@Override
+//			public void handleMessage(Exchange exchange) throws HandlerException {
+//				String chunks = exchange.getMessage().getContent(String.class);
+//				String[] chunksArray = chunks.split("</eProducer>");
+//				Assert.assertEquals(2, chunksArray.length);
+//			}
+//			
+//			@Override
+//			public void handleFault(Exchange exchange) {
+//				String msg = exchange.getMessage().getContent(String.class);
+//				System.err.println(msg);
+//				Assert.assertTrue("Error - " + msg, false);
+//			}
+//			
+//		});
 		       
 		
 		
-		String response = chunkUpdateReceiver.operation("").sendInOut(updateRequest).getContent(String.class);
+//		String response = chunkUpdateReceiver.operation("updateProducers").sendInOut(updateRequest).getContent(String.class);
 
-		// validate the results
-		Assert.assertEquals(updateResponse, response);
+//		httpMixIn.postResourceAndTestXML(CHUNK_WEB_SERVICE, "/soaps/update-producers-request.xml", "/soaps/update-producers-response.xml");
+//	    
+//		// validate the sesrvice response
+////		Assert.assertEquals(updateResponse, response);
+//		
+//		Session session = _hqMixIn.getJMSSession();
+//		
+//		MessageConsumer consumer = session.createConsumer(HornetQMixIn.getJMSQueue(PRODUCER_QUEUE_NAME));
+//		Message message = consumer.receive(3000);
+//        String reply1 = _hqMixIn.readStringFromJMSMessage(message);
+//        
+//        String reply2 = _hqMixIn.readStringFromJMSMessage(message);
+//        
+//        String reply3 = _hqMixIn.readStringFromJMSMessage(message);
+//        
+////        Assert.assertEquals(payload, reply);
+//        return;
 	}
 	
-//	@Test
+	@Test
     public void sendTextMessageToProducersJMSQueue() throws Exception {
         
 		String chunkUpdateRequest = "<c1>Test msg</c1>";//readFile(testKit.getResourceAsStream("/soaps/update-producers-request.xml"));

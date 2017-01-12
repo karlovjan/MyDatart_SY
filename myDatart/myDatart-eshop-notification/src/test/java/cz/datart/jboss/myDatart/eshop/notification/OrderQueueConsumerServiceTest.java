@@ -25,12 +25,12 @@ import org.switchyard.test.SwitchYardTestKit;
 		CDIMixIn.class, HornetQMixIn.class })
 public class OrderQueueConsumerServiceTest {
 
-	private static final String MY_TEST_SEGMENT = "TEST"; //NAZEV FRONTY JE V KONFIGURACI TESTOVACICH FRONT
-	private static final String ORDER_QUEUE_NAME = "EshopOrderUpdateQueue-"+MY_TEST_SEGMENT;
-	private static final String USER_QUEUE_NAME = "EshopUserUpdateQueue-"+MY_TEST_SEGMENT;
-	private static final String MANUAL_QUEUE_NAME = "EshopManualUpdateQueue-"+MY_TEST_SEGMENT;
-	private static final String OFFER_QUEUE_NAME = "EshopOfferUpdateQueue-"+MY_TEST_SEGMENT;
-	private static final String COMPLAINT_QUEUE_NAME = "EshopComplaintUpdateQueue-"+MY_TEST_SEGMENT;
+//	private static final String MY_TEST_SEGMENT = "testcz"; //NAZEV FRONTY JE V KONFIGURACI TESTOVACICH FRONT
+	private static final String ORDER_QUEUE_NAME = "myDatart-EshopOrderUpdateQueue-testcz";
+	private static final String USER_QUEUE_NAME = "myDatart-EshopUserUpdateQueue-testcz";
+	private static final String MANUAL_QUEUE_NAME = "myDatart-EshopManualUpdateQueue-testcz";
+	private static final String OFFER_QUEUE_NAME = "myDatart-EshopOfferUpdateQueue-testcz";
+	private static final String COMPLAINT_QUEUE_NAME = "myDatart-EshopComplaintUpdateQueue-testcz";
 	
 	private SwitchYardTestKit testKit;
 

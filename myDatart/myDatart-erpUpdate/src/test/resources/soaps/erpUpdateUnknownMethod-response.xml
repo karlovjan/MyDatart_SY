@@ -3,7 +3,7 @@
 	<soap:Body>
 		<SOAP-ENV:Fault xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
 			<faultcode>SOAP-ENV:Server</faultcode>
-			<faultstring>SWITCHYARD035451: Operation for '{http://etnetera.com/projects/datart/bambino}updateXXX' not available on target Service '{urn:cz.datart.jboss.myDatart.erpUpdate:myDatart-erpUpdate:1.0.0}BambinoErpUpdateService'.'.</faultstring>
+			<faultstring>SWITCHYARD035451: Operation for '{http://etnetera.com/projects/datart/bambino}updateXXX' not available on target Service '{urn:cz.datart.jboss.myDatart.erpUpdate:myDatart-erpUpdate:1.0}BambinoErpUpdateService'.'.</faultstring>
 		</SOAP-ENV:Fault>
 	</soap:Body>
 </soap:Envelope>

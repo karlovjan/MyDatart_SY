@@ -3,7 +3,7 @@
 	<soap:Body>
 		<SOAP-ENV:Fault xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
 			<faultcode>SOAP-ENV:Server</faultcode>
-			<faultstring>SWITCHYARD035451: Operation for '{http://myDatart.doxologic.com/}notifyXXX' not available on target Service '{urn:cz.datart.jboss:myDatart-eshop-notification:1.0.0}AxaNotificationServiceEndpoint'.'.</faultstring>
+			<faultstring>SWITCHYARD035451: Operation for '{http://myDatart.doxologic.com/}notifyXXX' not available on target Service '{urn:cz.datart.jboss.myDatart.eshop.notification:myDatart-eshop-notification:1.0}AxaNotificationServiceEndpoint'.'.</faultstring>
 		</SOAP-ENV:Fault>
 	</soap:Body>
 </soap:Envelope>

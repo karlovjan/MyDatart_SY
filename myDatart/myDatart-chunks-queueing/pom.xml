@@ -59,6 +59,24 @@
 	      <scope>provided</scope>
 	    </dependency>
 	    
+	    <dependency>
+	      <groupId>org.switchyard.components</groupId>
+	      <artifactId>switchyard-component-test-mixin-hornetq</artifactId>
+	      <scope>test</scope>
+	    </dependency>
+	    
+	    <dependency>
+	      <groupId>org.switchyard.components</groupId>
+	      <artifactId>switchyard-component-test-mixin-http</artifactId>
+	      <scope>test</scope>
+	    </dependency>
+	    
+	    <dependency>
+	      <groupId>org.switchyard.components</groupId>
+	      <artifactId>switchyard-component-test-mixin-jca</artifactId>
+	      <scope>test</scope>
+	    </dependency>
+	    
 	</dependencies>
 	<build>
 		<plugins>
