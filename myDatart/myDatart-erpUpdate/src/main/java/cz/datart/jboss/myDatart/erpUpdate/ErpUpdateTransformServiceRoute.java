@@ -1,5 +1,6 @@
 package cz.datart.jboss.myDatart.erpUpdate;
 
+import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.Predicate;
 import org.apache.camel.builder.RouteBuilder;
@@ -35,15 +36,20 @@ public class ErpUpdateTransformServiceRoute extends RouteBuilder {
 		.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Camel received message from ErpUpdateTransformService: ${body}")
 //		.log(LoggingLevel.INFO, LOG_NAME, "Headers: ${in.headers}")
 //		.convertBodyTo(String.class)
+//		.removeHeader(Exchange.CONTENT_ENCODING)
 //		.removeHeader("Accept-Encoding")
+//		.removeHeader("accept-encoding")
+//		.log(LoggingLevel.INFO, LOG_NAME, "Headers: ${in.headers}")
 		.choice()
 		.when(isUpdateUserRequest)
 //		.when(simple("${in.headers[erpUpdateActionName]} == 'updateUser'"))
 			.log(LoggingLevel.INFO, LOG_NAME, "transform updateUserRequest")
 			.bean(ErpUpdateRequestBuilder.class, "getReceiveDetailCustRequest(${body})")
+//			.to("xslt:xsl/getReceiveDetailCust.xsl?saxon=true")
 			.log(LoggingLevel.INFO, LOG_NAME, "ReceiveDetailCust request: ${body}")
 //			.setHeader("soapAction", constant("http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailCust"))
 			
+//			.log(LoggingLevel.INFO, LOG_NAME, "Headers: ${in.headers}")
 			.to("switchyard://AxaptaWS?operationName=ReceiveDetailCust")
 			.log(LoggingLevel.INFO, LOG_NAME, "Axapta response to the ReceiveDetailCust request: ${body}")
 			.to("xslt:xsl/eShopUpdateUserResponse.xsl?saxon=true")
@@ -54,9 +60,15 @@ public class ErpUpdateTransformServiceRoute extends RouteBuilder {
 			.log(LoggingLevel.INFO, LOG_NAME, "transform updateOrderRequest")
 			.bean(ErpUpdateRequestBuilder.class, "getReceiveDetailOrderRequest(${body})")
 			.log(LoggingLevel.INFO, LOG_NAME, "ReceiveDetailOrder request: ${body}")
-//			.setHeader("soapAction", constant("http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailCust"))
+			.setHeader("SOAPAction", constant("http://ws.mydatart.axapta.datart.cz/IMyDatartAxaptaWS/ReceiveDetailOrder"))
+			.setHeader("operationName", constant("ReceiveDetailOrder"))
+			.setHeader("defaultOperationName", constant("ReceiveDetailOrder"))
+			.setHeader("defaultOperationNamespace", constant("http://ws.mydatart.axapta.datart.cz"))
+			.setHeader("operationNamespace", constant("http://ws.mydatart.axapta.datart.cz"))
+			.log(LoggingLevel.INFO, LOG_NAME, "Headers: ${in.headers}")
 			
-			.to("switchyard://AxaptaWS?operationName=ReceiveDetailOrder")
+			.to("switchyard://AxaptaWS")
+			
 			.log(LoggingLevel.INFO, LOG_NAME, "Axapta response to ReceiveDetailOrder request: ${body}")
 			.to("xslt:xsl/eShopUpdateOrderResponse.xsl?saxon=true")
 //			.setBody(constant("<bam:updateOrderResponse xmlns:bam=\"http://etnetera.com/projects/datart/bambino\"/>"))

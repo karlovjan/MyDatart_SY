@@ -84,7 +84,7 @@ public class EshopChunkUpdateServiceTest {
 		
 	}
 	
-	@Test
+//	@Test
 	public void test_disassambly_updateProducersRequest() throws Exception {
 		
 		// initialize your test message

@@ -40,4 +40,17 @@ public class BodyTransformer {
         return sb.toString();
 	}
 
+	/**
+	 * 
+	 *
+	 */
+    public String convertXmlBodyToString(String xmlBody) {
+       
+        StringBuilder sb = new StringBuilder();
+        
+        //nahrazeno, problem s transformaci
+        sb.append(xmlBody.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "").replaceAll(" +", " "));
+        
+        return sb.toString();
+    }
 }

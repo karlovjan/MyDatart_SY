@@ -8,7 +8,7 @@ public class PrepareUpdateEntity extends RouteBuilder {
 	private static final String LOG_NAME = "PrepareUpdateEntity-Notification";
 	
 	public void configure() {
-		// TODO Auto-generated method stub
+		
 		from("switchyard://PrepareUpdateEntityService")
 			.log(LoggingLevel.INFO, LOG_NAME, "ID: ${id} | Message received from PrepareUpdateEntityService: ${body}")
 			.choice()

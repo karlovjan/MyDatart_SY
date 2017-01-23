@@ -22,11 +22,14 @@ public class ErpUpdateRequestBuilder {
 		
 		StringBuffer sb = new StringBuffer();
 
+		sb.append("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\">");
+		sb.append("<soapenv:Header/><soapenv:Body>");
 		sb.append("<vid:ReceiveDetailOrder xmlns:vid=\"http://ws.mydatart.axapta.datart.cz\">");
 		sb.append("<vid:xmlInput>");
 		sb.append(new BodyTransformer().embodyXmlWithCDATA(body));
 		sb.append("</vid:xmlInput>");
 		sb.append("</vid:ReceiveDetailOrder>");
+		sb.append("</soapenv:Body></soapenv:Envelope>");
 
 		return sb.toString();
 	}

@@ -113,19 +113,6 @@ public class ChunkUtils {
         return sb.toString();
     }
 	
-	public String convertXMLBodyIntoEntityString(final String body) {
-        
-        StringBuilder sb = new StringBuilder();
-        
-        sb.append("<![CDATA[");
-        sb.append(body);
-        sb.append("]]>");
-        //nahrazeno, problem s transformaci
-//        sb.append(body.replace("<", "&lt;").replace(">", "&gt;").replace("\n", "").replaceAll(" +", " "));
-
-        return sb.toString();
-    }
-	
 	public String createConfirmTransAxaptaRequest(final String flowName, final String newVersion, final String notifications){
 		
 		StringBuffer soap = new StringBuffer();
