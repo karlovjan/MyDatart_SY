@@ -1,0 +1,19 @@
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\GIT_Repo\MyDatart_SY\myDatart\myDatart-ssl-config.cli
+# Connect to Wildfly instance
+connect
+
+if (outcome != success) of /subsystem=undertow/server=default-server/https-listener=https/:read-resource
+
+	batch
+
+		/core-service=management/security-realm=https-realm:add()
+		/core-service=management/security-realm=https-realm/server-identity=ssl:add(keystore-path=keystore.jks, keystore-relative-to=jboss.server.config.dir, keystore-password=test1234, alias=localhost, key-password=test1234)
+		
+		:reload
+		
+		/subsystem=undertow/server=default-server/https-listener=https:add(socket-binding=https, security-realm=https-realm, max-post-size=20971520)
+		
+	# Execute the batch
+	run-batch
+
+end-if

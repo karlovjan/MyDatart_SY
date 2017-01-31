@@ -2,10 +2,10 @@
 <switchyard xmlns="urn:switchyard-config:switchyard:2.0" xmlns:bean="urn:switchyard-component-bean:config:2.0" xmlns:camel="urn:switchyard-component-camel:config:2.0" xmlns:cxf="urn:switchyard-component-camel-cxf:config:2.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912" xmlns:soap="urn:switchyard-component-soap:config:2.0" xmlns:trfm="urn:switchyard-config:transform:2.0" xmlns:vldt="urn:switchyard-config:validate:2.0" name="myDatart-erpUpdate" targetNamespace="urn:cz.datart.jboss.myDatart.erpUpdate:myDatart-erpUpdate:1.0">
   <sca:composite name="myDatart-erpUpdate" targetNamespace="urn:cz.datart.jboss.myDatart.erpUpdate:myDatart-erpUpdate:1.0">
     <sca:component name="BambinoErpUpdateServiceRoute">
-      <camel:implementation.camel requires="authorization">
+      <camel:implementation.camel>
         <camel:java class="cz.datart.jboss.myDatart.erpUpdate.BambinoErpUpdateRoute"/>
       </camel:implementation.camel>
-      <sca:service name="BambinoErpUpdateService" requires="clientAuthentication confidentiality">
+      <sca:service name="BambinoErpUpdateService">
         <sca:interface.wsdl interface="wsdl/bambinoErpUpdate.wsdl#wsdl.porttype(BambinoErpUpdate)"/>
       </sca:service>
       <sca:reference name="ErpUpdateTransformService">
@@ -47,8 +47,6 @@
   </sca:composite>
   <domain>
     <properties load="application.properties"/>
-    <securities>
-      <security name="test" rolesAllowed="myDatart_test"/>
-    </securities>
+    <securities/>
   </domain>
 </switchyard>

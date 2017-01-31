@@ -1,6 +1,14 @@
 package cz.datart.jboss.myDatart.erpUpdate;
 
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.net.ssl.SSLContext;
+
+import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.switchyard.component.test.mixins.cdi.CDIMixIn;
@@ -12,16 +20,20 @@ import org.switchyard.test.ServiceOperation;
 import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.test.SwitchYardTestKit;
+import org.switchyard.common.codec.Base64;
 
 import cz.datart.jboss.myDatart.utils.FileUtils;
 
 @RunWith(SwitchYardRunner.class)
 @SwitchYardTestCaseConfig(
-		config = SwitchYardTestCaseConfig.SWITCHYARD_XML, 
+		config = "/META-INF/switchyard-unsecure.xml", 
 		mixins = { HTTPMixIn.class, CDIMixIn.class })
 public class BambinoErpUpdateTest {
-
+//SwitchYardTestCaseConfig.SWITCHYARD_XML
+	
 	private static final String ERP_UPDATE_WEB_SERVICE = "http://localhost:8081/testcz/erpUpdate/BambinoErpUpdateService";
+	
+//	private static final String ERP_UPDATE_WEB_SERVICE_SSL = "https://localhost:8443/testcz/erpUpdate/BambinoErpUpdateService";
 	
 	private HTTPMixIn httpMixIn;
 //	protected CDIMixIn _cdimixin;
@@ -35,10 +47,38 @@ public class BambinoErpUpdateTest {
 //	private String contextPath;
 	
 	@BeforeDeploy
-    public void setProperties() {
+    public void setProperties() throws KeyManagementException, NoSuchAlgorithmException {
         System.setProperty("org.switchyard.component.soap.standalone.port", "8081");
+        System.setProperty("org.switchyard.component.soap.client.port", "8443");
+//        System.setProperty("javax.net.ssl.trustStore", "D:\\Projects\\Datart\\JBoss\\GIT_Repo\\MyDatart_SY\\myDatart\\myDatart-erpUpdate\\src\\test\\resources");
+//        System.setProperty("javax.net.ssl.trustStorePassword", "test1234");
+//        
+//        httpMixIn.setRequestHeader("Authorization", "Basic " + Base64.encodeFromString("baros" + ":" + "Micuda"));
+        
+//        registerSSLConnection();
     }
 	
+	protected static void registerSSLConnection() throws NoSuchAlgorithmException, KeyManagementException{
+    	
+    	SSLContext sslcontext = SSLContext.getInstance("TLS");
+        sslcontext.init(null, null, null);
+        
+//    	HttpClientBuilder builder = HttpClientBuilder.create();
+    	SSLConnectionSocketFactory sslConnectionFactory = new SSLConnectionSocketFactory(sslcontext);
+//    	builder.setSSLSocketFactory(sslConnectionFactory);
+
+    	RegistryBuilder.<ConnectionSocketFactory>create()
+    	        .register("https", sslConnectionFactory)
+    	        .build();
+
+//    	HttpClientConnectionManager ccm = new BasicHttpClientConnectionManager(registry);
+//
+//    	builder.setConnectionManager(ccm);
+//
+//    	return builder.build();
+    	
+    }
+
 //	@Before
 //  public void startAxaptaWebService() throws Exception {
 //      _endpoint = Endpoint.publish(AXAPTA_WEB_SERVICE, new ReverseService());
@@ -65,6 +105,29 @@ public class BambinoErpUpdateTest {
 		httpMixIn.postResourceAndTestXML(ERP_UPDATE_WEB_SERVICE, "/soaps/updateUser-request.xml", "/soaps/updateUser-response.xml");
 		
 	}
+	/*
+	@Test
+	public void testUpdateUser_SSL() throws Exception {
+		 
+		String axaResponse = FileUtils.readFile(testKit.getResourceAsStream("/soaps/axapta/receiveDetailCust-response.xml"));
+		
+		String soapRequest = FileUtils.readFile(testKit.getResourceAsStream("/soaps/updateUser-request.xml"));
+		
+        // register the service...
+		testKit.removeService("AxaptaWS");
+
+		final MockHandler mockHandler = testKit.registerInOutService("AxaptaWS");
+		mockHandler.replyWithOut(axaResponse);
+        
+//		httpMixIn.postResourceAndTestXML(ERP_UPDATE_WEB_SERVICE_SSL, "/soaps/updateUser-request.xml", "/soaps/updateUser-response.xml");
+		
+		String soapResponse = httpMixIn.postString(ERP_UPDATE_WEB_SERVICE_SSL, soapRequest);
+        //LOGGER.info(String.format("Received work service response: %s", soapResponse));
+        if (soapResponse.toLowerCase().contains("fault")) {
+            throw new Exception("Error invoking work service (check server log)");
+        }
+	}
+	*/
 	
 //	@Test TODO soap fault exception from reference
 	public void testUpdateUser_Failed() throws IOException {

@@ -126,8 +126,4 @@
       </plugin>
     </plugins>
   </build>
-  <properties>
-  	<integration.version></integration.version>
-  	<kie.version></kie.version>
-  </properties>
 </project>

@@ -1,0 +1,18 @@
+#jboss-cli.bat --file=d:\Projects\Datart\JBoss\GIT_Repo\MyDatart_SY\myDatart\myDatart-ssl-unconfig.cli
+# Connect to Wildfly instance
+connect
+
+if (outcome == success) of /subsystem=undertow/server=default-server/https-listener=https/:read-resource
+
+	batch
+    
+		/subsystem=undertow/server=default-server/https-listener=https/:remove
+		/core-service=management/security-realm=https-realm/:remove
+		
+		:reload
+		
+	# Execute the batch
+	run-batch
+	
+end-if
+
