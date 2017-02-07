@@ -49,7 +49,7 @@ public class BambinoErpUpdateTest {
 	@BeforeDeploy
     public void setProperties() throws KeyManagementException, NoSuchAlgorithmException {
         System.setProperty("org.switchyard.component.soap.standalone.port", "8081");
-        System.setProperty("org.switchyard.component.soap.client.port", "8443");
+//        System.setProperty("org.switchyard.component.soap.client.port", "8443");
 //        System.setProperty("javax.net.ssl.trustStore", "D:\\Projects\\Datart\\JBoss\\GIT_Repo\\MyDatart_SY\\myDatart\\myDatart-erpUpdate\\src\\test\\resources");
 //        System.setProperty("javax.net.ssl.trustStorePassword", "test1234");
 //        

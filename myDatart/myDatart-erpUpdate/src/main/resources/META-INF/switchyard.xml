@@ -48,7 +48,7 @@
   <domain>
     <properties load="application.properties"/>
     <securities>
-      <security name="test" rolesAllowed="myDatart_test"/>
+      <security callbackHandler="org.switchyard.security.callback.handler.CertificateCallbackHandler" name="test" rolesAllowed="myDatart_test" securityDomain="https-realm"/>
     </securities>
   </domain>
 </switchyard>
